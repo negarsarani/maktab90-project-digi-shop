@@ -1,7 +1,7 @@
-import Input from "@/components/Input";
+export default function AdminPage() {
+  return <div>HI</div>;
+}
 
-export default function Example() {
-    return (
-      
-    )
-  }
+AdminPage.getLayout = function PageLayout(page: any) {
+  return <> {page}</>;
+};
