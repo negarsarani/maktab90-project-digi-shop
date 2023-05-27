@@ -3,6 +3,7 @@ import SidebarAdmin from '@/feature/admin/SidebarAdmin';
 import React, { ReactNode, useEffect, useState } from 'react';
 
 const Adminlayout = ({ children }: { children: ReactNode }) => {
+const Adminlayout = ({ children }: { children: ReactNode }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -29,6 +30,7 @@ const Adminlayout = ({ children }: { children: ReactNode }) => {
               mobileMenuOpen={mobileMenuOpen}
             />
           </header>
+          <div className='w-full h-full'>{children}</div>
           <div className='w-full h-full'>{children}</div>
         </div>
         <SidebarAdmin

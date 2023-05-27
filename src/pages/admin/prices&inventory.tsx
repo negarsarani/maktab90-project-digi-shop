@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import NavbarTable from '@/feature/admin/products/NavbarTable';
 import Pagination from '@/feature/admin/components/Pagination';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -16,6 +17,12 @@ const pricesInventory = () => {
       </div>
     </div>
   );
+=======
+import React from 'react';
+
+const pricesInventory = () => {
+  return <div>pricesInventory</div>;
+>>>>>>> 531ffe1 (add table to admin/product)
 };
 
 export default pricesInventory;

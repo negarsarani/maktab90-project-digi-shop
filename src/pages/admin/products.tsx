@@ -1,4 +1,8 @@
 import React, { useEffect } from 'react';
+<<<<<<< HEAD
+=======
+import img from '../../assets/Icons/Buy.svg';
+>>>>>>> 531ffe1 (add table to admin/product)
 import getData from '@/api/getData';
 import Thead from '@/feature/admin/components/Thead';
 import Th from '@/feature/admin/components/Th';
@@ -6,6 +10,13 @@ const name = () => {
   getData('products').then((res) => console.log(res));
 };
 
+<<<<<<< HEAD
+=======
+const products = () => {
+  useEffect(() => {
+    getData('products').then((res) => console.log(res));
+  }, []);
+>>>>>>> 531ffe1 (add table to admin/product)
   return (
     <div className="overflow-x-auto container mx-auto ">
       <button onClick={() => name()}>scsa</button>
@@ -73,14 +84,23 @@ const name = () => {
             </div>
           </div>
         </div>
+<<<<<<< HEAD
         <Pagination />
       </div>
       <Pagination />
+=======
+      </div>
+>>>>>>> 531ffe1 (add table to admin/product)
     </div>
   );
 };
 
+<<<<<<< HEAD
 export default Products;
 Products.getLayout = function PageLayout(page: any) {
+=======
+export default products;
+products.getLayout = function PageLayout(page: any) {
+>>>>>>> 531ffe1 (add table to admin/product)
   return <> {page}</>;
 };
