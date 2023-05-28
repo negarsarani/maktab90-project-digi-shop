@@ -29,16 +29,12 @@ const Adminlayout = ({ children }: { children: ReactNode }) => {
               mobileMenuOpen={mobileMenuOpen}
             />
           </header>
-          <div className="px-10 w-full bg-creamLight h-full">
-            {children}
-          </div>
+          <div className='w-full h-full'>{children}</div>
         </div>
-        <div className={`${mobileMenuOpen && 'w-4/12'}`}>
-          <SidebarAdmin
-            mobileMenuOpen={mobileMenuOpen}
-            setMobileMenuOpen={setMobileMenuOpen}
-          />
-        </div>
+        <SidebarAdmin
+          mobileMenuOpen={mobileMenuOpen}
+          setMobileMenuOpen={setMobileMenuOpen}
+        />
       </div>
     </>
   );

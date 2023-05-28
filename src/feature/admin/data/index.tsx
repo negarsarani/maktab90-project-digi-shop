@@ -25,3 +25,10 @@ export const headerProductTable: HeaderTableType = [
   'دسته بندی',
   'مدیریت کالا',
 ];
+
+export const headerTable: HeaderTableType = [
+  'تصویر کالا',
+  'نام کالا',
+  'دسته بندی',
+  'مدیریت کالا',
+];
