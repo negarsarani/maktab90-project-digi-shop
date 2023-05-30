@@ -4,20 +4,22 @@ import Mainlayout from './featured/Mainlayout';
 import theme from '@/styles/Theme/Theme';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { ThemeProvider } from '@mui/material/styles';
-import createEmotionCache from '../utility/createEmotionCache';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import Adminlayout from './featured/Adminlayout';
 type LayoutType = {
   Component: any;
   children: ReactNode;
   emotionCache: any;
 };
+import { ToastContainer, toast } from 'react-toastify';
+import { AnimatePresence } from 'framer-motion';
+
+import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
+
 import store from '../redux/store';
 import { Provider } from 'react-redux';
+import { queryClient } from '@/react-query/queryClient';
 const Layout = ({ Component, children, emotionCache }: LayoutType) => {
-  const clientSideEmotionCache = createEmotionCache();
-  const queryClient = new QueryClient();
-
   const {
     asPath, // the value: "/question/how-do-you-get-the-current-url-in-nextjs/"
     pathname, // the value: "/question/[slug]"
@@ -27,37 +29,61 @@ const Layout = ({ Component, children, emotionCache }: LayoutType) => {
   return Component.getLayout ? (
     slicePath ? (
       Component.getLayout(
-        <QueryClientProvider client={queryClient}>
-          <CacheProvider value={emotionCache}>
-            <ThemeProvider theme={theme}>
-              <Provider store={store}>
-                <Adminlayout>{children}</Adminlayout>
-              </Provider>
-            </ThemeProvider>
-          </CacheProvider>
-        </QueryClientProvider>
+        <CacheProvider value={emotionCache}>
+          <ThemeProvider theme={theme}>
+            <Provider store={store}>
+              <QueryClientProvider client={queryClient}>
+                <AnimatePresence mode="wait" initial={false}>
+                  <Adminlayout>{children}</Adminlayout>
+                  <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                  />
+                  {/* <ReactQueryDevtoolsPanel /> */}
+                </AnimatePresence>
+              </QueryClientProvider>
+            </Provider>
+          </ThemeProvider>
+        </CacheProvider>
       )
     ) : (
       Component.getLayout(
-        <QueryClientProvider client={queryClient}>
-          <CacheProvider value={emotionCache}>
-            <ThemeProvider theme={theme}>
-              <Provider store={store}>
-                <Mainlayout>{children}</Mainlayout>
-              </Provider>
-            </ThemeProvider>
-          </CacheProvider>
-        </QueryClientProvider>
+        <CacheProvider value={emotionCache}>
+          <ThemeProvider theme={theme}>
+            <Provider store={store}>
+              <QueryClientProvider client={queryClient}>
+                <AnimatePresence mode="wait" initial={false}>
+                  <Mainlayout>{children}</Mainlayout>
+                  {/* <ReactQueryDevtoolsPanel /> */}
+                </AnimatePresence>
+              </QueryClientProvider>
+            </Provider>
+          </ThemeProvider>
+        </CacheProvider>
       )
     )
   ) : (
-    <QueryClientProvider client={queryClient}>
-      <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={theme}>
-          <Provider store={store}>{children}</Provider>
-        </ThemeProvider>
-      </CacheProvider>
-    </QueryClientProvider>
+    <CacheProvider value={emotionCache}>
+      <ThemeProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
+          <Provider store={store}>
+            <AnimatePresence mode="wait" initial={false}>
+              {children}
+            </AnimatePresence>
+          </Provider>
+
+          {/* <ReactQueryDevtoolsPanel /> */}
+        </QueryClientProvider>
+      </ThemeProvider>
+    </CacheProvider>
   );
 };
 
