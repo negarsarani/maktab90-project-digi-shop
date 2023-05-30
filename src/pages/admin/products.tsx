@@ -14,7 +14,7 @@ import { querykeys } from '@/react-query/constants';
 import { isError } from 'react-query';
 
 const Products = () => {
-  const [value, dispatch] = useRedux('adminState');
+  const [value, dispatch] = useRedux((state)=> state.adminState);
 
   const [isLoading, data, isError, refetch] = useQueries(
     () => getData('products'),
@@ -27,8 +27,8 @@ const Products = () => {
       <NavbarTableProduct />
       <ReactQueryDevtools />
 
-      <div className=" w-full flex flex-col  items-center justify-center ">
-        <div className=" overflow-hidden   flex flex-col overflow-x-auto w-full  ">
+      <div className=" w-full  pb-28 flex flex-col gap-5">
+        <div className="  overflow-hidden  bg-white flex flex-col overflow-x-auto w-full rounded-t-xl ">
           <ProductTable isLoading={isLoading} value={value} isError={isError} />
         </div>
         <Pagination />

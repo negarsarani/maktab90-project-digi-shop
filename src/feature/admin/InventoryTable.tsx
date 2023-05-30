@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactEventHandler } from 'react';
 import Thead from './components/Thead';
 import Th from './components/Th';
 import Tbody from './components/Tbody';
@@ -15,8 +15,7 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
     price: false,
     Inventory: false,
   });
-  const handleInputChange = (itemId: string, item: EventTarget) => {
-    console.log(item);
+  const handleInputChange = (itemId: string, item: string) => {
 
     item === 'inventory'
       ? setSelectedItemId({
@@ -31,7 +30,7 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
         });
   };
   return (
-    <table className={`w-full bg-white ${isError && 'h-60'} `}>
+    <table className={` bg-white ${isError && 'h-60'}  `}>
       <Thead className=" ">
         {headerInventoryTable.map((item) => (
           <Th
@@ -42,21 +41,23 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
           </Th>
         ))}
       </Thead>
-      <Tbody className=" divide-grayMedium  ">
+      <Tbody className=" divide-grayMedium   ">
         {value.products?.data?.map((item: any) => {
           return (
             <tr key={item.name} className="">
               <Td
                 key={item.name}
-                className=" py-4 flex pr-3 items-center justify-center  border-b "
+                className=" py-4 flex items-center justify-center  border-b "
               >
-                <Image
-                  src={`http://localhost:8000/images/products/images/${item.images[0]}`}
-                  alt={'item.name'}
-                  className="rounded-xl"
-                  width={100}
-                  height={100}
-                />
+                <div className=" w-[10rem] flex items-center justify-center">
+                  <Image
+                    src={`http://localhost:8000/images/products/images/${item.images[0]}`}
+                    alt={'item.name'}
+                    className="rounded-xl "
+                    width={100}
+                    height={100}
+                  />
+                </div>
               </Td>
               <Td key={item.name} className="py-4 px-6 border-b ">
                 <div className="text-sm text-center px-4 text-gray-900 flex items-center justify-center">
@@ -80,7 +81,7 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
                       className="text-sm text-center  w-[10rem] md:w-[15rem]flex items-center justify-center  py-3  bg-white border-2 rounded-xl  border-gray-100  shadow-md  text-gray-900"
                       id="price"
                       onClick={(event) =>
-                        handleInputChange(item._id, event.target.id)
+                        handleInputChange(item._id, event.currentTarget.id)
                       }
                     >
                       {item.price}
@@ -104,8 +105,8 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
                     <span
                       className="text-sm text-center  w-[10rem] md:w-[15rem]flex items-center justify-center  py-3  bg-white border-2 rounded-xl  border-gray-100  shadow-md  text-gray-900"
                       id="inventory"
-                      onClick={(event) =>
-                        handleInputChange(item._id, event.target.id)
+                      onClick={(event: React.MouseEvent<HTMLElement>) =>
+                        handleInputChange(item._id, event.currentTarget.id)
                       }
                     >
                       {item.quantity}

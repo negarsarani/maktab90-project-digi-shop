@@ -22,18 +22,18 @@ const Adminlayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <div className="flex flex-row-reverse justify-between h-full w-full">
-        <div className={`${mobileMenuOpen ? 'w-8/12' : 'w-full'}`}>
-          <header className="flex flex-col border-b border-grayLight shadow-sm">
+        <div className={`${mobileMenuOpen ? 'w-8/12' : 'w-full'} `}>
+          <header className="flex fixed bg-white  w-full flex-col border-b border-grayLight shadow-sm">
             <HeaderAdmin
               setMobileMenuOpen={setMobileMenuOpen}
               mobileMenuOpen={mobileMenuOpen}
             />
           </header>
-          <div className="px-10 w-full bg-creamLight h-full">
+          <div className="px-10 w-full pt-28  bg-creamLight h-full overflow-hidden overflow-y-auto">
           {children}
           </div>
         </div>
-        <div className={`${mobileMenuOpen && 'w-4/12'}`}>
+        <div className={`${mobileMenuOpen && 'w-4/12'} h-full`}>
           <SidebarAdmin
             mobileMenuOpen={mobileMenuOpen}
             setMobileMenuOpen={setMobileMenuOpen}

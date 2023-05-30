@@ -9,7 +9,7 @@ type sideBarDataType = {
 }[];
 type HeaderTableType = string[];
 export const sideBarData: sideBarDataType = [
-  { name: 'مدیریت کالاها', href: '/admin/products', icon: '/icons/filesvg' },
+  { name: 'مدیریت کالاها', href: '/admin/products', icon: '/icons/file.svg' },
   { name: 'سفارش ها', href: '/admin/orders', icon: '/icons/Buy.svg' },
   {
     name: 'موجودی و قیمت ها',

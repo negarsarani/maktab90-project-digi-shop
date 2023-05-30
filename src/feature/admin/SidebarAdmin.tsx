@@ -4,7 +4,6 @@ import { LayoutChildrenAdminType } from '@/types/type';
 import Image from 'next/image';
 import SidebarLink from './components/SidebarLink';
 import { sideBarData } from './data';
-import MotionSideBar from '@/layout/framer-motion/motionSideBar';
 // const a =
 const SidebarAdmin = ({
   mobileMenuOpen,
@@ -15,7 +14,7 @@ const SidebarAdmin = ({
   };
   return (
     <div
-    className={` ${
+    className={`  ${
       mobileMenuOpen ? 'flex' : 'hidden'
         } lg:flex h-full bg-orangeSidebar`}
         >

@@ -10,20 +10,20 @@ import { querykeys } from '@/react-query/constants';
 import { DATA } from '@/redux/slice/admin/adminSlice';
 
 const PricesInventory = () => {
-  const [value, dispatch] = useRedux('adminState');
+  const [value, dispatch] = useRedux((state)=> state.adminState);
 
   const [isLoading, data, isError, refetch] = useQueries(
     () => getData('products'),
     querykeys.products
   );
-  isLoading == false && dispatch(DATA({ items: data, name: 'products' }));
+  isLoading === false && dispatch(DATA({ items: data, name: 'products' }));
 
   return (
-    <div className="w-full h-full py-10 flex flex-col gap-10 ">
+    <div className="w-full  p-28 flex flex-col gap-5 ">
       <NavbarTableInventory />
       <ReactQueryDevtools />
       <div className=" w-full flex flex-col  items-center justify-center ">
-        <div className=" overflow-hidden   flex flex-col overflow-x-auto w-full  ">
+        <div className=" overflow-hidden  bg-white flex flex-col overflow-x-auto w-full rounded-t-xl ">
           <InventoryTable
             isLoading={isLoading}
             value={value}
