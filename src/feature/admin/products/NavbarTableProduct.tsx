@@ -1,8 +1,5 @@
-import Image from 'next/image';
 import React from 'react';
 
-import MotionSideBar from '@/layout/framer-motion/motionSideBar';
-import SearchInput from '../components/SearchInput';
 import NavbarTable from '../components/NavbarTable';
 import ButtonOrange from '../components/ButtonOrange';
 const NavbarTableProduct = () => {

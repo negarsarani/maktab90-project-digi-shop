@@ -1,7 +1,5 @@
-import Image from 'next/image';
 import React from 'react';
 
-import SearchInput from '../components/SearchInput';
 import NavbarTable from '../components/NavbarTable';
 import ButtonOrange from '../components/ButtonOrange';
 const NavbarTableProduct = () => {

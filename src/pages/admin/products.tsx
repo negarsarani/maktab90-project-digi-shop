@@ -11,7 +11,6 @@ import ProductTable from '@/feature/admin/ProductTable';
 import Pagination from '@/feature/admin/components/Pagination';
 import NavbarTableProduct from '@/feature/admin/products/NavbarTableProduct';
 import { querykeys } from '@/react-query/constants';
-import { isError } from 'react-query';
 
 const Products = () => {
   const [value, dispatch] = useRedux((state)=> state.adminState);
@@ -23,11 +22,11 @@ const Products = () => {
   isLoading == false && dispatch(DATA({ items: data, name: 'products' }));
 
   return (
-    <div className="w-full h-full py-10 flex flex-col gap-10 ">
+    <div className="w-full h-full flex flex-col gap-5 ">
       <NavbarTableProduct />
       <ReactQueryDevtools />
 
-      <div className=" w-full  pb-28 flex flex-col gap-5">
+      <div className=" w-full  pb-10 flex flex-col ">
         <div className="  overflow-hidden  bg-white flex flex-col overflow-x-auto w-full rounded-t-xl ">
           <ProductTable isLoading={isLoading} value={value} isError={isError} />
         </div>

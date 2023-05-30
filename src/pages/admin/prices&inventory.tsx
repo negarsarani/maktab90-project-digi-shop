@@ -19,10 +19,10 @@ const PricesInventory = () => {
   isLoading === false && dispatch(DATA({ items: data, name: 'products' }));
 
   return (
-    <div className="w-full  p-28 flex flex-col gap-5 ">
+    <div className="w-full  flex flex-col gap-5 ">
       <NavbarTableInventory />
       <ReactQueryDevtools />
-      <div className=" w-full flex flex-col  items-center justify-center ">
+      <div className=" w-full  pb-10 flex flex-col  items-center justify-center ">
         <div className=" overflow-hidden  bg-white flex flex-col overflow-x-auto w-full rounded-t-xl ">
           <InventoryTable
             isLoading={isLoading}

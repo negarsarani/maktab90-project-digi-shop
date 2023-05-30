@@ -7,13 +7,20 @@ type SidebarLinkType = {
   icon: string;
   width: number;
   height: number;
-  onClick?:() => void
+  onClick?: () => void;
 };
-const SidebarLink = ({ name, href, icon, width, height , onClick }: SidebarLinkType) => {
+const SidebarLink = ({
+  name,
+  href,
+  icon,
+  width,
+  height,
+  onClick,
+}: SidebarLinkType) => {
   return (
     <Linkrouter
       className={
-        'flex flex-row-reverse justify-end gap-2 items-center p-2 bg-white rounded-xl sm:px-5 sm:w-full font-semibold w-8/12 sm:text-md text-sm py-3 hover:bg-cream'
+        'flex flex-row-reverse justify-end gap-2 items-center p-2 bg-white rounded-xl sm:px-5 sm:w-full font-semibold w-8/12 lg:text-[.8rem] sm:text-[.7rem] text-[1rem] py-3 hover:bg-cream truncate text-ellipsis	'
       }
       href={href}
       onClick={onClick}

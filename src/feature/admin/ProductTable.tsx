@@ -1,13 +1,10 @@
 import Td from './components/Td';
-import CircularProgress from '@mui/material/CircularProgress';
 import Thead from './components/Thead';
 import Th from './components/Th';
 import Tbody from './components/Tbody';
 import { headerProductTable } from './data';
-import { AdminStore } from '@/redux/slice/admin/adminSlice';
 import Image from 'next/image';
 import SkeletonTable from './components/skeletonTable';
-import Pagination from './components/Pagination';
 import { TableProps } from '@/types/type';
 
 type itemType = {};
@@ -26,7 +23,7 @@ const ProductTable = ({ isLoading, value, isError }: TableProps) => {
         {headerProductTable.map((item) => (
           <Th
             key={item}
-            className=" bg-orangeLighter  py-4 px-6 text-center text-xs font-medium text-gray "
+            className=" bg-orangeLighter  py-4  text-center text-xs font-medium text-gray "
           >
             {item}
           </Th>
@@ -40,13 +37,15 @@ const ProductTable = ({ isLoading, value, isError }: TableProps) => {
                 key={item.name}
                 className=" py-4 px-6 border-b flex items-center justify-center h-20"
               >
-                <Image
-                  src={`http://localhost:8000/images/products/images/${item.images[0]}`}
-                  alt={'item.name'}
-                  className="rounded-xl"
-                  width={100}
-                  height={100}
-                />
+                <div className=" w-[10rem] flex items-center justify-center">
+                  <Image
+                    src={`http://localhost:8000/images/products/images/${item.images[0]}`}
+                    alt={'item.name'}
+                    className="rounded-xl"
+                    width={100}
+                    height={100}
+                  />
+                </div>
               </Td>
               <Td key={item.name} className="py-4 px-6 border-b">
                 <div className="text-sm text-center px-4 text-gray-900">

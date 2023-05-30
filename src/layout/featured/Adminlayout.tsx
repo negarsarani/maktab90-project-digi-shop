@@ -22,7 +22,7 @@ const Adminlayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <div className="flex flex-row-reverse justify-between h-full w-full">
-        <div className={`${mobileMenuOpen ? 'w-8/12' : 'w-full'} `}>
+        <div className={`${mobileMenuOpen ? 'w-8/12 md:w-9/12' : 'w-full'} `}>
           <header className="flex fixed bg-white  w-full flex-col border-b border-grayLight shadow-sm">
             <HeaderAdmin
               setMobileMenuOpen={setMobileMenuOpen}
@@ -33,7 +33,7 @@ const Adminlayout = ({ children }: { children: ReactNode }) => {
           {children}
           </div>
         </div>
-        <div className={`${mobileMenuOpen && 'w-4/12'} h-full`}>
+        <div className={`${mobileMenuOpen && 'w-4/12 md:w-3/12'} h-full lg:w-[13rem]`}>
           <SidebarAdmin
             mobileMenuOpen={mobileMenuOpen}
             setMobileMenuOpen={setMobileMenuOpen}

@@ -30,7 +30,7 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
         });
   };
   return (
-    <table className={` bg-white ${isError && 'h-60'}  `}>
+    <table className={`w-full bg-white ${isError && 'h-60'}  `}>
       <Thead className=" ">
         {headerInventoryTable.map((item) => (
           <Th
