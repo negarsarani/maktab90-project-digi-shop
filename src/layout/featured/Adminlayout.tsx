@@ -30,7 +30,7 @@ const Adminlayout = ({ children }: { children: ReactNode }) => {
             />
           </header>
           <div className="px-10 w-full bg-creamLight h-full">
-            {children}
+          {children}
           </div>
         </div>
         <div className={`${mobileMenuOpen && 'w-4/12'}`}>

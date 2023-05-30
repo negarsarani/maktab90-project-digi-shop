@@ -3,11 +3,14 @@ import { ReactNode } from 'react';
 
 const MotionSideBar = ({ children }: { children: ReactNode }) => (
   <motion.div
-  animate={{
-    scale: [1, 2, 2, 1, 1],
-    rotate: [0, 0, 270, 270, 0],
-    borderRadius: ["20%", "20%", "50%", "50%", "20%"],
-  }}
+    animate={{ x: [50, 150, 50], opacity: 1, scale: 1 }}
+    transition={{
+      duration: 5,
+      delay: 0.3,
+      ease: [0.5, 0.71, 1, 1.5],
+    }}
+    initial={{ opacity: 0, scale: 0.5 }}
+    whileHover={{ scale: 1.2 }}
   >
     {children}
   </motion.div>

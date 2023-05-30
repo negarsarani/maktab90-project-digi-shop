@@ -4,72 +4,121 @@ import Th from './components/Th';
 import Tbody from './components/Tbody';
 import Td from './components/Td';
 import Image from 'next/image';
+import { TableProps } from '@/types/type';
+import { headerInventoryTable } from './data';
+import Input from '../../components/Input';
+import { useState } from 'react';
+const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
+  const [changeData, setChangeData] = useState([]);
+  const [selectedItemId, setSelectedItemId] = useState({
+    id: '',
+    price: false,
+    Inventory: false,
+  });
+  const handleInputChange = (itemId: string, item: EventTarget) => {
+    console.log(item);
 
-const inventoryTable = () => {
-    return (
-        <table className={`w-full bg-white ${isError && 'h-60'} `}>
-        <Thead className=" ">
-          {headerTable.map((item) => (
-            <Th
-              key={item}
-              className=" bg-orangeLighter  py-4 px-6 text-center text-xs font-medium text-gray "
-            >
-              {item}
-            </Th>
-          ))}
-        </Thead>
-        <Tbody className=" divide-grayMedium">
-          {/* {value.products?.data?.map((item: any) => { */}
-            return (
-              <tr key={item.name}>
-                <Td
-                  key={item.name}
-                  className=" py-4 px-6 border-b flex items-center justify-center h-20"
-                >
-                  <Image
-                    src={`http://localhost:8000/images/products/images/${item.images[0]}`}
-                    alt={'item.name'}
-                    className="rounded-xl"
-                    width={100}
-                    height={100}
-                  />
-                </Td>
-                <Td key={item.name} className="py-4 px-6 border-b">
-                  <div className="text-sm text-center px-4 text-gray-900">
-                    {item.name}
+    item === 'inventory'
+      ? setSelectedItemId({
+          id: itemId,
+          price: false,
+          Inventory: true,
+        })
+      : setSelectedItemId({
+          id: itemId,
+          price: true,
+          Inventory: false,
+        });
+  };
+  return (
+    <table className={`w-full bg-white ${isError && 'h-60'} `}>
+      <Thead className=" ">
+        {headerInventoryTable.map((item) => (
+          <Th
+            key={item}
+            className=" bg-orangeLighter  py-4 px-6 text-center text-xs font-medium text-gray "
+          >
+            {item}
+          </Th>
+        ))}
+      </Thead>
+      <Tbody className=" divide-grayMedium  ">
+        {value.products?.data?.map((item: any) => {
+          return (
+            <tr key={item.name} className="">
+              <Td
+                key={item.name}
+                className=" py-4 flex pr-3 items-center justify-center  border-b "
+              >
+                <Image
+                  src={`http://localhost:8000/images/products/images/${item.images[0]}`}
+                  alt={'item.name'}
+                  className="rounded-xl"
+                  width={100}
+                  height={100}
+                />
+              </Td>
+              <Td key={item.name} className="py-4 px-6 border-b ">
+                <div className="text-sm text-center px-4 text-gray-900 flex items-center justify-center">
+                  {item.name}
+                </div>
+              </Td>
+              <Td key={item.name} className="py-4 px-6 border-b">
+                {selectedItemId.price && selectedItemId.id === item._id ? (
+                  <div className="flex items-center justify-center ">
+                    <Input
+                      className="text-sm text-center  w-[10rem] lg:w-[15rem]flex items-center justify-center py-3   bg-white border-opacity-40 border-2 rounded-lg  border-orangeAdmin focus:border-none focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-orangeAdmin shadow-md text-gray-900"
+                      placeholder="فاقد قیمت"
+                      type="number"
+                      name="price"
+                      id="priceInput"
+                    />
                   </div>
-                </Td>
-                <Td key={item.name} className="py-4 px-6 border-b">
-                  <div className="text-sm text-center px-10 text-gray-900">
-                    {item.category}
+                ) : (
+                  <div className="flex items-center justify-center  ">
+                    <span
+                      className="text-sm text-center  w-[10rem] md:w-[15rem]flex items-center justify-center  py-3  bg-white border-2 rounded-xl  border-gray-100  shadow-md  text-gray-900"
+                      id="price"
+                      onClick={(event) =>
+                        handleInputChange(item._id, event.target.id)
+                      }
+                    >
+                      {item.price}
+                    </span>
                   </div>
-                </Td>
-                <Td key={item.name} className="py-4 px-6 border-b  ">
-                  <div className="flex gap-4">
-                    <button className="text-sm text-gray-900">
-                      <Image
-                        src="/icons/trash.svg"
-                        alt="حذف"
-                        width={20}
-                        height={20}
-                      />
-                    </button>
-                    <button className="text-sm text-gray-900">
-                      <Image
-                        src="/icons/edit.svg"
-                        alt="حذف"
-                        width={20}
-                        height={20}
-                      />
-                    </button>
+                )}
+              </Td>
+              <Td key={item.name} className="py-4 px-6 border-b  ">
+                {selectedItemId.Inventory && selectedItemId.id === item._id ? (
+                  <div className="flex items-center justify-center w-full">
+                    <Input
+                      className="text-sm text-center  w-[10rem] lg:w-[15rem]flex items-center justify-center py-3   bg-white border-opacity-40 border-2 rounded-lg  border-orangeAdmin focus:border-none focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-orangeAdmin shadow-md text-gray-900"
+                      placeholder="فاقد موجودی"
+                      type="number"
+                      name="price"
+                      id="inventoryInput"
+                    />
                   </div>
-                </Td>
-              </tr>
-            );
-          {/* })} */}
-        </Tbody>
-      </table>
-    );
+                ) : (
+                  <div className="flex items-center justify-center  ">
+                    <span
+                      className="text-sm text-center  w-[10rem] md:w-[15rem]flex items-center justify-center  py-3  bg-white border-2 rounded-xl  border-gray-100  shadow-md  text-gray-900"
+                      id="inventory"
+                      onClick={(event) =>
+                        handleInputChange(item._id, event.target.id)
+                      }
+                    >
+                      {item.quantity}
+                    </span>
+                  </div>
+                )}
+              </Td>
+            </tr>
+          );
+        })}
+      </Tbody>
+    </table>
+  );
 };
 
-export default inventoryTable;
+export default InventoryTable;

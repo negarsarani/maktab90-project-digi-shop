@@ -8,15 +8,10 @@ import { AdminStore } from '@/redux/slice/admin/adminSlice';
 import Image from 'next/image';
 import SkeletonTable from './components/skeletonTable';
 import Pagination from './components/Pagination';
-
-type ProductTableProps = {
-  isLoading: boolean | unknown;
-  value: any;
-  isError: boolean;
-};
+import { TableProps } from '@/types/type';
 
 type itemType = {};
-const ProductTable = ({ isLoading, value, isError }: ProductTableProps) => {
+const ProductTable = ({ isLoading, value, isError }: TableProps) => {
   if (isLoading) {
     return (
       <div>

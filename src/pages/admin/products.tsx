@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import getData from '@/api/getData';
-import Thead from '@/feature/admin/components/Thead';
-import Th from '@/feature/admin/components/Th';
-import { headerTable } from '@/feature/admin/data';
-import Tbody from '@/feature/admin/components/Tbody';
+
 import useRedux from '@/hooks/useRedux';
 import { DATA } from '../../redux/slice/admin/adminSlice';
 
@@ -12,15 +9,14 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import ProductTable from '@/feature/admin/ProductTable';
 import Pagination from '@/feature/admin/components/Pagination';
-import NavbarTableProduct from '@/feature/admin/products/NavbarTableNavbarTableProduct';
-import { ToastContainer, toast } from 'react-toastify';
+import NavbarTableProduct from '@/feature/admin/products/NavbarTableProduct';
 import { querykeys } from '@/react-query/constants';
 import { isError } from 'react-query';
 
 const Products = () => {
   const [value, dispatch] = useRedux('adminState');
 
-  const [isLoading, data, error, refetch] = useQueries(
+  const [isLoading, data, isError, refetch] = useQueries(
     () => getData('products'),
     querykeys.products
   );

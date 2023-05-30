@@ -38,7 +38,7 @@ const SidebarAdmin = ({
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>
-              <XMarkIcon className={`h-6 w-6`} aria-hidden="true" />
+              <XMarkIcon  className={`h-6 w-6`} aria-hidden="true" />
             </button>
           </div>
           <div className="mt-6 flow-root">

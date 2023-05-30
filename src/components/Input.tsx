@@ -3,9 +3,9 @@ type Inputtype = {
   className: string;
   name: string
   id: string 
-  type: 'email' | 'text' | 'password';
+  type: 'email' | 'text' | 'password' | 'number';
   placeholder: string;
-  autoComplete: string;
+  autoComplete?: string;
 };
 const Input = ({
   className,
