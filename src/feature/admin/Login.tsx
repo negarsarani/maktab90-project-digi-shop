@@ -1,12 +1,9 @@
 import Input from '../../components/Input';
 import React from 'react';
-import imgLogo from '../../assets/logo ligth.svg';
 import { useMutation } from 'react-query';
-import arrow from '../../assets/Icons/arrowLogin.svg';
 import Image from 'next/image';
 import Button from '@/components/Button';
 import postData from '@/api/postData';
-import { cookies } from 'next/headers';
 import { useRouter } from 'next/router';
 import { setCookie } from 'cookies-next';
 
@@ -41,7 +38,7 @@ const LoginAdmin = () => {
     <div className="flex  min-h-full flex-1 flex-col px-6 py-12 lg:px-8 justify-center items-center   ">
       <div className=" bg-white  w-full min-[320px]:w-10/12 xl:w-6/12 lg:w-9/12 md:w-6/12 sm:w-8/12   rounded-2xl shadow-xl p-10 ">
         <div className="sm:mx-auto sm:w-full flex flex-col items-center justify-center sm:max-w-sm gap-10">
-          <Image className="mx-auto h-10 w-auto" src={imgLogo} alt="دیجی شاپ" />
+          <Image className="mx-auto h-10 w-auto" src={'/logo ligth.svg'} alt="دیجی شاپ" />
           <div className="flex flex-col items-center justify-center gap-4">
             <p className="text-gray-500">خوش آمدید</p>
             <h2 className=" text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -108,7 +105,7 @@ const LoginAdmin = () => {
                 className="flex items-center justify-center gap-5 w-1/2  rounded-md bg-orangeAdmin px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 type="submit"
               >
-                <Image src={arrow} alt="ورود" />
+                <Image src={'/Icons/arrowLogin.svg'} alt="ورود" />
                 <span>ورود</span>
               </Button>
             </div>

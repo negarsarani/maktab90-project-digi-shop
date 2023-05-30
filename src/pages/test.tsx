@@ -18,6 +18,6 @@ export default function test() {
     </Box>
   );
 }
-test.getLayout = function PageLayout(page: any) {
+test.getLayout = function PageLayout(page: React.ReactNode) {
   return <> {page}</>;
 };

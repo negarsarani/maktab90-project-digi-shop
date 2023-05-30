@@ -14,6 +14,11 @@ module.exports = {
       colors: {
         orangeAdmin: '#F47458',
         orangeLighter: '#FFEDE1',
+        orangeSidebar: '#EBCDB9',
+        cream: '#F5F5F9',
+        grayMedium: '#8A92A6',
+        grayLight: '#CFCFCF',
+        creamLight: '#F5F5F5',
       },
     },
   },
