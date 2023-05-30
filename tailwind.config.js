@@ -11,6 +11,14 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+                colors: {
+        orangeAdmin: '#F47458',
+        orangeLighter: '#FFEDE1',
+        orangeSidebar: '#EBCDB9',
+        cream: '#F5F5F9',
+        grayMedium: '#8A92A6',
+        grayLight: '#CFCFCF',
+        creamLight: '#F5F5F5',
       },
     },
   },
