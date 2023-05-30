@@ -17,8 +17,9 @@ html,
 
 @media screen and (max-width: 500px) {
   .tableWidth {
-    width: 23rem;
+    width: 20rem;
   }
+  
 }
 @media screen and (min-width: 501px) and (max-width: 600px) {
   .tableWidth {
@@ -27,18 +28,18 @@ html,
 }
 @media screen and (min-width: 601px) and (max-width: 700px) {
   .tableWidth {
-    width: 30rem;
+    width: 26rem;
   }
 }
 
 @media screen and (min-width: 701px) and (max-width: 800px) {
   .tableWidth {
-    width: 43rem;
+    width: 30rem;
   }
 }
 @media screen and (min-width: 801px) and (max-width: 900px) {
   .tableWidth {
-    width: 50rem;
+    width: 40rem;
   }
 }
 
