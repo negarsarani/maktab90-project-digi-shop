@@ -1,6 +1,6 @@
-import axios from 'axios';
-const postData = async (item:any) => {
-  const response = await axios.post(`http://localhost:8000/api/auth/login` , item);
+import request from '@/utility/intanceAxios';
+const postData = async (item: any) => {
+  const response = await request.post('auth/login', item);
   return response.data;
 };
 

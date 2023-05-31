@@ -1,9 +1,10 @@
-import axios from 'axios';
-import React from 'react';
+import request from '@/utility/intanceAxios';
 
 const getData = async (endpoint: string) => {
-  const response = await axios.get(`http://localhost:8000/api/${endpoint}`);
-  return response.data;
+  const response = await request.get(endpoint);
+  console.log(response);
+  
+  return response.data
 };
 
 export default getData;

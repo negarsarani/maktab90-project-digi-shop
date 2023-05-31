@@ -2,9 +2,10 @@
 import axios from 'axios';
 import { setCookie, getCookie, removeCookies } from 'cookies-next';
 
-export const request = axios.create({
-  baseURL: 'http://localhost/8000/api',
+const request = axios.create({
+  baseURL: 'http://localhost:8000/api',
 });
+
 request.interceptors.request.use((config) => {
   //if it was not refresh token
   if (config.url !== '/get-new-token') {
@@ -15,13 +16,15 @@ request.interceptors.request.use((config) => {
 });
 request.interceptors.response.use(
   (res) => {
-    return res;
+    console.log(res.data);
+    
+    return res
   },
   //401
   (error) => {
     const config = error.config;
     console.log('config ', config);
-    if (error.response.status === 401 && !config.sent ) {
+    if (error.response.status === 401 && !config.sent) {
       config.sent = true;
       if (config.url !== '/get-new-token') {
         const refreshToken = getCookie('refreshtoken');
@@ -50,3 +53,4 @@ request.interceptors.response.use(
     }
   }
 );
+export default request;
