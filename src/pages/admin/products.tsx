@@ -20,7 +20,7 @@ const Products = () => {
     () => getData('products?sort=price'),
     querykeys.products
   );
-  isLoading == false && dispatch(DATA({ items: data, name: 'products' }));
+  isLoading == false && dispatch(DATA({ items: data, name: 'products', key:"products" }));
   useEffect(() => {
     console.log(getCookie('accesstoken'));
   });

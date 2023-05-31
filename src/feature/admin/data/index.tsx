@@ -31,3 +31,9 @@ export const headerInventoryTable: HeaderTableType = [
   'قیمت',
   'موجودی',
 ];
+export const headerOrdersTable: HeaderTableType = [
+  'نام کاربر',
+  'مجموع ملبغ',
+  'زمان ثبت سفارش',
+  'سفارشات',
+];

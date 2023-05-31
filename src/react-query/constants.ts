@@ -1,5 +1,6 @@
 export const querykeys ={
     products: ['products'],
-    inventory:['inventory']
+    inventory:['inventory'],
+    orders:['orders']
 }
 

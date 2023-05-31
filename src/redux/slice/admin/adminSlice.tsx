@@ -4,6 +4,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface AdminStore {
   products: ChildAdminInit;
   inventory: ChildAdminInit;
+  orders: ChildAdminInit;
   [key: string]: ChildAdminInit | any;
 }
 
@@ -18,6 +19,11 @@ const initialState: AdminStore = {
     options: { limit: 4 },
     data: [],
   },
+  orders: {
+    page: 1,
+    options: { limit: 4 },
+    data: [],
+  },
 };
 
 export const adminSlice = createSlice({
@@ -26,11 +32,11 @@ export const adminSlice = createSlice({
   reducers: {
     DATA: (
       state,
-      action: PayloadAction<{ name: keyof AdminStore; items: any }>
+      action: PayloadAction<{ name: keyof AdminStore; items: any ; key:string}>
     ) => {
-      const { name, items } = action.payload;
+      const { name, items , key } = action.payload;
 
-      state[name].data = items?.data.products;
+      state[name].data = items?.data[key]
       state[name].page = items?.page;
       state[name].options.limit = items?.per_page;
     },

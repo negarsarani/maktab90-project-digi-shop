@@ -16,7 +16,7 @@ const PricesInventory = () => {
     () => getData('products'),
     querykeys.inventory
   );
-  isLoading === false && dispatch(DATA({ items: data, name: 'inventory' }));
+  isLoading === false && dispatch(DATA({ items: data, name: 'inventory', key:"products" }));
 
   return (
     <div className="w-full  flex flex-col gap-5 ">
