@@ -11,6 +11,7 @@ import ProductTable from '@/feature/admin/ProductTable';
 import Pagination from '@/feature/admin/components/Pagination';
 import NavbarTableProduct from '@/feature/admin/products/NavbarTableProduct';
 import { querykeys } from '@/react-query/constants';
+import { getCookie } from 'cookies-next';
 
 const Products = () => {
   const [value, dispatch] = useRedux((state)=> state.adminState);
@@ -20,7 +21,10 @@ const Products = () => {
     querykeys.products
   );
   isLoading == false && dispatch(DATA({ items: data, name: 'products' }));
+useEffect(()=>{
+  console.log(getCookie("accesstoken"))
 
+})
   return (
     <div className="w-full h-full flex flex-col gap-5 ">
       <NavbarTableProduct />

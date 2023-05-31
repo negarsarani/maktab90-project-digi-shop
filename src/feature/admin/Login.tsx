@@ -1,6 +1,6 @@
 import Input from '../../components/Input';
 import React from 'react';
-import { useMutation } from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 import Image from 'next/image';
 import Button from '@/components/Button';
 import postData from '@/api/postData';
@@ -21,8 +21,8 @@ const LoginAdmin = () => {
       ('use server');
       localStorage.setItem('loginUser', JSON.stringify(data.token.accessToken));
       // cookies().set({name:"newUser", value: d });
-      setCookie('key', data.token.accessToken);
-      return router.push('/test');
+      setCookie('accesstoken', data.token.accessToken);
+      return router.push('/admin/products');
     },
   });
 
@@ -38,7 +38,7 @@ const LoginAdmin = () => {
     <div className="flex  min-h-full flex-1 flex-col px-6 py-12 lg:px-8 justify-center items-center   ">
       <div className=" bg-white  w-full min-[320px]:w-10/12 xl:w-6/12 lg:w-9/12 md:w-6/12 sm:w-8/12   rounded-2xl shadow-xl p-10 ">
         <div className="sm:mx-auto sm:w-full flex flex-col items-center justify-center sm:max-w-sm gap-10">
-          <Image className="mx-auto h-10 w-auto" src={'/logo ligth.svg'} alt="دیجی شاپ" />
+          <Image width={30} height={30} className="mx-auto h-10 w-auto" src={'/logo ligth.svg'} alt="دیجی شاپ" />
           <div className="flex flex-col items-center justify-center gap-4">
             <p className="text-gray-500">خوش آمدید</p>
             <h2 className=" text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -105,7 +105,7 @@ const LoginAdmin = () => {
                 className="flex items-center justify-center gap-5 w-1/2  rounded-md bg-orangeAdmin px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 type="submit"
               >
-                <Image src={'/Icons/arrowLogin.svg'} alt="ورود" />
+                <Image  width={30} height={30} src={'/Icons/arrowLogin.svg'} alt="ورود" />
                 <span>ورود</span>
               </Button>
             </div>
