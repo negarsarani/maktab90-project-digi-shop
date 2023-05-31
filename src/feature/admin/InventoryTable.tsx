@@ -42,7 +42,7 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
         ))}
       </Thead>
       <Tbody className=" divide-grayMedium   ">
-        {value.products?.data?.map((item: any) => {
+        {value.inventory?.data?.map((item: any) => {
           return (
             <tr key={item.name} className="">
               <Td

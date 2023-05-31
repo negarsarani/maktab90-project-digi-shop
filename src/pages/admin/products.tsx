@@ -9,22 +9,21 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import ProductTable from '@/feature/admin/ProductTable';
 import Pagination from '@/feature/admin/components/Pagination';
-import NavbarTableProduct from '@/feature/admin/products/NavbarTableProduct';
+import NavbarTableProduct from '@/feature/admin/navbar/NavbarTableProduct';
 import { querykeys } from '@/react-query/constants';
 import { getCookie } from 'cookies-next';
 
 const Products = () => {
-  const [value, dispatch] = useRedux((state)=> state.adminState);
+  const [value, dispatch] = useRedux((state) => state.adminState);
 
   const [isLoading, data, isError, refetch] = useQueries(
-    () => getData('products'),
+    () => getData('products?sort=price'),
     querykeys.products
   );
   isLoading == false && dispatch(DATA({ items: data, name: 'products' }));
-useEffect(()=>{
-  console.log(getCookie("accesstoken"))
-
-})
+  useEffect(() => {
+    console.log(getCookie('accesstoken'));
+  });
   return (
     <div className="w-full h-full flex flex-col gap-5 ">
       <NavbarTableProduct />

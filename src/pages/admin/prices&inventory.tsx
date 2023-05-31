@@ -1,7 +1,7 @@
 import Pagination from '@/feature/admin/components/Pagination';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import React from 'react';
-import NavbarTableInventory from '@/feature/admin/products/NavbarTableInventory';
+import NavbarTableInventory from '@/feature/admin/navbar/NavbarTableInventory';
 import InventoryTable from '@/feature/admin/InventoryTable';
 import useQueries from '@/hooks/useQueries';
 import useRedux from '@/hooks/useRedux';
@@ -10,13 +10,13 @@ import { querykeys } from '@/react-query/constants';
 import { DATA } from '@/redux/slice/admin/adminSlice';
 
 const PricesInventory = () => {
-  const [value, dispatch] = useRedux((state)=> state.adminState);
+  const [value, dispatch] = useRedux((state) => state.adminState);
 
   const [isLoading, data, isError, refetch] = useQueries(
     () => getData('products'),
-    querykeys.products
+    querykeys.inventory
   );
-  isLoading === false && dispatch(DATA({ items: data, name: 'products' }));
+  isLoading === false && dispatch(DATA({ items: data, name: 'inventory' }));
 
   return (
     <div className="w-full  flex flex-col gap-5 ">
