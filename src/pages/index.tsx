@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div>
 
-      i am index Hii
+      i am Home Hii
     </div>
   )
 }
