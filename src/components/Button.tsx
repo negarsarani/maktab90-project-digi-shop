@@ -3,7 +3,7 @@ type Buttontype = {
   className: string;
   children: ReactNode;
   type: 'button' | 'submit' | 'reset' | undefined;
-  onClick?: (e:any) => void;
+  onClick?: (() => void | undefined)
 };
 const Button = ({ className, children, type, onClick }: Buttontype) => {
   return (
