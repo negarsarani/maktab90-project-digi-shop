@@ -4,7 +4,7 @@ type Linkrouter = {
   children: ReactNode;
   href: string;
   className: string;
-  onClick: () => void;
+  onClick:  (()=> void) | undefined;
 };
 const Linkrouter = ({ children, href, className, onClick }: Linkrouter) => {
   return (
