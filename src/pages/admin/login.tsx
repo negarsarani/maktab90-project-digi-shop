@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import React from 'react';
 import LoginAdmin from '@/feature/admin/Login';
 
 const login = () => {
