@@ -1,5 +1,4 @@
-import HeaderAdmin from '@/feature/admin/HeaderAdmin';
-import SidebarAdmin from '@/feature/admin/SidebarAdmin';
+import {SidebarAdmin , HeaderAdmin} from '@/layout/admin';
 import React, { ReactNode, useEffect, useState } from 'react';
 
 const Adminlayout = ({ children }: { children: ReactNode }) => {

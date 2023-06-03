@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import LoginAdmin from '@/feature/admin/Login';
+import {LoginAdmin} from '@/page/admin/login';
 
 const login = () => {
   return (
