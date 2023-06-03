@@ -1,11 +1,7 @@
-import Td from '../shared/Td';
-import Thead from '../shared/Thead';
-import Th from '../shared/Th';
-import Tbody from '../shared/Tbody';
-import { headerProductTable } from '../../../data/admin';
-import Image from 'next/image';
-import SkeletonTable from '../shared/skeletonTable';
+import { headerProductTable } from '@/data/admin';
+import {SkeletonTable , Tbody , Th , Thead , Td} from '@/page/admin';
 import { TableProps } from '@/types/type';
+import Image from 'next/image';
 
 type itemType = {};
 const ProductTable = ({ isLoading, value, isError }: TableProps) => {

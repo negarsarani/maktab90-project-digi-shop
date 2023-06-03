@@ -1,13 +1,10 @@
-import React, { ReactEventHandler } from 'react';
-import Thead from '../shared/Thead';
-import Th from '../shared/Th';
-import Tbody from '../shared/Tbody';
-import Td from '../shared/Td';
 import Image from 'next/image';
 import { TableProps } from '@/types/type';
-import { headerInventoryTable } from '../../../data/admin';
-import Input from '../../../components/Input';
+import { headerInventoryTable } from '@/data/admin';
+import { Input } from '@/components';
 import { useState } from 'react';
+import { Tbody, Th, Thead, Td } from '@/page/admin';
+
 const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
   const [changeData, setChangeData] = useState([]);
   const [selectedItemId, setSelectedItemId] = useState({

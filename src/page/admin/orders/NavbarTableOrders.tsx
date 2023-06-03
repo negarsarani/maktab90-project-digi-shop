@@ -1,5 +1,5 @@
-import NavbarTable from '../shared/NavbarTable';
-import ButtonOrange from '../shared/ButtonOrange';
+import {NavbarTable , ButtonOrange} from '@/page/admin';
+
 const NavbarTableOrders = () => {
   return (
     <div className="flex flex-col sm:flex-row  gap-5  sm:gap-0 items-center sm:justify-between w-full">

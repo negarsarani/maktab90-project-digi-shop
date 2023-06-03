@@ -1,10 +1,6 @@
-import Image from 'next/image';
-import Td from '../shared/Td';
-import Tbody from '../shared/Tbody';
-import Th from '../shared/Th';
-import Thead from '../shared/Thead';
-import { headerOrdersTable } from '../../../data/admin';
+import { headerOrdersTable } from '@/data/admin';
 import { TableProps } from '@/types/type';
+import { Tbody , Th , Thead , Td} from '@/page/admin';
 
 const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
   return (

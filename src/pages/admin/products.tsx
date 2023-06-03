@@ -7,7 +7,7 @@ import { DATA } from '../../redux/slice/admin/adminSlice';
 import useQueries from '@/hooks/useQueries';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-import ProductTable from '@/feature/admin/ProductTable';
+import {ProductTable} from '@/feature/admin/ProductTable';
 import Pagination from '@/feature/admin/components/Pagination';
 import NavbarTableProduct from '@/feature/admin/navbar/NavbarTableProduct';
 import { querykeys } from '@/react-query/constants';
