@@ -1,12 +1,9 @@
 import getData from '@/api/getData';
-import OrdersTable from '@/feature/admin/OrdersTable';
-import Pagination from '@/feature/admin/components/Pagination';
-import NavbarTableOrders from '@/feature/admin/navbar/NavbarTableOrders';
+import {Pagination , OrdersTable , NavbarTableOrders} from '@/page/admin';
 import useQueries from '@/hooks/useQueries';
 import useRedux from '@/hooks/useRedux';
 import { querykeys } from '@/react-query/constants';
 import { DATA } from '@/redux/slice/admin/adminSlice';
-import React from 'react';
 
 const Orders = () => {
   const [value, dispatch] = useRedux((state) => state.adminState);

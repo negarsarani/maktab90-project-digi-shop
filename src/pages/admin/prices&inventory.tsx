@@ -1,8 +1,5 @@
-import Pagination from '@/feature/admin/components/Pagination';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import React from 'react';
-import NavbarTableInventory from '@/feature/admin/navbar/NavbarTableInventory';
-import InventoryTable from '@/feature/admin/InventoryTable';
+
+import {InventoryTable , NavbarTableInventory , Pagination} from '@/page/admin';
 import useQueries from '@/hooks/useQueries';
 import useRedux from '@/hooks/useRedux';
 import getData from '@/api/getData';
@@ -21,7 +18,7 @@ const PricesInventory = () => {
   return (
     <div className="w-full  flex flex-col gap-5 ">
       <NavbarTableInventory />
-      <ReactQueryDevtools />
+      {/* <ReactQueryDevtools /> */}
       <div className=" w-full  pb-10 flex flex-col  items-center justify-center ">
         <div className=" overflow-hidden  bg-white flex flex-col overflow-x-auto w-full rounded-t-xl ">
           <InventoryTable

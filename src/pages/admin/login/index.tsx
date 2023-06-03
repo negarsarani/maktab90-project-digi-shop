@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import {LoginAdmin} from '@/page/admin/login';
+import {LoginAdmin} from '@/page/admin';
 
 const login = () => {
   return (

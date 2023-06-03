@@ -1,17 +1,12 @@
-import React, { useEffect } from 'react';
+import  { useEffect } from 'react';
 import getData from '@/api/getData';
-
 import useRedux from '@/hooks/useRedux';
-import { DATA } from '../../redux/slice/admin/adminSlice';
-
+import { DATA } from '@/redux/slice/admin/adminSlice';
 import useQueries from '@/hooks/useQueries';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-
-import {ProductTable} from '@/feature/admin/ProductTable';
-import Pagination from '@/feature/admin/components/Pagination';
-import NavbarTableProduct from '@/feature/admin/navbar/NavbarTableProduct';
 import { querykeys } from '@/react-query/constants';
 import { getCookie } from 'cookies-next';
+import { ProductTable, Pagination, NavbarTableProduct } from '../../page/admin';
 
 const Products = () => {
   const [value, dispatch] = useRedux((state) => state.adminState);
@@ -20,16 +15,17 @@ const Products = () => {
     () => getData('products?sort=price'),
     querykeys.products
   );
-  isLoading == false && dispatch(DATA({ items: data, name: 'products', key:"products" }));
+  isLoading == false &&
+    dispatch(DATA({ items: data, name: 'products', key: 'products' }));
   useEffect(() => {
     console.log(getCookie('accesstoken'));
   });
   return (
     <div className="w-full h-full flex flex-col gap-5 ">
       <NavbarTableProduct />
-      <ReactQueryDevtools />
+      {/* <ReactQueryDevtools /> */}
 
-      <div className=" w-full  pb-10 flex flex-col ">
+      <div className=" w-full  pb-10 flex flex-col  ">
         <div className="  overflow-hidden  bg-white flex flex-col overflow-x-auto w-full rounded-t-xl ">
           <ProductTable isLoading={isLoading} value={value} isError={isError} />
         </div>

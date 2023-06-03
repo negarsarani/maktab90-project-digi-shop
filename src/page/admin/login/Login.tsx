@@ -1,12 +1,10 @@
-import Input from '@/components/Input';
-import Button from '@/components/Button';
+import {Input, Button} from '@/components';
 import { useMutation } from '@tanstack/react-query';
 import Image from 'next/image';
 import postData from '@/api/postData';
 import { useRouter } from 'next/router';
 import { setCookie } from 'cookies-next';
 
-// eslint-disable-next-line react-hooks/rules-of-hooks
 const LoginAdmin = () => {
   const router = useRouter();
   const {
@@ -25,7 +23,7 @@ const LoginAdmin = () => {
     },
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault();
     loginUser({
       username: 'admin',

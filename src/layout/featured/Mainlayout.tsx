@@ -1,6 +1,6 @@
 import Footer from '@/layout/user/Footer';
 import Header from '@/layout/user/Header';
-import React, { ReactNode } from 'react';
+import  { ReactNode } from 'react';
 
 interface MainLayoutProps {
   children: ReactNode;

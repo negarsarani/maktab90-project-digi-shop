@@ -1,5 +1,5 @@
+import { ReactNode, useEffect, useState } from 'react';
 import {SidebarAdmin , HeaderAdmin} from '@/layout/admin';
-import React, { ReactNode, useEffect, useState } from 'react';
 
 const Adminlayout = ({ children }: { children: ReactNode }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

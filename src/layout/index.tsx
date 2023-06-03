@@ -1,11 +1,11 @@
-import  { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { useRouter } from 'next/router';
-import Mainlayout from './featured/Mainlayout';
-import Adminlayout from './featured/Adminlayout';
-import { CacheProvider, EmotionCache } from '@emotion/react';
-import { ThemeProvider } from '@mui/material/styles';
 import { QueryClientProvider } from '@tanstack/react-query';
 import theme from '@/styles/Theme/Theme';
+import { ThemeProvider } from '@mui/material/styles';
+import { CacheProvider, EmotionCache } from '@emotion/react';
+import Mainlayout from './featured/Mainlayout';
+import Adminlayout from './featured/Adminlayout';
 type LayoutType = {
   Component: any;
   children: ReactNode;
