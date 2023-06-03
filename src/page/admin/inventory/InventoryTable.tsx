@@ -1,12 +1,12 @@
 import React, { ReactEventHandler } from 'react';
-import Thead from './components/Thead';
-import Th from './components/Th';
-import Tbody from './components/Tbody';
-import Td from './components/Td';
+import Thead from '../components/Thead';
+import Th from '../components/Th';
+import Tbody from '../components/Tbody';
+import Td from '../components/Td';
 import Image from 'next/image';
 import { TableProps } from '@/types/type';
-import { headerInventoryTable } from '../../data/admin';
-import Input from '../../components/Input';
+import { headerInventoryTable } from '../../../data/admin';
+import Input from '../../../components/Input';
 import { useState } from 'react';
 const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
   const [changeData, setChangeData] = useState([]);
