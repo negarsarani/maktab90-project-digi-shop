@@ -1,7 +1,7 @@
 import React from 'react';
 
-import NavbarTable from '../components/NavbarTable';
-import ButtonOrange from '../components/ButtonOrange';
+import NavbarTable from '../shared/NavbarTable';
+import ButtonOrange from '../shared/ButtonOrange';
 const NavbarTableProduct = () => {
   return (
     <div className="flex flex-col sm:flex-row  gap-5  sm:gap-0 items-center sm:justify-between w-full">

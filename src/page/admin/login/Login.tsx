@@ -1,4 +1,4 @@
-import Input from '../../components/Input';
+import Input from '../../../components/Input';
 import React from 'react';
 import { useMutation } from '@tanstack/react-query';
 import Image from 'next/image';

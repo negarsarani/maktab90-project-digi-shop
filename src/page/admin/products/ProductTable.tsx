@@ -1,10 +1,10 @@
-import Td from '../components/Td';
-import Thead from '../components/Thead';
-import Th from '../components/Th';
-import Tbody from '../components/Tbody';
+import Td from '../shared/Td';
+import Thead from '../shared/Thead';
+import Th from '../shared/Th';
+import Tbody from '../shared/Tbody';
 import { headerProductTable } from '../../../data/admin';
 import Image from 'next/image';
-import SkeletonTable from '../components/skeletonTable';
+import SkeletonTable from '../shared/skeletonTable';
 import { TableProps } from '@/types/type';
 
 type itemType = {};

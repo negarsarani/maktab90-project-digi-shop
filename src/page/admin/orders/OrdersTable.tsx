@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import Td from './components/Td';
-import Tbody from './components/Tbody';
-import Th from './components/Th';
-import Thead from './components/Thead';
-import { headerOrdersTable } from '../../data/admin';
+import Td from '../shared/Td';
+import Tbody from '../shared/Tbody';
+import Th from '../shared/Th';
+import Thead from '../shared/Thead';
+import { headerOrdersTable } from '../../../data/admin';
 import { TableProps } from '@/types/type';
 
 const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
