@@ -3,7 +3,7 @@ import Td from './components/Td';
 import Tbody from './components/Tbody';
 import Th from './components/Th';
 import Thead from './components/Thead';
-import { headerOrdersTable } from './data';
+import { headerOrdersTable } from '../../data/admin';
 import { TableProps } from '@/types/type';
 
 const OrdersTable = ({ isLoading, value, isError }: TableProps) => {

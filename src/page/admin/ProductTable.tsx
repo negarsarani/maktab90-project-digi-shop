@@ -2,7 +2,7 @@ import Td from './components/Td';
 import Thead from './components/Thead';
 import Th from './components/Th';
 import Tbody from './components/Tbody';
-import { headerProductTable } from './data';
+import { headerProductTable } from '../../data/admin';
 import Image from 'next/image';
 import SkeletonTable from './components/skeletonTable';
 import { TableProps } from '@/types/type';

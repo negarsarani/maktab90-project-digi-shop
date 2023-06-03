@@ -5,7 +5,7 @@ import Tbody from './components/Tbody';
 import Td from './components/Td';
 import Image from 'next/image';
 import { TableProps } from '@/types/type';
-import { headerInventoryTable } from './data';
+import { headerInventoryTable } from '../../data/admin';
 import Input from '../../components/Input';
 import { useState } from 'react';
 const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
@@ -16,7 +16,6 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
     Inventory: false,
   });
   const handleInputChange = (itemId: string, item: string) => {
-
     item === 'inventory'
       ? setSelectedItemId({
           id: itemId,
