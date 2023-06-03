@@ -1,5 +1,5 @@
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import Footer from '@/layout/user/Footer';
+import Header from '@/layout/user/Header';
 import React, { ReactNode } from 'react';
 
 interface MainLayoutProps {

@@ -26,13 +26,7 @@ const LoginAdmin = () => {
     },
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    loginUser({
-      username: 'admin',
-      password: 'admin1234',
-    });
-  };
+
 
   return (
     <div className="flex  min-h-full flex-1 flex-col px-6 py-12 lg:px-8 justify-center items-center   ">
@@ -53,7 +47,7 @@ const LoginAdmin = () => {
             action="#"
             method="POST"
             onSubmit={(e) => {
-              return handleSubmit(e);
+              return ""
             }}
           >
             <div>

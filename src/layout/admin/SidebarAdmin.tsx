@@ -2,7 +2,7 @@ import React from 'react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { LayoutChildrenAdminType } from '@/types/type';
 import Image from 'next/image';
-import SidebarLink from './shared/SidebarLink';
+import SidebarLink from '../../page/admin/shared/SidebarLink';
 import { sideBarData } from '../../data/admin';
 // const a =
 const SidebarAdmin = ({
