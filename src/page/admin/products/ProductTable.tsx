@@ -28,7 +28,7 @@ const ProductTable = ({ isLoading, value, isError }: TableProps) => {
       <Tbody className=" divide-grayMedium">
         {value.products?.data?.map((item: any) => {
           return (
-            <tr key={item.name}>
+            <tr key={item._id}>
               <Td
                 key={item.name}
                 className=" py-4 px-6 border-b flex items-center justify-center h-20"
@@ -37,7 +37,7 @@ const ProductTable = ({ isLoading, value, isError }: TableProps) => {
                   <Image
                     src={`http://localhost:8000/images/products/images/${item.images[0]}`}
                     alt={'item.name'}
-                    className="rounded-xl"
+                    className="rounded-xl bg-white"
                     width={100}
                     height={100}
                   />

@@ -14,7 +14,8 @@ export type TableProps = {
   isError: boolean | unknown;
 };
 export type ChildAdminInit = {
-  page: number;
-  options: { limit: number };
+  
+  options: { limit: number , page: number;};
+  url:{keyApi: string , path:string}
   data: any[];
 };

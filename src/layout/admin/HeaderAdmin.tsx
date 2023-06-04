@@ -57,7 +57,7 @@ const HeaderAdmin = ({
             {/* <span className="sr-only">Your Company</span> */}
             <Image
               className="h-8 w-auto lg:hidden"
-              src={'/logo ligth.svg'}
+              src={'/logo light.svg'}
               alt={'دیجی شاپ'}
               width={30}
               height={30}

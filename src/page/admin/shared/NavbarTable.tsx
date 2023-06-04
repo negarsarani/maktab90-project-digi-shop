@@ -9,7 +9,7 @@ const NavbarTable = ({ children }: { children: ReactNode }) => {
       <SearchInput></SearchInput>
       <div className="flex items-center justify-end  gap-4 w-full">
         {children}
-        <button className="border-gray-400 sm:px-3 sm:py-2 py-2 px-1 text-sm sm:text-md hover:bg-cream bg-white shadow-md flex items-center justify-center rounded-md gap-3">
+        <button className="border-gray-400 sm:px-3 sm:py-2 py-2 px-2 text-sm sm:text-md hover:bg-cream bg-white shadow-md flex items-center justify-center rounded-md gap-1">
           <Image
             src={'/icons/Filters.svg'}
             alt="فیلتر"

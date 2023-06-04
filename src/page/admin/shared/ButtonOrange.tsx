@@ -9,7 +9,7 @@ const ButtonOrange = ({ name, src }: ButtonOrangeType) => {
   return (
     <Button
       className={
-        'bg-orangeAdmin  sm:px-3 sm:py-2 py-2 px-1 text-sm sm:text-md  hover:bg-orange-500 shadow-md text-white flex items-center justify-center rounded-md gap-3 '
+        'bg-orangeAdmin  sm:px-3 sm:py-2 py-2 px-2 text-sm sm:text-md  hover:bg-orange-500 shadow-md text-white flex items-center justify-center rounded-md gap-1 '
       }
       type="button"
     >

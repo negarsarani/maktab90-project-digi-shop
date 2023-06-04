@@ -22,7 +22,7 @@ const SidebarAdmin = ({
           <a href="#" className="-m-1.5 p-1.5">
             <Image
               className={'h-8 w-auto  flex sm:hidden lg:flex'}
-              src={'/logo ligth.svg'}
+              src={'/logo light.svg'}
               alt={''}
               width={30}
               height={30}
