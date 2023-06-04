@@ -18,7 +18,7 @@ const Search = ({placeholder}:props) => {
         className=" text-sm  py-2 focus:outline-none focus:ring-0 border-none w-full placeholder:py-3"
         type="text"
         name="search"
-        placeholder="به راحتی محصول مورد نظر خود را پیدا کنید ..."
+        placeholder={placeholder}
       />
     </>
   );
