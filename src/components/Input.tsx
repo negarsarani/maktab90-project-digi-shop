@@ -2,7 +2,7 @@ import React from 'react';
 type Inputtype = {
   className: string;
   name: string
-  id: string 
+  id?: string 
   type: 'email' | 'text' | 'password' | 'number'| 'search';
   placeholder: string;
   autoComplete?: string;
