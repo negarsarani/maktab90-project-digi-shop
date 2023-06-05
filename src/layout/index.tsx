@@ -12,6 +12,7 @@ type LayoutType = {
 };
 import { ToastContainer, toast } from 'react-toastify';
 import { AnimatePresence } from 'framer-motion';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
 
