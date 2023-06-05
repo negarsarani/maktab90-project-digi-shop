@@ -5,9 +5,12 @@ import { useForm } from 'react-hook-form';
 import loginAdminSchema from '@/schemas/loginAdminSchema';
 import { DataLoginAdmin } from '@/types/type';
 import useMutationQuery from '@/hooks/mutationQuery';
+import { useRouter } from 'next/router';
+import { setCookie } from 'cookies-next';
+import { toast } from 'react-toastify';
 import Form from './Form';
-import { LogicLogin } from './logic';
 const LoginAdmin = () => {
+  const router = useRouter();
   const { mutate, isLoading, isError, isSuccess, data } = useMutationQuery(
     (userData: DataLoginAdmin) => postData(userData)
   );
@@ -19,13 +22,37 @@ const LoginAdmin = () => {
   } = useForm<DataLoginAdmin>({
     resolver: yupResolver(loginAdminSchema),
     mode: 'all',
-  });
+  }); 
+  const handleSuccess = () => {
+      console.log(data);
+      localStorage.setItem('loginUser', JSON.stringify(data.token.accessToken));
+      setCookie('accesstoken', data.token.accessToken);
+      router.push('/admin');
+    };
   const onSubmit = (data: DataLoginAdmin) => {
     console.log(data);
     mutate(data);
+    
+  
+    if (isSuccess) {
+      handleSuccess();
+    }
+    if (isError) {
+      toast.error('کاربر یافت نشد', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    }
     reset();
+
   };
-  LogicLogin({ data, isSuccess, isError });
+ 
   return (
     <div className="flex  min-h-full flex-1 flex-col  py-12 lg:px-8 justify-center items-center   ">
       <div className=" bg-white  w-full min-[320px]:w-10/12 2xl:w-5/12 xl:w-7/12 lg:w-10/12 md:w-6/12 sm:w-8/12   rounded-2xl shadow-xl sm:p-10 p-5 py-10 ">

@@ -5,22 +5,22 @@ export function queryErrorHandler(error: unknown) {
     error instanceof Error
       ? error.toString().replace(/AxiosError:\s*/, '')
       : 'خطای اتصال به شبکه';
-  toast(title, {
-    position: "top-right",
+  toast.error('کاربر یافت نشد', {
+    position: 'top-right',
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-    theme: "light",
+    theme: 'light',
   });
 }
 
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      onError: queryErrorHandler,
+      // onError: queryErrorHandler,
       staleTime: 600000,
       cacheTime: 900000,
       refetchOnMount: false,
@@ -28,7 +28,7 @@ export const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
     },
     mutations: {
-      onError: queryErrorHandler,
+      // onError: queryErrorHandler,
     },
   },
 });

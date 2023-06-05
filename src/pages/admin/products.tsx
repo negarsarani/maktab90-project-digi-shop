@@ -9,7 +9,7 @@ import { getCookie } from 'cookies-next';
 import { ProductTable, Pagination, NavbarTableProduct } from '@/page/admin';
 
 const Products = () => {
-  const [value, dispatch] = useRedux((state) => state.adminState);
+  const [value, dispatch] = useRedux((state:any) => state.adminState);
 
   const [isLoading, data, isError, refetch] = useQueries(
     () => getData(value.products.url.path),
@@ -33,6 +33,7 @@ const Products = () => {
             isLoading={isLoading}
             value={value}
             isError={isError}
+            refetch={refetch}
           />
         </div>
         <Pagination name={"products"} refetch={refetch}/>

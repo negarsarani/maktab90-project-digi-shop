@@ -1,12 +1,19 @@
 import { headerProductTable } from '@/data/admin';
+import useRedux from '@/hooks/useRedux';
 import { SkeletonTable, Tbody, Th, Thead, Td } from '@/page/admin';
 import { TableProps } from '@/types/type';
 import Image from 'next/image';
-
+import { SORTDATA } from '@/redux/slice';
 type itemType = {};
-const ProductTable = ({ isLoading, value, isError }: TableProps) => {
-  const handleSort = (event) => {
-    console.log(event.currentTarget.id)
+const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
+  const [valueAdmin, dispatch] = useRedux((state) => state.adminState);
+
+  const handleSort =  (event: any) => {
+    const ITEM = event.currentTarget.id;
+    dispatch(SORTDATA({ name: 'products', sortItem: ITEM})) ;
+    setTimeout(() => {
+      refetch();
+    }, 100);
   };
   if (isLoading) {
     return (
@@ -28,10 +35,7 @@ const ProductTable = ({ isLoading, value, isError }: TableProps) => {
             onClick={handleSort}
             id={item.id}
           >
-            <div
-              className="flex items-center justify-center   gap-3 "
-              
-            >
+            <div className="flex items-center justify-center   gap-3 ">
               {item.icon === true ? (
                 <Image
                   src="/icons/sortAscend.svg"

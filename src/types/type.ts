@@ -7,21 +7,27 @@ export type LayoutChildrenAdminType = {
 export type tableChildType = {
   className?: string;
   children: string | ReactNode;
-  onClick?: (event: any) => void
+  onClick?: (event: any) => void;
   id?: string;
 };
 export type TableProps = {
   isLoading: boolean | unknown;
   value: any;
   isError: boolean | unknown;
+  refetch: () => void;
 };
+
 export type ChildAdminInit = {
-  
-  options: { limit: number , page: number;};
-  url:{keyApi: string , path:string}
+  sort: SortTypes;
+  options: { limit: number; page: number };
+  url: { keyApi: string; path: string };
   data: any[];
 };
 export type DataLoginAdmin = {
   username: string;
   password: string;
+};
+interface SortTypes {
+  key: string;
+  item: string;
 }

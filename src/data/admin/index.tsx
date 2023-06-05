@@ -1,7 +1,4 @@
-import tag from '../../../assets/Icons/Tag.svg';
-import buy from '../../../assets/Icons/Buy.svg';
-import profile from '../../../assets/Icons/Profile.svg';
-import file from '../../../assets/Icons/file.svg';
+
 type sideBarDataType = {
   name: string;
   href: string;
