@@ -9,10 +9,11 @@ import { useRouter } from 'next/router';
 import { setCookie } from 'cookies-next';
 import { toast } from 'react-toastify';
 import Form from './Form';
+import { useEffect } from 'react';
 const LoginAdmin = () => {
   const router = useRouter();
   const { mutate, isLoading, isError, isSuccess, data } = useMutationQuery(
-    (userData: DataLoginAdmin) => postData(userData)
+    (userData: DataLoginAdmin) => postData('auth/login', userData)
   );
   const {
     register,
@@ -22,21 +23,24 @@ const LoginAdmin = () => {
   } = useForm<DataLoginAdmin>({
     resolver: yupResolver(loginAdminSchema),
     mode: 'all',
-  }); 
+  });
   const handleSuccess = () => {
-      console.log(data);
-      localStorage.setItem('loginUser', JSON.stringify(data.token.accessToken));
-      setCookie('accesstoken', data.token.accessToken);
-      router.push('/admin');
-    };
-  const onSubmit = (data: DataLoginAdmin) => {
     console.log(data);
-    mutate(data);
-    
-  
-    if (isSuccess) {
-      handleSuccess();
-    }
+    localStorage.setItem('loginUser', JSON.stringify(data.token.accessToken));
+    setCookie('accesstoken', data.token.accessToken);
+    setCookie('refreshtoken', data.token.refreshToken);
+    router.push('/admin');
+  };
+  const onSubmit = (item: DataLoginAdmin) => {
+    console.log(item);
+    mutate(item);
+
+    reset();
+  };
+  if (isSuccess) {
+    handleSuccess();
+  }
+  useEffect(() => {
     if (isError) {
       toast.error('کاربر یافت نشد', {
         position: 'top-right',
@@ -49,10 +53,8 @@ const LoginAdmin = () => {
         theme: 'light',
       });
     }
-    reset();
+  });
 
-  };
- 
   return (
     <div className="flex  min-h-full flex-1 flex-col  py-12 lg:px-8 justify-center items-center   ">
       <div className=" bg-white  w-full min-[320px]:w-10/12 2xl:w-5/12 xl:w-7/12 lg:w-10/12 md:w-6/12 sm:w-8/12   rounded-2xl shadow-xl sm:p-10 p-5 py-10 ">
@@ -79,7 +81,7 @@ const LoginAdmin = () => {
             method="POST"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <Form errors={errors} register={register}/>
+            <Form errors={errors} register={register} />
           </form>
 
           <div className="text-sm flex justify-center mt-5">

@@ -7,17 +7,17 @@ const request = axios.create({
 
 request.interceptors.request.use((config) => {
   //if it was not refresh token
-  if (config.url !== '/token') {
+  if (config.url !== '/auth/token') {
     const accesstoken = getCookie('accesstoken');
-    config.headers.Authorization = accesstoken;
+    config.headers.Authorization = `Bearer ` + accesstoken;
   }
   return config;
 });
 request.interceptors.response.use(
   (res) => {
     console.log(res.data);
-    
-    return res
+
+    return res;
   },
   // 401
   (error) => {
@@ -25,61 +25,21 @@ request.interceptors.response.use(
     console.log('config ', config);
     if (error.response.status === 401 && !config.sent) {
       config.sent = true;
-      if (config.url !== '/token') {
+      if (config.url !== '/auth/token' && config.url !== '/auth/login') {
         const refreshToken = getCookie('refreshtoken');
-        request
-          .post(
-            '/get-new-token',
-            {},
-            {
-              headers: {
-                Authorization: refreshToken,
-              },
-            }
-          )
-          .then((res) => {
-            const accesstoken = res.data.accesstoken;
-            setCookie('accesstoken', accesstoken);
-            setCookie('refreshtoken', res.data.refreshtoken);
-            config.headers.Authorization = accesstoken;
-            return request(config);
-          });
-      } else if (config.url === '/get-new-token') {
+        request.post('/auth/token', {refreshToken}).then((res) => {
+          console.log(res);
+
+          const accessToken = res.data.token.accesstoken;
+          setCookie('accesstoken', accessToken);
+          // setCookie('refreshtoken', res.data.refreshtoken);
+          config.headers.Authorization = `Bearer ` + refreshToken;
+          return request(config);
+        });
+      } else if (config.url === '/auth/token') {
         removeCookies('accesstoken');
         removeCookies('refreshtoken');
-        location.href = '/admin/login';
-      }
-    }
-  }
-  //401
-  (error) => {
-    const config = error.config;
-    console.log('config ', config);
-    if (error.response.status === 401 && !config.sent) {
-      config.sent = true;
-      if (config.url !== '/get-new-token') {
-        const refreshToken = getCookie('refreshtoken');
-        request
-          .post(
-            '/get-new-token',
-            {},
-            {
-              headers: {
-                Authorization: refreshToken,
-              },
-            }
-          )
-          .then((res) => {
-            const accesstoken = res.data.accesstoken;
-            setCookie('accesstoken', accesstoken);
-            setCookie('refreshtoken', res.data.refreshtoken);
-            config.headers.Authorization = accesstoken;
-            return request(config);
-          });
-      } else if (config.url === '/get-new-token') {
-        removeCookies('accesstoken');
-        removeCookies('refreshtoken');
-        location.href = '/admin/login';
+        // location.href = '/admin/login';
       }
     }
   }

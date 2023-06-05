@@ -1,6 +1,6 @@
 import request from '@/utility/intanceAxios';
-const postData = async (item: any) => {
-  const response = await request.post('auth/login', item);
+const postData = async ( endpoint:string ,item: any ) => {
+  const response = await request.post(endpoint, item);
   return response.data;
 };
 
