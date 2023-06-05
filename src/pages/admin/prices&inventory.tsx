@@ -10,7 +10,7 @@ const PricesInventory = () => {
   const [value, dispatch] = useRedux((state) => state.adminState);
 
   const [isLoading, data, isError, refetch] = useQueries(
-    () => getData('products'),
+    () => getData(value.inventory.url.path),
     querykeys.inventory
   );
   isLoading === false && dispatch(DATA({ items: data, name: 'inventory', key:"products" }));

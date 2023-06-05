@@ -8,7 +8,7 @@ import { DATA } from '@/redux/slice/admin/adminSlice';
 const Orders = () => {
   const [value, dispatch] = useRedux((state) => state.adminState);
   const [isLoading, data, isError, refetch] = useQueries(
-    () => getData('orders'),
+    () => getData(value.orders.url.path),
     querykeys.orders
   );
   isLoading === false && dispatch(DATA({ items: data, name: 'orders' , key: 'orders'}));
