@@ -27,7 +27,7 @@ const PricesInventory = () => {
             isError={isError}
           ></InventoryTable>
         </div>
-        <Pagination />
+        <Pagination name={"inventory"} refetch={refetch}/>
       </div>
     </div>
   );

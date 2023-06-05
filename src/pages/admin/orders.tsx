@@ -24,7 +24,7 @@ const Orders = () => {
             isError={isError}
           ></OrdersTable>
         </div>
-        <Pagination />
+        <Pagination name={"orders"} refetch={refetch}/>
       </div>
     </div>
   );
