@@ -20,7 +20,7 @@ const Input = ({
 }: Inputtype) => {
   return (
     <input
-      {...register(name)}
+      {...register?.(name)}
       id={id}
       name={name}
       type={type}

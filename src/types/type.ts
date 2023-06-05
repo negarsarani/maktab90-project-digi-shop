@@ -7,6 +7,8 @@ export type LayoutChildrenAdminType = {
 export type tableChildType = {
   className?: string;
   children: string | ReactNode;
+  onClick?: (event: any) => void
+  id?: string;
 };
 export type TableProps = {
   isLoading: boolean | unknown;
