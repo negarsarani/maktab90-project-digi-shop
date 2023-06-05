@@ -19,3 +19,7 @@ export type ChildAdminInit = {
   url:{keyApi: string , path:string}
   data: any[];
 };
+export type DataLoginAdmin = {
+  username: string;
+  password: string;
+}

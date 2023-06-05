@@ -4,7 +4,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import theme from '@/styles/Theme/Theme';
 import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import {Mainlayout , Adminlayout} from './featured';
+import { Mainlayout, Adminlayout } from './featured';
 type LayoutType = {
   Component: any;
   children: ReactNode;
@@ -41,7 +41,7 @@ const Layout = ({ Component, children, emotionCache }: LayoutType) => {
                     hideProgressBar={false}
                     newestOnTop={false}
                     closeOnClick
-                    rtl={false}
+                    rtl={true}
                     pauseOnFocusLoss
                     draggable
                     pauseOnHover
@@ -77,6 +77,18 @@ const Layout = ({ Component, children, emotionCache }: LayoutType) => {
           <Provider store={store}>
             <AnimatePresence mode="wait" initial={false}>
               {children}
+              <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={true}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+              />
             </AnimatePresence>
           </Provider>
 
