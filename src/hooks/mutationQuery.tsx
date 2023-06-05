@@ -1,9 +1,11 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, UseMutationResult } from '@tanstack/react-query';
 
-const useMutationQuery = (postData) => {
-  const {mutate ,} = useMutation(postData);
+const useMutationCustom = (
+  fetchData: (x:any) => Promise<any> ,
+): UseMutationResult<any> => {
+  const mutation: UseMutationResult<any> = useMutation(fetchData);
 
-  return [mutation.mutate, mutation.isLoading, mutation.isError];
+  return mutation;
 };
 
-export default useMutationQuery;
+export default useMutationCustom;

@@ -1,18 +1,16 @@
-import { Input, Button } from '@/components';
-import { useMutation } from '@tanstack/react-query';
+import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import postData from '@/api/postData';
-import { useRouter } from 'next/router';
-import { setCookie } from 'cookies-next';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { toast } from 'react-toastify';
 import loginAdminSchema from '@/schemas/loginAdminSchema';
 import { DataLoginAdmin } from '@/types/type';
-
-
-
+import useMutationQuery from '@/hooks/mutationQuery';
+import Form from './Form';
+import { LogicLogin } from './logic';
 const LoginAdmin = () => {
+  const { mutate, isLoading, isError, isSuccess, data } = useMutationQuery(
+    (userData: DataLoginAdmin) => postData(userData)
+  );
   const {
     register,
     handleSubmit,
@@ -22,40 +20,12 @@ const LoginAdmin = () => {
     resolver: yupResolver(loginAdminSchema),
     mode: 'all',
   });
-
-  const router = useRouter();
-  const { mutate, isLoading, isError, isSuccess, data } = useMutation(
-    (userData: DataLoginAdmin) => postData(userData)
-  );
-
-  const handleSuccess = () => {
-    console.log(data);
-    localStorage.setItem('loginUser', JSON.stringify(data.token.accessToken));
-    setCookie('accesstoken', data.token.accessToken);
-    router.push('/admin');
-  };
-
-  if (isSuccess) {
-    handleSuccess();
-  }
-  console.log(isSuccess, isError);
-  if (isError) {
-    toast.error('کاربر یافت نشد', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      });
-  }
   const onSubmit = (data: DataLoginAdmin) => {
     console.log(data);
     mutate(data);
     reset();
   };
+  LogicLogin({ data, isSuccess, isError });
   return (
     <div className="flex  min-h-full flex-1 flex-col  py-12 lg:px-8 justify-center items-center   ">
       <div className=" bg-white  w-full min-[320px]:w-10/12 2xl:w-5/12 xl:w-7/12 lg:w-10/12 md:w-6/12 sm:w-8/12   rounded-2xl shadow-xl sm:p-10 p-5 py-10 ">
@@ -82,71 +52,7 @@ const LoginAdmin = () => {
             method="POST"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                نام کاربری
-              </label>
-              <div className="mt-2 h-14">
-                <Input
-                  register = {register}
-                  type="text"
-                  placeholder="نام کاربری"
-                  id={'username'}
-                  name={'username'}
-                  className={
-                    'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6 placeholder:py-2'
-                  }
-                />
-                <span className="text-orangeAdmin ">
-                  {' '}
-                  {errors.username?.message}
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  رمز عبور
-                </label>
-              </div>
-              <div className="mt-2 h-14">
-                <Input
-                  register = {register}
-                  type="password"
-                  placeholder="رمز عبور"
-                  id={'password'}
-                  name={'password'}
-                  className={
-                    'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6 placeholder:py-2'
-                  }
-                />
-                <span className="text-orangeAdmin ">
-                  {errors.password?.message}
-                </span>
-              </div>
-            </div>
-            
-            <div className="flex items-center justify-center w-full">
-              <Button
-                className="flex items-center justify-center gap-5 w-1/2  rounded-md bg-orangeAdmin px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                type="submit"
-              >
-                <Image
-                  width={30}
-                  height={30}
-                  src={'/Icons/arrowLogin.svg'}
-                  alt="ورود"
-                />
-                <span>ورود</span>
-              </Button>
-            </div>
+            <Form errors={errors} register={register}/>
           </form>
 
           <div className="text-sm flex justify-center mt-5">
