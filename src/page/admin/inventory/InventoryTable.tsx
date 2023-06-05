@@ -64,7 +64,7 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
                 {selectedItemId.price && selectedItemId.id === item._id ? (
                   <div className="flex items-center justify-center ">
                     <Input
-                      className="text-sm text-center  w-[10rem] lg:w-[15rem]flex items-center justify-center py-3   bg-white border-opacity-40 border-2 rounded-lg  border-orangeAdmin focus:border-none focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-orangeAdmin shadow-md text-gray-900"
+                      className="text-sm text-center  w-[10rem] lg:w-[15rem]flex items-center justify-center py-3   bg-white border-opacity-40 border-2 rounded-lg  border-orangeAdmin focus:border-none focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-orangeAdmin shadow-md text-gray-900 placeholder:py-2"
                       placeholder="فاقد قیمت"
                       type="number"
                       name="price"
@@ -89,7 +89,7 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
                 {selectedItemId.Inventory && selectedItemId.id === item._id ? (
                   <div className="flex items-center justify-center w-full">
                     <Input
-                      className="text-sm text-center  w-[10rem] lg:w-[15rem]flex items-center justify-center py-3   bg-white border-opacity-40 border-2 rounded-lg  border-orangeAdmin focus:border-none focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-orangeAdmin shadow-md text-gray-900"
+                      className="text-sm text-center  w-[10rem] lg:w-[15rem]flex items-center justify-center py-3   bg-white border-opacity-40 border-2 rounded-lg  border-orangeAdmin focus:border-none focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-orangeAdmin shadow-md text-gray-900 placeholder:py-2"
                       placeholder="فاقد موجودی"
                       type="number"
                       name="price"
