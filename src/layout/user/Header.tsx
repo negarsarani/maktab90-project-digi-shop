@@ -8,8 +8,8 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white">
-      <div>
+    <header className="bg-white relative ">
+      <div className='shadow pb-4 lg:pb-0  fixed top-0 z-10 bg-white w-full '>
         <nav className="px-6 pt-3 xl:px-8 flex w-full " aria-label="Global">
           <Logo_menu setMobileMenuOpen={setMobileMenuOpen} />
 
@@ -25,8 +25,8 @@ const Header = () => {
             <Search placeholder="به راحتی محصول مورد نظر خود را پیدا کنید..." />
           </div>
         </div>
-      </div>
       <CategoryNav/>
+      </div>
       <Sidebar
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
