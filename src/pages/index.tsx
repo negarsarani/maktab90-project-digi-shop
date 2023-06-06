@@ -1,12 +1,11 @@
-import Slider from "@/page/user/sliderHeader/slider";
+import Slider from '@/page/user/Home/sliderHeader/slider';
 
 export default function Home() {
   return (
     <div>
-      hi im index
-      <Slider/>
+      <Slider />
     </div>
-  )
+  );
 }
 Home.getLayout = function PageLayout(page: any) {
   return <> {page}</>;

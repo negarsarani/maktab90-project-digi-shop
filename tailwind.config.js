@@ -19,6 +19,7 @@ module.exports = {
         grayMedium: '#8A92A6',
         grayLight: '#CFCFCF',
         creamLight: '#F5F5F5',
+        bgbody: '#f7f7f7',
       },
     },
   },

@@ -9,9 +9,9 @@ interface MainLayoutProps {
 const Mainlayout = ({ children }: MainLayoutProps) => {
   
   return (
-    <div>
+    <div className='relative'>
       <Header/>
-      <main>{children}</main>
+      <main className='bg-bgbody mt-[6.7rem]'>{children}</main>
       <Footer />
     </div>
   );
