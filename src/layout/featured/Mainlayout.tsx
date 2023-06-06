@@ -11,7 +11,7 @@ const Mainlayout = ({ children }: MainLayoutProps) => {
   return (
     <div className='relative'>
       <Header/>
-      <main className='bg-bgbody mt-[6.7rem]'>{children}</main>
+      <main className='bg-bgbody lg:mt-[6.7rem] mt-[7.5rem]'>{children}</main>
       <Footer />
     </div>
   );

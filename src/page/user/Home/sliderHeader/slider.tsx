@@ -55,7 +55,7 @@ const Slider = () => {
       <div className="navigation-wrapper">
         <div ref={sliderRef} className="keen-slider">
           {dataSlider.map((item, index) => (
-            <div key={index} className="keen-slider__slide number-slide1">
+            <div key={index} className="keen-slider__slide number-slide1 ">
               <Image
                 src={item.img}
                 alt={item.name}
