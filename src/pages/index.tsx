@@ -1,4 +1,4 @@
-import Slider from "@/page/user/slider/slider";
+import Slider from "@/page/user/sliderHeader/slider";
 
 export default function Home() {
   return (
