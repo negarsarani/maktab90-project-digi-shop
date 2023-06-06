@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Sidebar } from '@/layout/user';
 import { ButtonsNav, Logo_menu } from '@/page/user/navbar';
 import { Search } from '@/page/user/shared';
+import CategoryNav from '@/page/user/navbar/category';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -25,7 +26,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-
+      <CategoryNav/>
       <Sidebar
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
