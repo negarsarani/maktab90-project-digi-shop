@@ -47,11 +47,11 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
               >
                 <div className=" w-[10rem] flex items-center justify-center">
                   <Image
-                    src={`http://localhost:8000/images/products/images/${item.images[0]}`}
+                    src={item.images[0]}
                     alt={'item.name'}
                     className="rounded-xl "
-                    width={100}
-                    height={100}
+                    width={70}
+                    height={70}
                   />
                 </div>
               </Td>
