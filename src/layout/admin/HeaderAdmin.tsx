@@ -12,11 +12,11 @@ const HeaderAdmin = ({
   let spanTitle: string;
   if (slicePath) {
     slicePath == 'prices&inventory'
-      ? (spanTitle = 'موجودی و قیمت ها')
+      ? (spanTitle = 'مدیریت موجودی و قیمت ها')
       : slicePath == 'orders'
-      ? (spanTitle = 'سفارش ها')
+      ? (spanTitle = ' مدیریت سفارش ها')
       : slicePath == 'products'
-      ? (spanTitle = 'مدیریت کالا ها')
+      ? (spanTitle = ' مدیریت کالا ها')
       : slicePath == 'users'
       ? (spanTitle = 'مدیریت کاربران')
       : (spanTitle = 'روت نامشخص');
