@@ -36,7 +36,7 @@ export interface OrderedCategory {
   name: string;
   icon: string;
   subCategories: {
-    id: string;
+    _id: string;
     name: string;
     category: string;
   }[];

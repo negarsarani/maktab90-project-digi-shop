@@ -1,9 +1,21 @@
 import { headerOrdersTable } from '@/data/admin';
 import { TableProps } from '@/types/type';
-import { Tbody , Th , Thead , Td} from '@/page/admin';
+import { Tbody, Th, Thead, Td } from '@/page/admin';
 import { useState } from 'react';
+import getData from '@/api/getData';
 
 const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
+  const HandleUserName = (item: string) => {
+    let userName: string;
+    getData(`users/${item}`).then(
+      (res) =>
+        (userName = `${res.data.user.firstname} ${res.data.user.lastname}`)
+    );
+   const a = setTimeout(() => {
+      return userName;
+    }, 200);
+    return a
+  };
   const [openModal, setOpenModal] = useState({
     filter: false,
     buttonOrange: false,
@@ -11,18 +23,16 @@ const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
   return (
     <table className={`w-full bg-white ${isError && 'h-60'} `}>
       <Thead className=" ">
-        {headerOrdersTable.map((item:{
-    name: string;
-    icon: boolean;
-    id: string;
-}) => (
-          <Th
-            key={item.id}
-            className=" bg-orangeLighter  py-4  text-center text-xs font-medium text-gray "
-          >
-            {item.name}
-          </Th>
-        ))}
+        {headerOrdersTable.map(
+          (item: { name: string; icon: boolean; id: string }) => (
+            <Th
+              key={item.id}
+              className=" bg-orangeLighter  py-4  text-center text-xs font-medium text-gray "
+            >
+              {item.name}
+            </Th>
+          )
+        )}
       </Thead>
       <Tbody className=" ">
         {value.orders?.data?.map((item: any) => {
@@ -30,7 +40,7 @@ const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
             <tr key={item._id} className="border-b">
               <Td key={item._id} className="py-4 px-6 ">
                 <div className="text-sm text-center px-4 text-gray-900">
-                  {item.user}
+                  {HandleUserName(item.user)}
                 </div>
               </Td>
               <Td key={item._id} className="py-4 px-6 ">

@@ -1,10 +1,13 @@
 import { headerProductTable } from '@/data/admin';
 import useRedux from '@/hooks/useRedux';
 import { SkeletonTable, Tbody, Th, Thead, Td } from '@/page/admin';
-import { TableProps } from '@/types/type';
+import { OrderedCategory, TableProps } from '@/types/type';
 import Image from 'next/image';
 import { SORTDATA } from '@/redux/slice';
+import categoryData, { orderedCategory } from '@/data/shared';
 type itemType = {};
+let Data: OrderedCategory[];
+orderedCategory().then((res) => (Data = res));
 const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
   const [valueAdmin, dispatch] = useRedux((state) => state.adminState);
 
@@ -22,7 +25,26 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
       </div>
     );
   }
+  const HandleCategory = (itemCategory: string, itemSub: string) => {
+    console.log(itemCategory, itemSub);
+    console.log(Data);
 
+    const FindCategory = Data.find(
+      (item: { id: string; name: string; icon: string }) => {
+        return item.id === itemCategory;
+      }
+    );
+    console.log(FindCategory);
+
+    const FindSubcategory = FindCategory?.subCategories.find(
+      (item: { _id: string; name: string; category: string }) => {
+        return item._id === itemSub;
+      }
+    );
+    console.log(FindSubcategory);
+
+    return `${FindCategory?.name} /${FindSubcategory?.name}`;
+  };
   return (
     <table className={`w-full bg-white ${isError && 'h-60'} `}>
       <Thead className=" ">
@@ -80,7 +102,9 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
               </Td>
               <Td key={item.name} className="py-4 px-6 border-b">
                 <div className="text-sm text-center px-10 text-gray-900">
-                  {item.category}
+                  {HandleCategory(item.category, item.subcategory) !== undefined
+                    ? HandleCategory(item.category, item.subcategory)
+                    : 'فاقد دسته بندی'}
                 </div>
               </Td>
               <Td key={item.name} className="py-4 px-6 ">
