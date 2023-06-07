@@ -1,15 +1,21 @@
 import React, { useState, useRef } from 'react';
 import PopoverMenu from './PopoverMenu';
-interface Props {}
-const CategoryNav = (props: Props) => {
+import { OrderedCategory } from '@/types/type';
+interface Props {
+  Data: OrderedCategory[]
+}
+const CategoryNav = ({ Data }: Props) => {
+console.log(Data);
 
   return (
     <div className="lg:flex  hidden px-6 xl:px-8">
-      <div className="flex mt-2 border-t  w-full  gap-3">
-        <div className=" border-l px-2 border-black py-2">
-          <span>صفحه اصلی</span>
+      <div className="flex mt-2 border-t  w-full  gap-9">
+        <div className=" flex items-center justify-center  py-2 ">
+          <span className='border-l px-2 border-black cursor-pointer'>صفحه اصلی</span>
         </div>
-        <PopoverMenu/>
+        {Data.map((item , index) => {
+          return <PopoverMenu key={index} data={item}/>;
+        })}
       </div>
     </div>
   );

@@ -31,3 +31,13 @@ interface SortTypes {
   key: string;
   item: string;
 }
+export interface OrderedCategory {
+  id: string;
+  name: string;
+  icon: string;
+  subCategories: {
+    id: string;
+    name: string;
+    category: string;
+  }[];
+}

@@ -1,36 +1,20 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog, Disclosure } from '@headlessui/react';
 import { Linkouter } from '@/components';
-
-import {
-  ArrowPathIcon,
-  Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline';
-
-import {
-  ChevronDownIcon,
-  PhoneIcon,
-  PlayCircleIcon,
-} from '@heroicons/react/20/solid';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import Image from 'next/image';
-import { orderedCategory } from '@/data/shared';
 import Linkrouter from '@/components/Linkrouter';
-
-let Data: [];
-orderedCategory().then((res) => (Data = res));
+import { OrderedCategory } from '@/types/type';
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
 }
 interface props {
   mobileMenuOpen: boolean;
   setMobileMenuOpen: Dispatch<SetStateAction<boolean>>;
+  Data: OrderedCategory[];
 }
-const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen }: props) => {
+const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen, Data }: props) => {
   return (
     <Dialog
       as="div"
@@ -63,28 +47,22 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen }: props) => {
           <div className="-my-6 divide-y divide-gray-500/10">
             <div className="space-y-2 py-6">
               {Data?.map(
-                (data: {
-                  id: string;
-                  name: string;
-                  icon: string;
-                  subCategories: [];
-                }) => {
+                (data: OrderedCategory) => {
                   return (
                     <Disclosure as="div" className="-mx-3" key={data.id}>
                       {({ open }) => (
                         <>
                           <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                           <div className='flex items-center justify-center gap-3'>
-                           
-                            <Image
-                              src={`http://localhost:8000/images/categories/icons/${data.icon}`}
-                              alt={data.name}
-                              width={25}
-                              height={25}
-                            /> 
-                            {data.name}
-                           </div>
-                            
+                            <div className="flex items-center justify-center gap-3">
+                              <Image
+                                src={`http://localhost:8000/images/categories/icons/${data.icon}`}
+                                alt={data.name}
+                                width={25}
+                                height={25}
+                              />
+                              {data.name}
+                            </div>
+
                             <ChevronDownIcon
                               className={classNames(
                                 open ? 'rotate-180' : '',
@@ -94,28 +72,23 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen }: props) => {
                             />
                           </Disclosure.Button>
                           <Disclosure.Panel className="mt-2 space-y-2 pr-4">
-                            <div className='mt-2 space-y-2 border-r pr-4'>
-                               {[...data.subCategories].map(
-                              (item: {
-                                id: string;
-                                name: string;
-                                category: string;
-                              }) => (
-                                <Disclosure.Button
-                                  key={item.name}
-                                  className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                                >
-                                  <Linkrouter
-                                    href="#"
-                                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            <div className="mt-2 space-y-2 border-r pr-4">
+                              {[...data.subCategories].map(
+                                (item) => (
+                                  <Disclosure.Button
+                                    key={item.name}
+                                    className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                   >
-                                    {item.name}
-                                  </Linkrouter>
-                                </Disclosure.Button>
-                              )
-                            )}
+                                    <Linkrouter
+                                      href="#"
+                                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                    >
+                                      {item.name}
+                                    </Linkrouter>
+                                  </Disclosure.Button>
+                                )
+                              )}
                             </div>
-                           
                           </Disclosure.Panel>
                         </>
                       )}

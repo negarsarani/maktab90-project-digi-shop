@@ -3,13 +3,16 @@ import { Sidebar } from '@/layout/user';
 import { ButtonsNav, Logo_menu } from '@/page/user/navbar';
 import { Search } from '@/page/user/shared';
 import CategoryNav from '@/page/user/navbar/category';
-
+import { orderedCategory } from '@/data/shared';
+import { OrderedCategory } from '@/types/type';
+let Data: OrderedCategory[]
+orderedCategory().then((res) => (Data = res));
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className="bg-white w-full">
-      <div className='w-full'>
+      <div className="w-full">
         <div
           className={`shadow pb-4 lg:pb-0  fixed top-0 z-10 bg-white  w-full`}
         >
@@ -28,10 +31,11 @@ const Header = () => {
               <Search placeholder="به راحتی محصول مورد نظر خود را پیدا کنید..." />
             </div>
           </div>
-          <CategoryNav />
+          <CategoryNav Data={Data}/>
         </div>
       </div>
       <Sidebar
+        Data={Data}
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
       />
