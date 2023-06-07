@@ -8,9 +8,9 @@ type itemType = {};
 const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
   const [valueAdmin, dispatch] = useRedux((state) => state.adminState);
 
-  const handleSort =  (event: any) => {
+  const handleSort = (event: any) => {
     const ITEM = event.currentTarget.id;
-    dispatch(SORTDATA({ name: 'products', sortItem: ITEM})) ;
+    dispatch(SORTDATA({ name: 'products', sortItem: ITEM }));
     setTimeout(() => {
       refetch();
     }, 100);
@@ -55,13 +55,13 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
           مدیریت کالا
         </Th>
       </Thead>
-      <Tbody className=" divide-grayMedium">
+      <Tbody className=" ">
         {value.products?.data?.map((item: any) => {
           return (
-            <tr key={item._id}>
+            <tr key={item._id} className="border-b">
               <Td
                 key={item.name}
-                className=" py-4 px-6 border-b flex items-center justify-center h-20"
+                className=" py-4 px-6 flex items-center justify-center h-20"
               >
                 <div className=" w-[10rem] flex items-center justify-center">
                   <Image
@@ -83,7 +83,7 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
                   {item.category}
                 </div>
               </Td>
-              <Td key={item.name} className="py-4 px-6 border-b ">
+              <Td key={item.name} className="py-4 px-6 ">
                 <div className="flex  w-[5rem]">
                   <button className="text-sm text-gray-900 w-full">
                     <Image

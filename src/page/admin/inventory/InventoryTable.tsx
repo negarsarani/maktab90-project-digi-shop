@@ -30,17 +30,17 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
       <Thead className=" ">
         {headerInventoryTable.map((item) => (
           <Th
-            key={item}
+            key={item.id}
             className=" bg-orangeLighter  py-4 px-6 text-center text-xs font-medium text-gray "
           >
-            {item}
+            {item.name}
           </Th>
         ))}
       </Thead>
-      <Tbody className=" divide-grayMedium   ">
+      <Tbody className="    ">
         {value.inventory?.data?.map((item: any) => {
           return (
-            <tr key={item.name} className="">
+            <tr key={item.name} className="border-b">
               <Td
                 key={item.name}
                 className=" py-4 flex items-center justify-center  border-b "

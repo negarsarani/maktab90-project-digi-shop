@@ -1,21 +1,30 @@
 import { headerOrdersTable } from '@/data/admin';
 import { TableProps } from '@/types/type';
 import { Tbody , Th , Thead , Td} from '@/page/admin';
+import { useState } from 'react';
 
 const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
+  const [openModal, setOpenModal] = useState({
+    filter: false,
+    buttonOrange: false,
+  });
   return (
     <table className={`w-full bg-white ${isError && 'h-60'} `}>
       <Thead className=" ">
-        {headerOrdersTable.map((item) => (
+        {headerOrdersTable.map((item:{
+    name: string;
+    icon: boolean;
+    id: string;
+}) => (
           <Th
-            key={item}
+            key={item.id}
             className=" bg-orangeLighter  py-4  text-center text-xs font-medium text-gray "
           >
-            {item}
+            {item.name}
           </Th>
         ))}
       </Thead>
-      <Tbody className=" divide-grayMedium">
+      <Tbody className=" ">
         {value.orders?.data?.map((item: any) => {
           return (
             <tr key={item._id} className="border-b">
@@ -56,7 +65,7 @@ const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
                 </Td>
               )}
 
-              <Td key={item._id} className="py-4 px-6 border-b  ">
+              <Td key={item._id} className="py-4 px-6 -  ">
                 <div className="flex gap-4">{item.deliveryDate}</div>
               </Td>
             </tr>

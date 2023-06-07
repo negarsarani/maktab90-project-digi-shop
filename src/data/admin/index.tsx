@@ -1,4 +1,3 @@
-
 type sideBarDataType = {
   name: string;
   href: string;
@@ -17,19 +16,19 @@ export const sideBarData: sideBarDataType = [
 ];
 
 export const headerProductTable: HeaderTableType = [
- { name: 'تصویر کالا', icon: false, id: 'image' },
+  { name: 'تصویر کالا', icon: false, id: 'image' },
   { name: 'نام کالا', icon: true, id: 'name' },
-  { name: 'دسته بندی', icon: true, id: 'category' }, 
+  { name: 'دسته بندی', icon: true, id: 'category' },
 ];
 export const headerInventoryTable: HeaderTableType = [
-  'تصویر کالا',
-  'نام کالا',
-  'قیمت',
-  'موجودی',
+  { name: 'تصویر کالا', icon: false, id: 'image' },
+  { name: 'نام کالا', icon: true, id: 'name' },
+  { name: 'قیمت', icon: true, id: 'price' },
+  { name: 'موجودی', icon: true, id: 'inventory' },
 ];
 export const headerOrdersTable: HeaderTableType = [
-  'نام کاربر',
-  'مجموع ملبغ',
-  'زمان ثبت سفارش',
-  'سفارشات',
+  { name: 'نام کاربر', icon: false, id: 'image' },
+  { name: 'مجموع ملبغ', icon: true, id: 'name' },
+  { name: 'زمان ثبت سفارش', icon: true, id: 'tine' },
+  { name: 'سفارشات', icon: true, id: 'orders' },
 ];
