@@ -29,12 +29,29 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
     <table className={`w-full bg-white ${isError && 'h-60'}  `}>
       <Thead className=" ">
         {headerInventoryTable.map((item) => (
-          <Th
-            key={item.id}
-            className=" bg-orangeLighter  py-4 px-6 text-center text-xs font-medium text-gray "
-          >
-            {item.name}
-          </Th>
+           <Th
+           key={item.id}
+           className={` bg-orangeLighter  py-4 ${
+             item.icon && 'hover:bg-orange-200 cursor-pointer'
+           }  text-center text-xs font-medium text-gray`}
+          //  onClick={handleSort}
+           id={item.id}
+         >
+           <div className="flex items-center justify-center  ">
+             {item.icon === true ? (
+               <Image
+                 src="/icons/sortAscend.svg"
+                 alt="مرتب کردن"
+                 width={10}
+                 height={10}
+                 className="cursor-pointer"
+               />
+             ) : (
+               ''
+             )}
+             {item.name}
+           </div>
+         </Th>
         ))}
       </Thead>
       <Tbody className="    ">
@@ -43,7 +60,7 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
             <tr key={item.name} className="border-b">
               <Td
                 key={item.name}
-                className=" py-4 flex items-center justify-center  border-b "
+                className=" py-4 flex items-center justify-center   "
               >
                 <div className=" w-[10rem] flex items-center justify-center">
                   <Image

@@ -57,7 +57,7 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
             onClick={handleSort}
             id={item.id}
           >
-            <div className="flex items-center justify-center   gap-3 ">
+            <div className="flex items-center justify-center  ">
               {item.icon === true ? (
                 <Image
                   src="/icons/sortAscend.svg"
@@ -83,33 +83,36 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
             <tr key={item._id} className="border-b">
               <Td
                 key={item.name}
-                className=" py-4 px-6 flex items-center justify-center h-20"
+                className="py-4 flex items-center justify-center md:w-full w-[10rem] "
               >
-                <div className=" w-[10rem] flex items-center justify-center">
-                  <Image
+                   <div className="   flex items-center justify-center">
+                   <Image
                     src={item.images[0]}
                     alt={'item.name'}
-                    className="rounded-xl bg-white"
+                    className="rounded-xl "
                     width={70}
                     height={70}
                   />
                 </div>
+               
               </Td>
-              <Td key={item.name} className="py-4 px-6 border-b">
-                <div className="text-sm text-center px-4 text-gray-900">
-                  {item.name}
+              <Td key={item.name} className="py-4 px-6 border-b ">
+                <div className="text-sm text-center px-4 text-gray-900 flex items-center justify-center ">
+                  <span>{item.name}</span>
+                  
                 </div>
               </Td>
-              <Td key={item.name} className="py-4 px-6 border-b">
-                <div className="text-sm text-center px-10 text-gray-900">
-                  {HandleCategory(item.category, item.subcategory) !== undefined
+              <Td key={item.name} className="py-4 px-6 border-b ">
+                <div className="text-sm text-center px-4 text-gray-900 flex items-center justify-center ">
+                  {/* {HandleCategory(item.category, item.subcategory) !== undefined
                     ? HandleCategory(item.category, item.subcategory)
-                    : 'فاقد دسته بندی'}
+                    : 'فاقد دسته بندی'} */}
+                    oomoljjlknmjnjlknkjkjjnhiknknpkmolm/fdvsdcfw
                 </div>
               </Td>
-              <Td key={item.name} className="py-4 px-6 ">
-                <div className="flex  w-[5rem]">
-                  <button className="text-sm text-gray-900 w-full">
+              <Td key={item.name} className="py-4 px-6 " >
+                <div className="flex items-center justify-center gap-2 md:w-full w-[10rem]">
+                  <button className="text-sm text-gray-900">
                     <Image
                       src="/icons/trash.svg"
                       alt="حذف"
@@ -121,7 +124,7 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
                     <Image
                       src="/icons/edit.svg"
                       alt="حذف"
-                      width={25}
+                      width={22}
                       height={20}
                     />
                   </button>

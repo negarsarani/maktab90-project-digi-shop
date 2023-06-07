@@ -29,6 +29,7 @@ export const headerInventoryTable: HeaderTableType = [
 export const headerOrdersTable: HeaderTableType = [
   { name: 'نام کاربر', icon: false, id: 'image' },
   { name: 'مجموع ملبغ', icon: true, id: 'name' },
-  { name: 'زمان ثبت سفارش', icon: true, id: 'tine' },
-  { name: 'سفارشات', icon: true, id: 'orders' },
+  { name: "وضعیت سفارش" , icon: true, id: 'tine' },
+  { name: 'زمان ثبت سفارش', icon: true, id: 'orders' },
+  { name: 'بررسی سفارش', icon: false, id: 'check' },
 ];

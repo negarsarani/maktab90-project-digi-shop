@@ -24,7 +24,7 @@ const Products = () => {
   });
 
   return (
-    <div className="w-full h-full flex flex-col gap-5 relative">
+    <div className="w-full h-full flex flex-col gap-5">
       <NavbarTableProduct />
       {/* <ReactQueryDevtools /> */}
       {/* <butt onClick></butt> */}

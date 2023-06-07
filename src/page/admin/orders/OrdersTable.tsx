@@ -3,6 +3,7 @@ import { TableProps } from '@/types/type';
 import { Tbody, Th, Thead, Td } from '@/page/admin';
 import { useState } from 'react';
 import getData from '@/api/getData';
+import Image from 'next/image';
 
 const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
   const HandleUserName = (item: string) => {
@@ -11,10 +12,10 @@ const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
       (res) =>
         (userName = `${res.data.user.firstname} ${res.data.user.lastname}`)
     );
-   const a = setTimeout(() => {
+    const a = setTimeout(() => {
       return userName;
     }, 200);
-    return a
+    return a;
   };
   const [openModal, setOpenModal] = useState({
     filter: false,
@@ -38,20 +39,24 @@ const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
         {value.orders?.data?.map((item: any) => {
           return (
             <tr key={item._id} className="border-b">
-              <Td key={item._id} className="py-4 px-6 ">
-                <div className="text-sm text-center px-4 text-gray-900">
-                  {HandleUserName(item.user)}
+              <Td key={item._id} className="py-4  px-6 ">
+                <div className="text-sm text-center    text-gray-900 w-[5rem] ">
+                  {/* {HandleUserName(item.user)} */}
+                  نگار سرانی
                 </div>
               </Td>
-              <Td key={item._id} className="py-4 px-6 ">
-                <div className="text-sm text-center px-10 text-gray-900">
-                  {item.totalPrice}
+              <Td key={item._id} className="py-4  px-6  ">
+                <div className="text-sm flex  items-center justify-center text-center  text-gray-900 ">
+                  {item.totalPrice} <span>ریال</span>
                 </div>
               </Td>
               {item.deliveryStatus ? (
-                <Td key={item._id} className="py-4  px-6">
-                  <div className="flex items-center justify-center w-[10rem]  text-[.7rem] md:text-sm  text-gray-800 ">
-                    <div className="text-green-800 bg-green-200 rounded-3xl px-3 flex items-center justify-center gap-3 py-2 ">
+                <Td
+                  key={item._id}
+                  className="py-4  px-6  flex items-center justify-center "
+                >
+                  <div className="flex items-center justify-center -[.7rem] w-[10rem] md:text-sm  text-gray-800 ">
+                    <div className="text-green-800 bg-green-200 rounded-3xl px-3 flex items-center justify-center text-sm  gap-3 py-2 ">
                       <div className="w-2 h-2  bg-green-600 rounded-full "></div>
                       <div className="px-1">
                         {item.deliveryStatus}تحویل داده شده
@@ -62,10 +67,10 @@ const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
               ) : (
                 <Td
                   key={item._id}
-                  className="py-4  flex items-center justify-center px-6 "
+                  className="py-4   px-6  flex items-center justify-center  "
                 >
-                  <div className="flex items-center justify-center w-[10rem]  text-[.7rem] md:text-sm  text-gray-800 ">
-                    <div className="text-red-800 bg-red-200 rounded-3xl px-3 flex items-center justify-center gap-3 py-2 ">
+                  <div className="flex items-center  justify-centertext-[.7rem] w-[10rem]md:text-sm  text-gray-800 ">
+                    <div className="text-red-800 bg-red-200 text-sm rounded-3xl px-3 flex items-center justify-center gap-3 py-2 ">
                       <div className="w-2 h-2  bg-red-600 rounded-full "></div>
                       <div className="px-1">
                         {item.deliveryStatus}تحویل داده نشده{' '}
@@ -75,8 +80,19 @@ const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
                 </Td>
               )}
 
-              <Td key={item._id} className="py-4 px-6 -  ">
-                <div className="flex gap-4">{item.deliveryDate}</div>
+              <Td key={item._id} className="py-4 px-6">
+                <div className="flex items-center justify-center md:w-full text-sm ">
+                  1402/3/17
+                  {/* {item.deliveryDate} */}
+                </div>
+              </Td>
+              <Td key={item._id} className="py-4  px-6  ">
+                <div className="  cursor-pointer  flex items-center justify-center lg:w-full w-[5rem]">
+                  <div>
+
+                  <Image src='/icons/circle.svg' alt='جزییات' width={20} height={20} />
+                  </div>
+                </div>
               </Td>
             </tr>
           );
