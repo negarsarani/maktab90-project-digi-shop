@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog, Disclosure } from '@headlessui/react';
 import { Linkouter } from '@/components';
+
 import {
   ArrowPathIcon,
   Bars3Icon,
@@ -73,7 +74,17 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen }: props) => {
                       {({ open }) => (
                         <>
                           <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                           <div className='flex items-center justify-center gap-3'>
+                           
+                            <Image
+                              src={`http://localhost:8000/images/categories/icons/${data.icon}`}
+                              alt={data.name}
+                              width={25}
+                              height={25}
+                            /> 
                             {data.name}
+                           </div>
+                            
                             <ChevronDownIcon
                               className={classNames(
                                 open ? 'rotate-180' : '',
@@ -82,8 +93,9 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen }: props) => {
                               aria-hidden="true"
                             />
                           </Disclosure.Button>
-                          <Disclosure.Panel className="mt-2 space-y-2">
-                            {[...data.subCategories].map(
+                          <Disclosure.Panel className="mt-2 space-y-2 pr-4">
+                            <div className='mt-2 space-y-2 border-r pr-4'>
+                               {[...data.subCategories].map(
                               (item: {
                                 id: string;
                                 name: string;
@@ -102,6 +114,8 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen }: props) => {
                                 </Disclosure.Button>
                               )
                             )}
+                            </div>
+                           
                           </Disclosure.Panel>
                         </>
                       )}
