@@ -11,7 +11,7 @@ const index = () => {
         <span className="hidden sm:flex"> ورود / ثبت نام</span>
         <Image
           src="/icons/user/user.svg"
-          width={20}
+          width={15}
           height={20}
           alt="ورود/ ثبت نام"
         />
@@ -23,7 +23,7 @@ const index = () => {
         <span className="hidden sm:flex">سبد خرید</span>
         <Image
           src="/icons/user/Buy.svg"
-          width={25}
+          width={20}
           height={20}
           alt="سبد خرید"
         />
