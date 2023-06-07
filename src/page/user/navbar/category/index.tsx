@@ -13,7 +13,7 @@ console.log(Data);
         <div className=" flex items-center justify-center  py-2 ">
           <span className='border-l px-2 border-black cursor-pointer'>صفحه اصلی</span>
         </div>
-        {Data.map((item , index) => {
+        {Data?.map((item , index) => {
           return <PopoverMenu key={index} data={item}/>;
         })}
       </div>

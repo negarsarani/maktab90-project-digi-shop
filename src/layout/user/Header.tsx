@@ -1,14 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Sidebar } from '@/layout/user';
 import { ButtonsNav, Logo_menu } from '@/page/user/navbar';
 import { Search } from '@/page/user/shared';
 import CategoryNav from '@/page/user/navbar/category';
-import { orderedCategory } from '@/data/shared';
+import useCategory, { orderedCategory } from '@/data/shared';
 import { OrderedCategory } from '@/types/type';
-let Data: OrderedCategory[]
-orderedCategory().then((res) => (Data = res));
 const Header = () => {
+  const [Data, SetData] = useState<{}>();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // SetData({ category: categories, subCategories: subCategories });
+  const [categories, subCategories] = useCategory();
+  console.log([categories, subCategories]);
+  useEffect(() => {
+    const orderedData = categories?.map(
+      (item: { _id: string; name: string; icon: string }) => {
+        const FilterSub = subCategories?.filter(
+          (i: { category: {} }) => item._id === i.category
+        );
+        return {
+          id: item._id,
+          name: item.name,
+          icon: item.icon,
+          subCategories: FilterSub,
+        };
+      }
+    );
+    return SetData(orderedData);
+  });
 
   return (
     <header className="bg-white w-full">
@@ -31,7 +50,7 @@ const Header = () => {
               <Search placeholder="به راحتی محصول مورد نظر خود را پیدا کنید..." />
             </div>
           </div>
-          <CategoryNav Data={Data}/>
+          <CategoryNav Data={Data} />
         </div>
       </div>
       <Sidebar

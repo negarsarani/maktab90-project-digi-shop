@@ -62,7 +62,7 @@ const PopoverMenu = ({ data }: props) => {
                 static
               >
                 <div className="p-4">
-                  {data.subCategories.map((item) => (
+                  {data?.subCategories?.map((item) => (
                     <div
                       id={item.id}
                       key={item.name}
