@@ -7,7 +7,8 @@ import ButtonOrange from './ButtonOrange';
 import Modal from './Modal';
 interface props {
   children: React.ReactNode;
-  openModal: boolean
+  openModal:  boolean;
+    
   setOpenModal: Dispatch<
     SetStateAction<{
       filter: boolean;
@@ -16,9 +17,9 @@ interface props {
   >;
 }
 const NavbarTable = ({ children, openModal, setOpenModal }: props) => {
+  
   return (
     <>
-    {openModal ? <Modal name={'filter'} openModal={openModal} setOpenModal={setOpenModal}/> :""}
       <div className="flex flex-col sm:flex-row  gap-5  sm:gap-0 items-center sm:justify-between w-full">
         <SearchInput></SearchInput>
         <div className="flex items-center justify-end  gap-4 w-full">

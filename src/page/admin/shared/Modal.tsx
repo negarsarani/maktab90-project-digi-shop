@@ -1,25 +1,23 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Dialog } from '@headlessui/react';
-interface props {
+
+interface ModalProps {
   openModal: boolean;
-  setOpenModal: Dispatch<
-    SetStateAction<{
-      filter: boolean;
-      buttonOrange: boolean;
-    }>
-  >;
+  setOpenModal: Dispatch<SetStateAction<{ filter: boolean; buttonOrange: boolean }>>;
   name: string;
 }
-const Modal = ({ openModal, setOpenModal, name }: props) => {
+
+const Modal = ({ openModal, setOpenModal, name }: ModalProps) => {
   const handleClose = () => {
     setOpenModal((prevState) => ({
       ...prevState,
       [name]: false,
     }));
   };
+
   return (
-    <Dialog open={openModal} onClose={() => handleClose()}>
-      <Dialog.Panel>
+    <Dialog open={openModal} onClose={handleClose} className="fixed inset-0 z-50 flex items-center justify-center">
+      <Dialog.Panel className="bg-red-300 w-11/12 sm:max-w-sm mx-auto rounded-md shadow-lg">
         <Dialog.Title>Deactivate account</Dialog.Title>
         <Dialog.Description>
           This will permanently deactivate your account
@@ -30,8 +28,7 @@ const Modal = ({ openModal, setOpenModal, name }: props) => {
           will be permanently removed. This action cannot be undone.
         </p>
 
-        <button onClick={() => handleClose()}>Deactivate</button>
-        <button onClick={() => handleClose()}>Cancel</button>
+        <button onClick={handleClose}>Cancel</button>
       </Dialog.Panel>
     </Dialog>
   );

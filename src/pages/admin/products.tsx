@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import getData from '@/api/getData';
 import useRedux from '@/hooks/useRedux';
 import { DATA } from '@/redux/slice/admin/adminSlice';
@@ -7,9 +7,10 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { querykeys } from '@/react-query/constants';
 import { getCookie } from 'cookies-next';
 import { ProductTable, Pagination, NavbarTableProduct } from '@/page/admin';
+import Modal from '@/page/admin/shared/Modal';
 
 const Products = () => {
-  const [value, dispatch] = useRedux((state:any) => state.adminState);
+  const [value, dispatch] = useRedux((state: any) => state.adminState);
 
   const [isLoading, data, isError, refetch] = useQueries(
     () => getData(value.products.url.path),
@@ -23,7 +24,7 @@ const Products = () => {
   });
 
   return (
-    <div className="w-full h-full flex flex-col gap-5">
+    <div className="w-full h-full flex flex-col gap-5 relative">
       <NavbarTableProduct />
       {/* <ReactQueryDevtools /> */}
       {/* <butt onClick></butt> */}
@@ -36,7 +37,7 @@ const Products = () => {
             refetch={refetch}
           />
         </div>
-        <Pagination name={"products"} refetch={refetch}/>
+        <Pagination name={'products'} refetch={refetch} />
       </div>
     </div>
   );
