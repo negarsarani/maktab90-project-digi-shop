@@ -2,15 +2,18 @@ import {NavbarTable , ButtonOrange} from '@/page/admin';
 import { useState } from 'react';
 import Modal from '../shared/Modal';
 import OrdersFilter from './OrdersFilter';
-
-const NavbarTableOrders = () => {
+import { FabPropsVariantOverrides } from '@mui/material';
+interface props{
+  refetch:()=> void
+}
+const NavbarTableOrders = ({refetch}:props) => {
   const [openModal, setOpenModal] = useState({
     filter: false,
     buttonOrange: false,
   });
   return (
     <>
-     {openModal.filter ? <OrdersFilter   openModal={openModal.filter} setOpenModal={setOpenModal}/> :""} 
+     {openModal.filter ? <OrdersFilter  refetch={refetch} openModal={openModal.filter} setOpenModal={setOpenModal}/> :""} 
         {openModal.buttonOrange ? <Modal name={'buttonOrange'} openModal={openModal.buttonOrange} setOpenModal={setOpenModal}/> :"" }
 
     <div className="flex flex-col sm:flex-row  gap-5  sm:gap-0 items-center sm:justify-between w-full">

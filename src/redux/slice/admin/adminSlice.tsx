@@ -9,19 +9,22 @@ export interface AdminStore {
 
 const initialState: AdminStore = {
   products: {
-    sort:"",
+    filter: '',
+    sort: '',
     options: { limit: 4, page: 1 },
     url: { keyApi: 'products', path: 'products?page=1&limit=4' },
     data: [],
   },
   inventory: {
-    sort: "",
+    filter: '',
+    sort: '',
     options: { limit: 4, page: 1 },
     url: { keyApi: 'products', path: 'products?page=1&limit=4' },
     data: [],
   },
   orders: {
-    sort:  "",
+    filter: '',
+    sort: '',
     options: { limit: 4, page: 1 },
     url: { keyApi: 'orders', path: 'orders?page=1&limit=4' },
     data: [],
@@ -61,22 +64,28 @@ export const adminSlice = createSlice({
       const { name, sortItem } = action.payload;
       const Toggle = state[name].sort === sortItem ? true : false;
       let newSortUrl;
-      
-      if (Toggle) {
-        state[name].sort = ''
-       newSortUrl  = state[name].url.path.split('&sort=')[0];
 
+      if (Toggle) {
+        state[name].sort = '';
+        newSortUrl = state[name].url.path.split('&sort=')[0];
       } else {
-       const url  = state[name].url.path.split('&sort=')[0];
-        state[name].sort = sortItem
+        const url = state[name].url.path.split('&sort=')[0];
+        state[name].sort = sortItem;
         newSortUrl = `${url}&sort=${state[name].sort}`;
       }
 
       state[name].url.path = newSortUrl;
     },
+    FILTERDATA: (state, action) => {
+      const { name, item } = action.payload;
+      item !== state[name].filter && (state[name].filter = item);
+      state[
+        name
+      ].url.path = `orders?page=${state[name].options.page}&limit=${state[name].options.limit}${state[name].filter}`;
+    },
   },
 });
 
-export const { DATA, PAGINATE, SORTDATA } = adminSlice.actions;
+export const { DATA, PAGINATE, SORTDATA, FILTERDATA } = adminSlice.actions;
 
 export default adminSlice.reducer;

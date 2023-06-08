@@ -5,10 +5,11 @@ const index = () => {
   return (
     <div className="w-6/12  flex items-center justify-end gap-5">
       <Linkouter
-        href="/cart"
+        href="admin/login"
         className="flex gap-2 items-center justify-center"
       >
         <span className="hidden sm:flex"> ورود / ثبت نام</span>
+        
         <Image
           src="/icons/user/user.svg"
           width={15}

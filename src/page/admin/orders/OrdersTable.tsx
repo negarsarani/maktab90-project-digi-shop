@@ -17,10 +17,7 @@ const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
     }, 200);
     return a;
   };
-  const [openModal, setOpenModal] = useState({
-    filter: false,
-    buttonOrange: false,
-  });
+
   return (
     <table className={`w-full bg-white ${isError && 'h-60'} `}>
       <Thead className=" ">

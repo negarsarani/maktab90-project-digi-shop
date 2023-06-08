@@ -13,11 +13,12 @@ export type tableChildType = {
 export type TableProps = {
   isLoading: boolean | unknown;
   value: any;
-  isError: boolean | unknown;
+  isError: boolean | any;
   refetch: () => void;
 };
 
 export type ChildAdminInit = {
+  filter:string,
   sort: string;
   options: { limit: number; page: number };
   url: { keyApi: string; path: string };

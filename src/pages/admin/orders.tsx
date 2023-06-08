@@ -14,11 +14,11 @@ const Orders = () => {
   isLoading === false && dispatch(DATA({ items: data, name: 'orders' , key: 'orders'}));
   return (
     <div className="w-full  flex flex-col gap-5 ">
-      <NavbarTableOrders />
+      <NavbarTableOrders refetch={refetch} />
       {/* <ReactQueryDevtools /> */}
       <div className=" w-full  pb-10 flex flex-col  items-center justify-center ">
         <div className=" overflow-hidden  bg-white flex flex-col overflow-x-auto w-full rounded-t-xl ">
-          <OrdersTable
+          <OrdersTable refetch={refetch}
             isLoading={isLoading}
             value={value}
             isError={isError}
