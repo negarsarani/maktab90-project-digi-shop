@@ -15,7 +15,13 @@ html,
   width: 100%;
   height: 100%;
 }
-
+@font-face {
+  font-family: FontLight;
+  src: url('../assets/fonts/MTNIrancell-Light.ttf');
+}
+body{
+  font-family: FontLight;
+}
 @media screen and (max-width: 500px) {
   .tableWidth {
     width: 20rem;
