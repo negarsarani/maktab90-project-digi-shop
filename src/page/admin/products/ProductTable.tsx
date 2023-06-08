@@ -49,13 +49,13 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
     );
   }
   const HandleCategory = (itemCategory: string, itemSub: string) => {
-    const FindCategory = category.find(
+    const FindCategory = category?.find(
       (item: { _id: string; name: string; icon: string }) => {
         return item._id === itemCategory;
       }
     );
 
-    const FindSubcategory = subCategory.find(
+    const FindSubcategory = subCategory?.find(
       (item: { _id: string; name: string; category: string }) => {
         return item._id === itemSub;
       }
@@ -101,28 +101,34 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
             <tr key={item._id} className="border-b">
               <Td
                 key={item.name}
-                className="py-4 flex items-center justify-center lg:w-full w-[10rem] "
+                className="py-4 flex items-center justify-center "
               >
                 <div className="   flex items-center justify-center">
-                  <Image
+                  <div className='w-[6rem]'>
+                     <Image
                     src={item.images[0]}
                     alt={'item.name'}
                     className="rounded-xl "
-                    width={70}
+                    width={80}
                     height={70}
                   />
+                </div>
+                  </div>
+                 
+              </Td>
+              <Td key={item.name} className="py-4 px-6   w-[5rem]">
+                <div className="text-sm text-center px-4 h-20 w-full text-gray-900 flex items-center justify-center ">
+                  <span className='  overflow-hidden  w-[14rem]  text-ellipsis'>{item.name}</span>
                 </div>
               </Td>
               <Td key={item.name} className="py-4 px-6  ">
                 <div className="text-sm text-center px-4 text-gray-900 flex items-center justify-center ">
-                  <span>{item.name}</span>
-                </div>
-              </Td>
-              <Td key={item.name} className="py-4 px-6  ">
-                <div className="text-sm text-center px-4 text-gray-900 flex items-center justify-center md:w-full w-[10rem]">
-                  {HandleCategory(item.category, item.subcategory) !== undefined
+                  <div className=' sm:w-[10rem] w-[5rem]'>
+                     {HandleCategory(item.category, item.subcategory) !== undefined
                     ? HandleCategory(item.category, item.subcategory)
                     : 'فاقد دسته بندی'}
+                  </div>
+                 
                 </div>
               </Td>
               <Td key={item.name} className="py-4 px-6 ">
