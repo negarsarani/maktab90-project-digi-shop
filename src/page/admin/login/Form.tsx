@@ -18,7 +18,7 @@ const Form = ({ errors, register }: Props) => {
         >
           نام کاربری
         </label>
-        <div className="mt-2 h-14">
+        <div className="mt-2 h-16 flex flex-col gap-1 ">
           <Input
             register={register}
             type="text"
@@ -29,7 +29,7 @@ const Form = ({ errors, register }: Props) => {
               'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6 placeholder:py-2'
             }
           />
-          <span className="text-orangeAdmin "> {errors.username?.message}</span>
+          <span className="text-orangeAdmin mt-1"> {errors.username?.message}</span>
         </div>
       </div>
       <div>
@@ -41,7 +41,7 @@ const Form = ({ errors, register }: Props) => {
             رمز عبور
           </label>
         </div>
-        <div className="mt-2 h-14">
+        <div className="mt-2 h-16 flex flex-col gap-1">
           <Input
             register={register}
             type="password"
@@ -52,7 +52,7 @@ const Form = ({ errors, register }: Props) => {
               'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6 placeholder:py-2'
             }
           />
-          <span className="text-orangeAdmin ">{errors.password?.message}</span>
+          <span className="text-orangeAdmin mt-1 ">{errors.password?.message}</span>
         </div>
       </div>
       <div className="flex items-center justify-center w-full">

@@ -1,12 +1,11 @@
 import { headerProductTable } from '@/data/admin';
 import useRedux from '@/hooks/useRedux';
 import { SkeletonTable, Tbody, Th, Thead, Td } from '@/page/admin';
-import { OrderedCategory, TableProps } from '@/types/type';
+import { TableProps } from '@/types/type';
 import Image from 'next/image';
 import { SORTDATA } from '@/redux/slice';
-import categoryDat from '@/data/shared';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useGetQuery from '@/hooks/useGetQuery';
 import { SortIcon } from '../shared/SortIcon';
 import useCategory from '@/data/shared';
@@ -14,40 +13,33 @@ type itemType = {};
 
 const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
   const [valueAdmin, dispatch] = useRedux((state) => state.adminState);
+  const [sortObj, setSortObj] = useState({ key: '' });
   const router = useRouter();
   const queries = useGetQuery();
-  const slicePath = valueAdmin.products.url.path.split('?')[1];
-  console.log(slicePath);
-  // useEffect(() => {
-  //   router.push({
-  //     pathname: '',
-  //     query: { ...router.query, sort: valueAdmin.products.options.page },
-  //   });
-  // }, [valueAdmin.products.sort]);
-
+  const [category, subCategory] = useCategory();
+  useEffect(() => {
+    const slicePath = valueAdmin.products.url.path.split('?')[1];
+    router.push({
+      pathname: '',
+      query: slicePath,
+    });
+  }, []);
+  useEffect(() => {
+    const slicePath = valueAdmin.products.url.path.split('?')[1];
+    console.log(queries);
+    router.push({
+      pathname: '',
+      query: slicePath,
+    });
+  }, [sortObj]);
   const handleSort = (event: any) => {
     const ITEM = event.currentTarget.id;
     dispatch(SORTDATA({ name: 'products', sortItem: ITEM }));
     setTimeout(() => {
       refetch();
     }, 100);
-    router.push({
-      pathname: '',
-      query: { ...router.query, sort: valueAdmin.products.sort },
-    });
+    ITEM === sortObj ? setSortObj({ key: '' }) : setSortObj({ key: ITEM });
   };
-  // useEffect(() => {
-  //   const query1 = Object.fromEntries(
-  //   Object.entries({ value: valueAdmin.products.sort , item :valueAdmin.products.options.page  }).filter((q) => !!q[1])
-  //   );
-  //   console.log("test", query1);
-  //   // router.push({
-  //   // pathname: "/products/",
-  //   // query: query1,
-  //   // });
-  //   }, [valueAdmin.products.sort, valueAdmin.products.options.page]);
-
-  const [category, subCategory] = useCategory();
 
   if (isLoading) {
     return (
@@ -57,7 +49,6 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
     );
   }
   const HandleCategory = (itemCategory: string, itemSub: string) => {
-
     const FindCategory = category.find(
       (item: { _id: string; name: string; icon: string }) => {
         return item._id === itemCategory;
@@ -86,7 +77,7 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
             }}
             id={item.id}
           >
-            <div className="flex items-center justify-center  ">
+            <div className="flex items-center justify-center  gap-2">
               {item.icon === true ? (
                 valueAdmin.products.sort === item.id ? (
                   <SortIcon sort={'ascending'} />
@@ -96,7 +87,7 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
               ) : (
                 ''
               )}
-              {item.name}
+              <span>{item.name}</span>
             </div>
           </Th>
         ))}
@@ -132,7 +123,6 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
                   {HandleCategory(item.category, item.subcategory) !== undefined
                     ? HandleCategory(item.category, item.subcategory)
                     : 'فاقد دسته بندی'}
-                   
                 </div>
               </Td>
               <Td key={item.name} className="py-4 px-6 ">

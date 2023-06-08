@@ -37,7 +37,7 @@ const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
           return (
             <tr key={item._id} className="border-b">
               <Td key={item._id} className="py-4  px-6 ">
-                <div className="text-sm text-center    text-gray-900 w-[5rem] ">
+                <div className="text-sm text-center    text-gray-900 md:w-full w-[5rem] ">
                   {/* {HandleUserName(item.user)} */}
                   نگار سرانی
                 </div>

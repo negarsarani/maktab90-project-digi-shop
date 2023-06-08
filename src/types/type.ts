@@ -20,7 +20,7 @@ export type TableProps = {
 export type ChildAdminInit = {
   filter:string,
   sort: string;
-  options: { limit: number; page: number };
+  options: { limit: number; page: number , totalPages: number | string};
   url: { keyApi: string; path: string };
   data: any[];
 };

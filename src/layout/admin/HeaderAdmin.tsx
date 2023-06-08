@@ -1,3 +1,4 @@
+import { Linkouter } from '@/components';
 import { LayoutChildrenAdminType } from '@/types/type';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
@@ -58,8 +59,7 @@ const HeaderAdmin = ({
           </button>
         </div>
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            {/* <span className="sr-only">Your Company</span> */}
+          <Linkouter href="/" className="-m-1.5 p-1.5">
             <Image
               className="h-8 w-auto lg:hidden"
               src={'/logo light.svg'}
@@ -67,7 +67,7 @@ const HeaderAdmin = ({
               width={30}
               height={30}
             />
-          </a>
+          </Linkouter>
         </div>
       </nav>
       <span className=" flex-1 items-center flex justify-center font-semibold">

@@ -7,7 +7,7 @@ import Td from './Td';
 const SkeletonTable = () => {
     return (
         <div className="container mx-auto py-8 animate-pulse rounded-lg bg-white">
-            <table className="min-w-full border border-gray-300 rounded-xl">
+            <table className="min-w-full   rounded-xl">
                 <Thead className='rounded-xl'>
                     <Th className="py-4 px-6 bg-gray-200 border-b">
                         <p className="bg-gray-300 rounded-lg w-full h-4 "></p>
