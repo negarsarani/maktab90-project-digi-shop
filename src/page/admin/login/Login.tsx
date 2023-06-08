@@ -2,7 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import postData from '@/api/postData';
 import { useForm } from 'react-hook-form';
-import loginAdminSchema from '@/schemas/loginAdminSchema';
+import loginAdminSchema from '@/schemas/admin/loginAdminSchema';
 import { DataLoginAdmin } from '@/types/type';
 import useMutationQuery from '@/hooks/mutationQuery';
 import { useRouter } from 'next/router';

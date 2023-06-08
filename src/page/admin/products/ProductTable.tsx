@@ -57,21 +57,18 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
     );
   }
   const HandleCategory = (itemCategory: string, itemSub: string) => {
-    console.log(itemCategory, itemSub);
 
     const FindCategory = category.find(
       (item: { _id: string; name: string; icon: string }) => {
         return item._id === itemCategory;
       }
     );
-    console.log(FindCategory);
 
     const FindSubcategory = subCategory.find(
       (item: { _id: string; name: string; category: string }) => {
         return item._id === itemSub;
       }
     );
-    console.log(FindSubcategory);
 
     return `${FindCategory?.name} /${FindSubcategory?.name}`;
   };
