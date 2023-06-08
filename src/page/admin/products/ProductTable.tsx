@@ -4,44 +4,51 @@ import { SkeletonTable, Tbody, Th, Thead, Td } from '@/page/admin';
 import { OrderedCategory, TableProps } from '@/types/type';
 import Image from 'next/image';
 import { SORTDATA } from '@/redux/slice';
-import categoryData, { orderedCategory } from '@/data/shared';
+import categoryDat from '@/data/shared';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import useGetQuery from '@/hooks/useGetQuery';
+import { SortIcon } from '../shared/SortIcon';
+import useCategory from '@/data/shared';
 type itemType = {};
-let Data: OrderedCategory[];
-orderedCategory().then((res) => (Data = res));
+
 const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
   const [valueAdmin, dispatch] = useRedux((state) => state.adminState);
   const router = useRouter();
   const queries = useGetQuery();
-  const { asPath } = useRouter();
-  useEffect(() => {
-    const slicePath = valueAdmin.products.url.path.split('?')[1]
+  const slicePath = valueAdmin.products.url.path.split('?')[1];
   console.log(slicePath);
-  
-    router.push({
-      pathname: '',
-      query: slicePath,
-    });
-  }, [valueAdmin.products.url.path]);
+  // useEffect(() => {
+  //   router.push({
+  //     pathname: '',
+  //     query: { ...router.query, sort: valueAdmin.products.options.page },
+  //   });
+  // }, [valueAdmin.products.sort]);
 
-  useEffect(() => {
-    console.log(queries);
-    console.log(valueAdmin.products);
-  }, [queries]);
   const handleSort = (event: any) => {
     const ITEM = event.currentTarget.id;
     dispatch(SORTDATA({ name: 'products', sortItem: ITEM }));
     setTimeout(() => {
       refetch();
     }, 100);
-    // router.push('/sort',{
-    //   query:{
-    //    sort : valueAdmin.products.sort.key
-    //   }
-    // })
+    router.push({
+      pathname: '',
+      query: { ...router.query, sort: valueAdmin.products.sort },
+    });
   };
+  // useEffect(() => {
+  //   const query1 = Object.fromEntries(
+  //   Object.entries({ value: valueAdmin.products.sort , item :valueAdmin.products.options.page  }).filter((q) => !!q[1])
+  //   );
+  //   console.log("test", query1);
+  //   // router.push({
+  //   // pathname: "/products/",
+  //   // query: query1,
+  //   // });
+  //   }, [valueAdmin.products.sort, valueAdmin.products.options.page]);
+
+  const [category, subCategory] = useCategory();
+
   if (isLoading) {
     return (
       <div>
@@ -51,16 +58,15 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
   }
   const HandleCategory = (itemCategory: string, itemSub: string) => {
     console.log(itemCategory, itemSub);
-    console.log(Data);
 
-    const FindCategory = Data.find(
-      (item: { id: string; name: string; icon: string }) => {
-        return item.id === itemCategory;
+    const FindCategory = category.find(
+      (item: { _id: string; name: string; icon: string }) => {
+        return item._id === itemCategory;
       }
     );
     console.log(FindCategory);
 
-    const FindSubcategory = FindCategory?.subCategories.find(
+    const FindSubcategory = subCategory.find(
       (item: { _id: string; name: string; category: string }) => {
         return item._id === itemSub;
       }
@@ -85,13 +91,11 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
           >
             <div className="flex items-center justify-center  ">
               {item.icon === true ? (
-                <Image
-                  src="/icons/sortAscend.svg"
-                  alt="مرتب کردن"
-                  width={10}
-                  height={10}
-                  className="cursor-pointer"
-                />
+                valueAdmin.products.sort === item.id ? (
+                  <SortIcon sort={'ascending'} />
+                ) : (
+                  <SortIcon sort={'descending'} />
+                )
               ) : (
                 ''
               )}
@@ -127,11 +131,11 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
                 </div>
               </Td>
               <Td key={item.name} className="py-4 px-6  ">
-                <div className="text-sm text-center px-4 text-gray-900 flex items-center justify-center ">
-                  {/* {HandleCategory(item.category, item.subcategory) !== undefined
+                <div className="text-sm text-center px-4 text-gray-900 flex items-center justify-center md:w-full w-[10rem]">
+                  {HandleCategory(item.category, item.subcategory) !== undefined
                     ? HandleCategory(item.category, item.subcategory)
-                    : 'فاقد دسته بندی'} */}
-                  oomoljjlknmjnjlknkjkjjnhiknknpkmolm/fdvsdcfw
+                    : 'فاقد دسته بندی'}
+                   
                 </div>
               </Td>
               <Td key={item.name} className="py-4 px-6 ">

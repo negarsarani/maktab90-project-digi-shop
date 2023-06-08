@@ -12,7 +12,7 @@ export const sideBarData: sideBarDataType = [
     href: '/admin/prices&inventory',
     icon: '/icons/Tag.svg',
   },
-  { name: 'مدیریت کاربران', href: '/admin', icon: '/icons/profile.svg' },
+  { name: 'مدیریت کاربران', href: '/admin/users', icon: '/icons/profile.svg' },
 ];
 
 export const headerProductTable: HeaderTableType = [

@@ -18,7 +18,7 @@ export type TableProps = {
 };
 
 export type ChildAdminInit = {
-  sort: SortTypes;
+  sort: string;
   options: { limit: number; page: number };
   url: { keyApi: string; path: string };
   data: any[];

@@ -9,3 +9,6 @@ const users = () => {
 };
 
 export default users;
+users.getLayout = function PageLayout(page: any) {
+  return <>{page}</>;
+};

@@ -6,25 +6,22 @@ export interface AdminStore {
   orders: ChildAdminInit;
   [key: string]: ChildAdminInit | any;
 }
-interface SortTypes {
-  key: string;
-  item: string;
-}
+
 const initialState: AdminStore = {
   products: {
-    sort: { key: '', item: '' },
+    sort:"",
     options: { limit: 4, page: 1 },
     url: { keyApi: 'products', path: 'products?page=1&limit=4' },
     data: [],
   },
   inventory: {
-    sort: { key: '', item: '' },
+    sort: "",
     options: { limit: 4, page: 1 },
     url: { keyApi: 'products', path: 'products?page=1&limit=4' },
     data: [],
   },
   orders: {
-    sort: { key: '', item: '' },
+    sort:  "",
     options: { limit: 4, page: 1 },
     url: { keyApi: 'orders', path: 'orders?page=1&limit=4' },
     data: [],
@@ -62,17 +59,17 @@ export const adminSlice = createSlice({
     },
     SORTDATA: (state, action) => {
       const { name, sortItem } = action.payload;
-      const Toggle = state[name].sort.key === sortItem ? true : false;
+      const Toggle = state[name].sort === sortItem ? true : false;
       let newSortUrl;
       
       if (Toggle) {
-        state[name].sort = { key: '', item: '' };
+        state[name].sort = ''
        newSortUrl  = state[name].url.path.split('&sort=')[0];
 
       } else {
        const url  = state[name].url.path.split('&sort=')[0];
-        state[name].sort = { key: sortItem, item: sortItem };
-        newSortUrl = `${url}&sort=${state[name].sort.item}`;
+        state[name].sort = sortItem
+        newSortUrl = `${url}&sort=${state[name].sort}`;
       }
 
       state[name].url.path = newSortUrl;
