@@ -9,15 +9,20 @@ const HeaderAdmin = ({
 }: LayoutChildrenAdminType) => {
   const { asPath } = useRouter();
   const slicePath = asPath.split('/')[2];
+  console.log(slicePath);
+  var parts = slicePath.split('?')[0].split(' ');
+  var firstWord = parts[parts.length - 1];
+  console.log(firstWord);
+
   let spanTitle: string;
-  if (slicePath) {
-    slicePath == 'prices&inventory'
+  if (firstWord) {
+    firstWord == 'prices&inventory'
       ? (spanTitle = 'مدیریت موجودی و قیمت ها')
-      : slicePath == 'orders'
+      : firstWord == 'orders'
       ? (spanTitle = ' مدیریت سفارش ها')
-      : slicePath == 'products'
+      : firstWord == 'products'
       ? (spanTitle = ' مدیریت کالا ها')
-      : slicePath == 'users'
+      : firstWord == 'users'
       ? (spanTitle = 'مدیریت کاربران')
       : (spanTitle = 'روت نامشخص');
   } else {
@@ -65,7 +70,9 @@ const HeaderAdmin = ({
           </a>
         </div>
       </nav>
-        <span className=' flex-1 items-center flex justify-center font-semibold'>{spanTitle} </span>
+      <span className=" flex-1 items-center flex justify-center font-semibold">
+        {spanTitle}{' '}
+      </span>
     </div>
   );
 };

@@ -13,6 +13,7 @@ const Header = () => {
   const [categories, subCategories] = useCategory();
   console.log([categories, subCategories]);
   useEffect(() => {
+    
     const orderedData = categories?.map(
       (item: { _id: string; name: string; icon: string }) => {
         const FilterSub = subCategories?.filter(
@@ -26,9 +27,10 @@ const Header = () => {
         };
       }
     );
+    console.log(orderedData );
     return SetData(orderedData);
   });
-
+  
   return (
     <header className="bg-white w-full">
       <div className="w-full">

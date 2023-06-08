@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 const LoginAdmin = () => {
   const router = useRouter();
   const { mutate, isLoading, isError, isSuccess, data } = useMutationQuery(
-    (userData: DataLoginAdmin) => postData('auth/login', userData)
+    (userData: DataLoginAdmin) => postData('/auth/login', userData)
   );
   const {
     register,
@@ -29,7 +29,7 @@ const LoginAdmin = () => {
     localStorage.setItem('loginUser', JSON.stringify(data.token.accessToken));
     setCookie('accesstoken', data.token.accessToken);
     setCookie('refreshtoken', data.token.refreshToken);
-    router.push('/admin');
+    router.push('/admin/products');
   };
   const onSubmit = (item: DataLoginAdmin) => {
     console.log(item);
@@ -53,7 +53,20 @@ const LoginAdmin = () => {
         theme: 'light',
       });
     }
-  });
+    if (isSuccess) {
+     toast.success('خوش آمدید ', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+    }
+    
+  } , [isError , isSuccess]);
 
   return (
     <div className="flex  min-h-full flex-1 flex-col  py-12 lg:px-8 justify-center items-center   ">

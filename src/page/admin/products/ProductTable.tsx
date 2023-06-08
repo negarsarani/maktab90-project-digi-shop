@@ -5,18 +5,42 @@ import { OrderedCategory, TableProps } from '@/types/type';
 import Image from 'next/image';
 import { SORTDATA } from '@/redux/slice';
 import categoryData, { orderedCategory } from '@/data/shared';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import useGetQuery from '@/hooks/useGetQuery';
 type itemType = {};
 let Data: OrderedCategory[];
 orderedCategory().then((res) => (Data = res));
 const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
   const [valueAdmin, dispatch] = useRedux((state) => state.adminState);
+  const router = useRouter();
+  const queries = useGetQuery();
+  const { asPath } = useRouter();
+  useEffect(() => {
+    const slicePath = valueAdmin.products.url.path.split('?')[1]
+  console.log(slicePath);
+  
+    router.push({
+      pathname: '',
+      query: slicePath,
+    });
+  }, [valueAdmin.products.url.path]);
 
+  useEffect(() => {
+    console.log(queries);
+    console.log(valueAdmin.products);
+  }, [queries]);
   const handleSort = (event: any) => {
     const ITEM = event.currentTarget.id;
     dispatch(SORTDATA({ name: 'products', sortItem: ITEM }));
     setTimeout(() => {
       refetch();
     }, 100);
+    // router.push('/sort',{
+    //   query:{
+    //    sort : valueAdmin.products.sort.key
+    //   }
+    // })
   };
   if (isLoading) {
     return (
@@ -54,7 +78,9 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
             className={` bg-orangeLighter  py-4 ${
               item.icon && 'hover:bg-orange-200 cursor-pointer'
             }  text-center text-xs font-medium text-gray`}
-            onClick={handleSort}
+            onClick={(event) => {
+              item.icon ? handleSort(event) : null;
+            }}
             id={item.id}
           >
             <div className="flex items-center justify-center  ">
@@ -83,10 +109,10 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
             <tr key={item._id} className="border-b">
               <Td
                 key={item.name}
-                className="py-4 flex items-center justify-center md:w-full w-[10rem] "
+                className="py-4 flex items-center justify-center lg:w-full w-[10rem] "
               >
-                   <div className="   flex items-center justify-center">
-                   <Image
+                <div className="   flex items-center justify-center">
+                  <Image
                     src={item.images[0]}
                     alt={'item.name'}
                     className="rounded-xl "
@@ -94,24 +120,22 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
                     height={70}
                   />
                 </div>
-               
               </Td>
-              <Td key={item.name} className="py-4 px-6 border-b ">
+              <Td key={item.name} className="py-4 px-6  ">
                 <div className="text-sm text-center px-4 text-gray-900 flex items-center justify-center ">
                   <span>{item.name}</span>
-                  
                 </div>
               </Td>
-              <Td key={item.name} className="py-4 px-6 border-b ">
+              <Td key={item.name} className="py-4 px-6  ">
                 <div className="text-sm text-center px-4 text-gray-900 flex items-center justify-center ">
                   {/* {HandleCategory(item.category, item.subcategory) !== undefined
                     ? HandleCategory(item.category, item.subcategory)
                     : 'فاقد دسته بندی'} */}
-                    oomoljjlknmjnjlknkjkjjnhiknknpkmolm/fdvsdcfw
+                  oomoljjlknmjnjlknkjkjjnhiknknpkmolm/fdvsdcfw
                 </div>
               </Td>
-              <Td key={item.name} className="py-4 px-6 " >
-                <div className="flex items-center justify-center gap-2 md:w-full w-[10rem]">
+              <Td key={item.name} className="py-4 px-6 ">
+                <div className="flex items-center justify-center gap-2 lg:w-full w-[5rem]">
                   <button className="text-sm text-gray-900">
                     <Image
                       src="/icons/trash.svg"
