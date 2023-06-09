@@ -1,7 +1,7 @@
 import { Button } from '@/components';
 import Modal from '../shared/Modal';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import getData from '@/api/getData';
 import useQueries from '@/hooks/useQueries';
 import useRedux from '@/hooks/useRedux';
@@ -21,6 +21,7 @@ const OrdersFilter = ({ openModal, setOpenModal, refetch }: ModalProps) => {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -30,36 +31,28 @@ const OrdersFilter = ({ openModal, setOpenModal, refetch }: ModalProps) => {
     mode: 'onChange',
   });
 
-  // const onSubmit = (formData: any) => {
-  // console.log(data);
-
-  // let StatusData: string;
-  // let TotalPriceData: string;
-  // data.status !== 'deliveryStatus'
-  // ? (StatusData = `&deliveryStatus=${data.status}`)
-  // : (StatusData = `/deliveryStatus`);
-  // data.sumPrice !== null ? (TotalPriceData = `&${data.sumPrice}`) : TotalPriceData ='';
-  // dispatch(FILTERDATA({ name: 'orders', item: `${StatusData}${TotalPriceData}`}));
-  // setTimeout(() => {
-  //     refetch();
-  //   }, 200);
-  //     //   setFilterObj(data)
-  //     setTimeout(() => {
-  //       console.log(formData);
-
-  //     }, 100);
-  //     setOpenModal({ filter: false, buttonOrange: false });
-  //     reset()
-  // };
   const onSubmit = (formData: any) => {
-    async function name() {
-     return await setTimeout(() => {
-      console.log( formData);
-     }, );
-    }
-    name().then(() => setOpenModal({ filter: false, buttonOrange: false }));
-    setFilterObj({ status: formData.status, sumPrice: formData.sumPrice });
+  console.log(formData);
+
+  let StatusData: string;
+  let TotalPriceData: string;
+  formData.status !== 'deliveryStatus'
+  ? (StatusData = `&deliveryStatus=${formData.status}`)
+  : (StatusData = `/deliveryStatus`);
+  formData.sumPrice !== "all" ? (TotalPriceData = `&${formData.sumPrice}`) : TotalPriceData ='';
+  dispatch(FILTERDATA({ name: 'orders', item: `${StatusData}${TotalPriceData}`}));
+  setTimeout(() => {
+      refetch();
+    }, 200);
+      //   setFilterObj(data)
+      setTimeout(() => {
+        console.log(formData);
+
+      }, 100);
+      setOpenModal({ filter: false, buttonOrange: false });
+      reset()
   };
+
   return (
     <Modal name={'filter'} openModal={openModal} setOpenModal={setOpenModal}>
       <form action="" onSubmit={handleSubmit(onSubmit)}>
@@ -113,13 +106,24 @@ const OrdersFilter = ({ openModal, setOpenModal, refetch }: ModalProps) => {
                   <label htmlFor="">*مجموع مبلغ</label>
                   <div className="mt-6 space-y-3 ">
                     <div className="flex items-center gap-x-3">
-                      <input
-                        {...register('sumPrice')}
-                        value="all"
-                        type="radio"
+                      <Controller
+                        control={control}
                         name="sumPrice"
-                        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                        render={({ field }) => {
+                          return (
+                            <input
+                              {...field}
+                              // {...register('sumPrice')}
+                              id="all"
+                              value="all"
+                              type="radio"
+                              name="sumPrice"
+                              className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                            />
+                          );
+                        }}
                       />
+
                       <label
                         htmlFor="push-everything"
                         className="block text-sm font-medium leading-6 text-gray-900"
@@ -128,13 +132,24 @@ const OrdersFilter = ({ openModal, setOpenModal, refetch }: ModalProps) => {
                       </label>
                     </div>
                     <div className="flex items-center gap-x-3">
-                      <input
-                        {...register('sumPrice')}
+                      <Controller
+                        control={control}
                         name="sumPrice"
-                        value="totalPrice[lt]=1000000"
-                        type="radio"
-                        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                        render={({ field }) => {
+                          return (
+                            <input
+                              // {...register('sumPrice')}
+                              {...field}
+                              id="totalPrice[lt]=1000000"
+                              name="sumPrice"
+                              value="totalPrice[lt]=1000000"
+                              type="radio"
+                              className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                            />
+                          );
+                        }}
                       />
+
                       <label
                         htmlFor="push-everything"
                         className="block text-sm font-medium leading-6 text-gray-900"
@@ -143,13 +158,24 @@ const OrdersFilter = ({ openModal, setOpenModal, refetch }: ModalProps) => {
                       </label>
                     </div>
                     <div className="flex items-center gap-x-3">
-                      <input
-                        {...register('sumPrice')}
+                      <Controller
+                        control={control}
                         name="sumPrice"
-                        type="radio"
-                        value="totalPrice[lt]=2000000"
-                        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                        render={({ field }) => {
+                          return (
+                            <input
+                              {...field}
+                              // {...register('sumPrice')}
+                              id="totalPrice[lt]=2000000"
+                              name="sumPrice"
+                              type="radio"
+                              value="totalPrice[lt]=2000000"
+                              className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                            />
+                          );
+                        }}
                       />
+
                       <label
                         htmlFor="push-email"
                         className="block text-sm font-medium leading-6 text-gray-900"
@@ -158,14 +184,24 @@ const OrdersFilter = ({ openModal, setOpenModal, refetch }: ModalProps) => {
                       </label>
                     </div>
                     <div className="flex items-center gap-x-3">
-                      <input
-                        {...register('sumPrice')}
-                        id="morethan2"
+                      <Controller
+                        control={control}
                         name="sumPrice"
-                        type="radio"
-                        value="totalPrice[gt]=2000000"
-                        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                        render={({ field }) => {
+                          return (
+                            <input
+                              {...field}
+                              // {...register('sumPrice')}
+                              id="totalPrice[gt]=2000000"
+                              name="sumPrice"
+                              type="radio"
+                              value="totalPrice[gt]=2000000"
+                              className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                            />
+                          );
+                        }}
                       />
+
                       <label
                         htmlFor="push-nothing"
                         className="block text-sm font-medium leading-6 text-gray-900"
@@ -200,6 +236,7 @@ const OrdersFilter = ({ openModal, setOpenModal, refetch }: ModalProps) => {
           </Button>
         </div>
       </form>
+      {/* <pre>{JSON.stringify(form.watch(), null, 2)}</pre> */}
     </Modal>
   );
 };

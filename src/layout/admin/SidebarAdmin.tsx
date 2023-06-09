@@ -62,7 +62,7 @@ const SidebarAdmin = ({
               <SidebarLink
                 name="خروج"
                 icon="/icons/logout.svg"
-                href="/test"
+                href="/admin/login"
                 width={20}
                 height={20}
               />

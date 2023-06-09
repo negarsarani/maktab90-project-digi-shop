@@ -101,10 +101,10 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
             <tr key={item._id} className="border-b">
               <Td
                 key={item.name}
-                className="py-4 flex items-center justify-center "
+                className="py-4  w-[10rem]"
               >
-                <div className="   flex items-center justify-center">
-                  <div className='w-[6rem]'>
+                <div className="  lg:w-full w-[10rem]  flex items-center justify-center">
+                  <div className=''>
                      <Image
                     src={item.images[0]}
                     alt={'item.name'}
@@ -116,14 +116,14 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
                   </div>
                  
               </Td>
-              <Td key={item.name} className="py-4 px-6   w-[5rem]">
-                <div className="text-sm text-center px-4 h-20 w-full text-gray-900 flex items-center justify-center ">
-                  <span className='  overflow-hidden  w-[14rem]  text-ellipsis'>{item.name}</span>
+              <Td key={item.name} className="py-4 px-6   w-[20rem]">
+                <div className="text-sm text-center px-4 h-20 lg:w-full w-[20rem] text-gray-900 flex items-center justify-center ">
+                  <span className='  overflow-hidden  w-full  text-ellipsis'>{item.name}</span>
                 </div>
               </Td>
-              <Td key={item.name} className="py-4 px-6  ">
-                <div className="text-sm text-center px-4 text-gray-900 flex items-center justify-center ">
-                  <div className=' sm:w-[10rem] w-[5rem]'>
+              <Td key={item.name} className="py-4 px-6  w-[20rem]">
+                <div className="text-sm text-center px-4 text-gray-900  lg:w-full w-[20rem] flex items-center justify-center ">
+                  <div className=' w-full'>
                      {HandleCategory(item.category, item.subcategory) !== undefined
                     ? HandleCategory(item.category, item.subcategory)
                     : 'فاقد دسته بندی'}
@@ -131,9 +131,9 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
                  
                 </div>
               </Td>
-              <Td key={item.name} className="py-4 px-6 ">
+              <Td key={item.name} className="py-4 px-6  w-[10rem]">
                 <div className="flex items-center justify-center gap-2 lg:w-full w-[5rem]">
-                  <button className="text-sm text-gray-900">
+                  <button className="text-sm text-gray-900 w-full" >
                     <Image
                       src="/icons/trash.svg"
                       alt="حذف"
@@ -141,7 +141,7 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
                       height={20}
                     />
                   </button>
-                  <button className="text-sm text-gray-900 ">
+                  <button className="text-sm text-gray-900 w-full">
                     <Image
                       src="/icons/edit.svg"
                       alt="حذف"

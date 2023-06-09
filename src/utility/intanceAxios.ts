@@ -30,7 +30,7 @@ request.interceptors.response.use(
         request.post('/auth/token', {refreshToken}).then((res) => {
           console.log(res);
 
-          const accessToken = res.data.token.accesstoken;
+          const accessToken = res?.data?.token?.accesstoken;
           setCookie('accesstoken', accessToken);
           // setCookie('refreshtoken', res.data.refreshtoken);
           config.headers.Authorization = `Bearer ` + refreshToken;

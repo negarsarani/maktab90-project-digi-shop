@@ -4,18 +4,14 @@ import { Tbody, Th, Thead, Td } from '@/page/admin';
 import { useState } from 'react';
 import getData from '@/api/getData';
 import Image from 'next/image';
+import { useUsers } from '@/data/shared';
 
 const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
+  const users = useUsers();
   const HandleUserName = (item: string) => {
-    let userName: string;
-    getData(`users/${item}`).then(
-      (res) =>
-        (userName = `${res.data.user.firstname} ${res.data.user.lastname}`)
-    );
-    const a = setTimeout(() => {
-      return userName;
-    }, 200);
-    return a;
+    const FindUser = users?.find((user: { _id: string }) => user._id === item);
+
+    return `${FindUser?.firstname} ${FindUser?.lastname}`;
   };
 
   return (
@@ -38,8 +34,7 @@ const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
             <tr key={item._id} className="border-b">
               <Td key={item._id} className="py-4  px-6 ">
                 <div className="text-sm text-center    text-gray-900 md:w-full w-[5rem] ">
-                  {/* {HandleUserName(item.user)} */}
-                  نگار سرانی
+                  {HandleUserName(item.user)}
                 </div>
               </Td>
               <Td key={item._id} className="py-4  px-6  ">
@@ -66,7 +61,7 @@ const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
                   key={item._id}
                   className="py-4   px-6  flex items-center justify-center  "
                 >
-                  <div className="flex items-center  justify-centertext-[.7rem] w-[10rem]md:text-sm  text-gray-800 ">
+                  <div className="flex items-center  justify-centertext-[.7rem] w-[10rem] md:text-sm  text-gray-800 ">
                     <div className="text-red-800 bg-red-200 text-sm rounded-3xl px-3 flex items-center justify-center gap-3 py-2 ">
                       <div className="w-2 h-2  bg-red-600 rounded-full "></div>
                       <div className="px-1">
@@ -79,15 +74,19 @@ const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
 
               <Td key={item._id} className="py-4 px-6">
                 <div className="flex items-center justify-center md:w-full text-sm ">
-                  1402/3/17
-                  {/* {item.deliveryDate} */}
+                  {/* 1402/3/17 */}
+                  {item.deliveryDate}
                 </div>
               </Td>
               <Td key={item._id} className="py-4  px-6  ">
                 <div className="  cursor-pointer  flex items-center justify-center lg:w-full w-[5rem]">
                   <div>
-
-                  <Image src='/icons/circle.svg' alt='جزییات' width={20} height={20} />
+                    <Image
+                      src="/icons/circle.svg"
+                      alt="جزییات"
+                      width={20}
+                      height={20}
+                    />
                   </div>
                 </div>
               </Td>

@@ -60,28 +60,31 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
             <tr key={item.name} className="border-b">
               <Td
                 key={item.name}
-                className=" py-4 flex items-center justify-center   "
+                className=" py-4  w-[6rem] "
               >
-                <div className=" w-[10rem] flex items-center justify-center">
-                  <Image
+                <div className="  flex  lg:w-full w-[6rem] items-center justify-center">
+                  <div className=''>
+                    <Image
                     src={item.images[0]}
                     alt={'item.name'}
                     className="rounded-xl "
                     width={70}
                     height={70}
                   />
+                  </div>
+                  
                 </div>
               </Td>
-              <Td key={item.name} className="py-4 px-6 border-b ">
-                <div className="text-sm text-center px-4 text-gray-900 flex items-center justify-center">
-                  {item.name}
+              <Td key={item.name} className="py-4 px-6  w-[20rem]">
+                <div className="text-sm text-center px-4 h-20 text-gray-900 flex items-center justify-center lg:w-full w-[20rem]">
+                  <span className='  overflow-hidden text-ellipsis w-full '>{item.name}</span>
                 </div>
               </Td>
-              <Td key={item.name} className="py-4 px-6 border-b">
+              <Td key={item.name} className="py-4 px-6 border-b  w-[14rem] ">
                 {selectedItemId.price && selectedItemId.id === item._id ? (
-                  <div className="flex items-center justify-center ">
+                  <div className="flex items-center lg:w-full w-[14rem] justify-center ">
                     <Input
-                      className="text-sm text-center  w-[10rem] lg:w-[15rem]flex items-center justify-center py-3   bg-white border-opacity-40 border-2 rounded-lg  border-orangeAdmin focus:border-none focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-orangeAdmin shadow-md text-gray-900 placeholder:py-2"
+                      className="text-sm text-center  w-full flex items-center justify-center py-3   bg-white border-opacity-40 border-2 rounded-lg  border-orangeAdmin focus:border-none focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-orangeAdmin shadow-md text-gray-900 placeholder:py-2"
                       placeholder="فاقد قیمت"
                       type="number"
                       name="price"
@@ -89,9 +92,9 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
                     />
                   </div>
                 ) : (
-                  <div className="flex items-center justify-center  ">
+                  <div className="flex items-center lg:w-full w-[14rem]  justify-center">
                     <span
-                      className="text-sm text-center  w-[10rem] md:w-[15rem]flex items-center justify-center  py-3  bg-white border-2 rounded-xl  border-gray-100  shadow-md  text-gray-900"
+                      className="text-sm  text-center w-full flex items-center justify-center  py-3  bg-white border-2 rounded-xl  border-gray-100  shadow-md  text-gray-900"
                       id="price"
                       onClick={(event) =>
                         handleInputChange(item._id, event.currentTarget.id)
@@ -102,11 +105,11 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
                   </div>
                 )}
               </Td>
-              <Td key={item.name} className="py-4 px-6 border-b  ">
+              <Td key={item.name} className="py-4 px-6 border-b w-[14rem] ">
                 {selectedItemId.Inventory && selectedItemId.id === item._id ? (
-                  <div className="flex items-center justify-center w-full">
+                  <div className="flex items-center lg:w-full w-[14rem] justify-center ">
                     <Input
-                      className="text-sm text-center  w-[10rem] lg:w-[15rem]flex items-center justify-center py-3   bg-white border-opacity-40 border-2 rounded-lg  border-orangeAdmin focus:border-none focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-orangeAdmin shadow-md text-gray-900 placeholder:py-2"
+                      className="text-sm text-center w-full flex items-center justify-center py-3 w0full  bg-white border-opacity-40 border-2 rounded-lg  border-orangeAdmin focus:border-none focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-orangeAdmin shadow-md text-gray-900 placeholder:py-2"
                       placeholder="فاقد موجودی"
                       type="number"
                       name="price"
@@ -114,9 +117,9 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
                     />
                   </div>
                 ) : (
-                  <div className="flex items-center justify-center  ">
+                  <div className="flex items-center  lg:w-full w-[14rem] justify-center   ">
                     <span
-                      className="text-sm text-center  w-[10rem] md:w-[15rem]flex items-center justify-center  py-3  bg-white border-2 rounded-xl  border-gray-100  shadow-md  text-gray-900"
+                      className="text-sm text-center w-full flex items-center justify-center  py-3  bg-white border-2 rounded-xl  border-gray-100  shadow-md  text-gray-900"
                       id="inventory"
                       onClick={(event: React.MouseEvent<HTMLElement>) =>
                         handleInputChange(item._id, event.currentTarget.id)

@@ -12,7 +12,11 @@ function useCategory() {
   );
   const [categories, subCategories] = [dataCategory, dataSubCategory];
 
-  return [categories?.data?.categories, subCategories?.data?.subcategories, isLoading];
+  return [
+    categories?.data?.categories,
+    subCategories?.data?.subcategories,
+    isLoading,
+  ];
 }
 
 export default useCategory;
@@ -34,3 +38,11 @@ export const orderedCategory = async () => {
   // );
   // return orderedData;
 };
+export function useUsers() {
+  getData('/users');
+  const [isLoading, data, isError, refetch] = useQueries(
+    () => getData('/users'),
+    ['users']
+  );
+  return data?.data?.users
+}
