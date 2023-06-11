@@ -11,21 +11,21 @@ const initialState: AdminStore = {
   products: {
     filter: '',
     sort: '',
-    options: { limit: 4, page: 1 , totalPages:"" },
+    options: { limit: 4, page: 1, totalPages: '' },
     url: { keyApi: 'products', path: 'products?page=1&limit=4' },
     data: [],
   },
   inventory: {
     filter: '',
     sort: '',
-    options: { limit: 4, page: 1 ,totalPages:"" },
+    options: { limit: 4, page: 1, totalPages: '' },
     url: { keyApi: 'products', path: 'products?page=1&limit=4' },
     data: [],
   },
   orders: {
     filter: '',
     sort: '',
-    options: { limit: 4, page: 1  , totalPages:"" },
+    options: { limit: 4, page: 1, totalPages: '' },
     url: { keyApi: 'orders', path: 'orders?page=1&limit=4' },
     data: [],
   },
@@ -40,10 +40,10 @@ export const adminSlice = createSlice({
       action: PayloadAction<{ name: keyof AdminStore; items: any; key: string }>
     ) => {
       const { name, items, key } = action.payload;
-      state[name].data = items?.data[key]
+      state[name].data = items?.data[key];
       console.log(items.total_pages);
-      
-      state[name].options.totalPages = items?.total_pages
+
+      state[name].options.totalPages = items?.total_pages;
     },
     PAGINATE: (
       state,
@@ -86,9 +86,13 @@ export const adminSlice = createSlice({
         name
       ].url.path = `orders?page=${state[name].options.page}&limit=${state[name].options.limit}${state[name].filter}`;
     },
+    FILTERREMOVE: (state, action) => {
+      const {name} = action.payload;
+      state[name].url.path = `${state[name].url.keyApi}?page=1&limit=4`
+    },
   },
 });
 
-export const { DATA, PAGINATE, SORTDATA, FILTERDATA } = adminSlice.actions;
+export const { DATA, PAGINATE, SORTDATA, FILTERDATA , FILTERREMOVE } = adminSlice.actions;
 
 export default adminSlice.reducer;

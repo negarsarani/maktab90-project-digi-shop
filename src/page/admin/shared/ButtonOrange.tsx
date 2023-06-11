@@ -7,13 +7,13 @@ import Modal from './Modal';
 type ButtonOrangeType = {
   name: string;
   src: string;
-  setOpenModal: Dispatch<
+  setOpenModal?: Dispatch<
     SetStateAction<{
       filter: boolean;
       buttonOrange: boolean;
     }>
   >;
-  nameModal: string;
+  nameModal?: string;
 };
 const ButtonOrange = ({
   name,
@@ -21,12 +21,7 @@ const ButtonOrange = ({
   setOpenModal,
   nameModal,
 }: ButtonOrangeType) => {
-  const handleOpenModal = () => {
-    return setOpenModal((prevState) => ({
-      ...prevState,
-      [nameModal]: true,
-    }));
-  };
+  
   return (
     <>
       <Button
@@ -35,7 +30,7 @@ const ButtonOrange = ({
         }
         type="button"
         onClick={() =>
-          setOpenModal({
+          setOpenModal && setOpenModal({
             filter: false,
             buttonOrange: true,
           })
