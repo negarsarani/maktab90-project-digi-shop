@@ -17,7 +17,9 @@ const Slider = () => {
       created() {
         setLoaded(true);
       },
-    },
+    
+     
+    }, 
     [
       (slider) => {
         let timeout: string | number | NodeJS.Timeout | undefined;
@@ -55,13 +57,13 @@ const Slider = () => {
       <div className="navigation-wrapper">
         <div ref={sliderRef} className="keen-slider">
           {dataSlider.map((item, index) => (
-            <div key={index} className="keen-slider__slide number-slide1 ">
-              <Image
+            <div key={index} className='keen-slider__slide number-slide1 w-screen '
+            >
+              <img
                 src={item.img}
                 alt={item.name}
-                className="w-full h-full"
-                width={100}
-                height={100}
+                className="w-full md:h-[25rem] h-[20rem] bg-red-200 object-cover "
+                
               />
             </div>
           ))}

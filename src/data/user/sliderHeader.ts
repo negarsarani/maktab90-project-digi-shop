@@ -2,12 +2,12 @@ export const dataSlider = [
   {
     name: 'slide1',
     href: '/samsung',
-    img: '/slider/slide 1.svg',
+    img: '/slider/slide1.png',
   },
   {
     name: 'slide2',
     href: '/shiaomi',
-    img: '/slider/slide 2.svg',
+    img: '/slider/slide2.png',
   },
   {
     name: 'slide3',
