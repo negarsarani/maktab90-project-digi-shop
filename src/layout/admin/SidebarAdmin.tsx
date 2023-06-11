@@ -20,7 +20,7 @@ const SidebarAdmin = ({
     >
       <div className=" h-full md:w-[20rem] sm:w-[15rem] w-full sm:static sm:none fixed sm:inset-0 inset-y-0 right-0 z-10  overflow-y-auto px-6 bg-orangeSidebar py-6 sm:max-w-sm  sm:ring-gray-900/10 ">
         <div className="flex items-center justify-between">
-           <Linkouter href="/" className="-m-1.5 p-1.5">
+           <Linkouter href="/admin" className="-m-1.5 p-1.5">
             <Image
               className={'h-8 w-auto  flex sm:hidden lg:flex'}
               src={'/logo light.svg'}
@@ -62,7 +62,7 @@ const SidebarAdmin = ({
               <SidebarLink
                 name="خروج"
                 icon="/icons/logout.svg"
-                href="/admin/login"
+                href="/"
                 width={20}
                 height={20}
               />

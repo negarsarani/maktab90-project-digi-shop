@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 type Linkrouter = {
   children: ReactNode;
   href: string;

@@ -29,7 +29,7 @@ const Header = () => {
     );
     console.log(orderedData );
     return SetData(orderedData);
-  });
+  },[]);
   
   return (
     <header className="bg-white w-full">

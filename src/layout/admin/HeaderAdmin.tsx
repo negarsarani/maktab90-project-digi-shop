@@ -11,8 +11,8 @@ const HeaderAdmin = ({
   const { asPath } = useRouter();
   const slicePath = asPath.split('/')[2];
   console.log(slicePath);
-  var parts = slicePath.split('?')[0].split(' ');
-  var firstWord = parts[parts.length - 1];
+  var parts = slicePath?.split('?')[0].split(' ');
+  var firstWord = parts?.[parts?.length - 1];
   console.log(firstWord);
 
   let spanTitle: string;
@@ -59,7 +59,7 @@ const HeaderAdmin = ({
           </button>
         </div>
         <div className="flex lg:flex-1">
-          <Linkouter href="/" className="-m-1.5 p-1.5">
+          <Linkouter href="/admin" className="-m-1.5 p-1.5">
             <Image
               className="h-8 w-auto lg:hidden"
               src={'/logo light.svg'}
