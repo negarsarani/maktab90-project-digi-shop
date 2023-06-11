@@ -7,13 +7,6 @@ import Image from 'next/image';
 import { useUsers } from '@/data/shared';
 
 const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
-  const users = useUsers();
-  const HandleUserName = (item: string) => {
-    const FindUser = users?.find((user: { _id: string }) => user._id === item);
-
-    return `${FindUser?.firstname} ${FindUser?.lastname}`;
-  };
-
   return (
     <table className={`w-full bg-white ${isError && 'h-60'} `}>
       <Thead className=" ">
@@ -34,7 +27,8 @@ const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
             <tr key={item._id} className="border-b">
               <Td key={item._id} className="py-4  px-6 ">
                 <div className="text-sm text-center    text-gray-900 md:w-full w-[5rem] ">
-                  {HandleUserName(item.user)}
+
+                  {`${item.user.firstname} ${item.user.lastname}`}
                 </div>
               </Td>
               <Td key={item._id} className="py-4  px-6  ">
