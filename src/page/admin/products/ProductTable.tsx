@@ -48,21 +48,7 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
       </div>
     );
   }
-  const HandleCategory = (itemCategory: string, itemSub: string) => {
-    const FindCategory = category?.find(
-      (item: { _id: string; name: string; icon: string }) => {
-        return item._id === itemCategory;
-      }
-    );
 
-    const FindSubcategory = subCategory?.find(
-      (item: { _id: string; name: string; category: string }) => {
-        return item._id === itemSub;
-      }
-    );
-
-    return `${FindCategory?.name} /${FindSubcategory?.name}`;
-  };
   return (
     <table className={`w-full bg-white ${isError && 'h-60'} `}>
       <Thead className=" ">
@@ -99,41 +85,36 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
         {value.products?.data?.map((item: any) => {
           return (
             <tr key={item._id} className="border-b">
-              <Td
-                key={item.name}
-                className="py-4  w-[10rem]"
-              >
+              <Td key={item.name} className="py-4  w-[10rem]">
                 <div className="  lg:w-full w-[10rem]  flex items-center justify-center">
-                  <div className=''>
-                     <Image
-                    src={item.images[0]}
-                    alt={'item.name'}
-                    className="rounded-xl "
-                    width={80}
-                    height={70}
-                  />
-                </div>
+                  <div className="">
+                    <Image
+                      src={item.images[0]}
+                      alt={'item.name'}
+                      className="rounded-xl "
+                      width={80}
+                      height={70}
+                    />
                   </div>
-                 
+                </div>
               </Td>
               <Td key={item.name} className="py-4 px-6   w-[20rem]">
                 <div className="text-sm text-center px-4 h-20 lg:w-full w-[20rem] text-gray-900 flex items-center justify-center ">
-                  <span className='  overflow-hidden  w-full  text-ellipsis'>{item.name}</span>
+                  <span className="  overflow-hidden  w-full  text-ellipsis">
+                    {item.name}
+                  </span>
                 </div>
               </Td>
               <Td key={item.name} className="py-4 px-6  w-[20rem]">
                 <div className="text-sm text-center px-4 text-gray-900  lg:w-full w-[20rem] flex items-center justify-center ">
-                  <div className=' w-full'>
-                     {HandleCategory(item.category, item.subcategory) !== undefined
-                    ? HandleCategory(item.category, item.subcategory)
-                    : 'فاقد دسته بندی'}
+                  <div className=" w-full">
+                    {`${item.category?.name} / ${item.subcategory?.name}`}
                   </div>
-                 
                 </div>
               </Td>
               <Td key={item.name} className="py-4 px-6  w-[10rem]">
                 <div className="flex items-center justify-center gap-2 lg:w-full w-[5rem]">
-                  <button className="text-sm text-gray-900 w-full" >
+                  <button className="text-sm text-gray-900 w-full">
                     <Image
                       src="/icons/trash.svg"
                       alt="حذف"
