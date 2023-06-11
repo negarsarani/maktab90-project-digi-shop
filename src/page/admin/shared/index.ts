@@ -8,3 +8,4 @@ export { default as Td } from './Td';
 export { default as Th } from './Th';
 export { default as Thead } from './Thead';
 export { default as SkeletonTable } from './skeletonTable';
+export { default as Modal } from './Modal';

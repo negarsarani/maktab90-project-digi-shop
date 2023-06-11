@@ -1,19 +1,18 @@
-import { NavbarTable, ButtonOrange } from '@/page/admin';
-import { Dispatch, SetStateAction } from 'react';
+import { NavbarTable, ButtonOrange, ModalAddProduct } from '@/page/admin';
 
 import { useState } from 'react';
-import Modal from '../shared/Modal';
+import Form from './AddProducts/Form';
 
 
-const NavbarTableProduct = () => {
+const NavbarTableProduct = ({refetch}:{refetch:()=>void}) => {
   const [openModal, setOpenModal] = useState({
     filter: false,
     buttonOrange: false,
   });
   return (
     <>
-      {openModal.filter ? <Modal name={'filter'} openModal={openModal.filter} setOpenModal={setOpenModal}/> :""} 
-        {openModal.buttonOrange ? <Modal name={'buttonOrange'} openModal={openModal.buttonOrange} setOpenModal={setOpenModal}/> :"" }
+      {/* {openModal.filter ? <Modal name={'filter'} openModal={openModal.filter} setOpenModal={setOpenModal}/> :""}  */}
+        {openModal.buttonOrange ? <ModalAddProduct refetch={refetch} name={'buttonOrange'} openModal={openModal.buttonOrange} setOpenModal={setOpenModal}/> :"" }
 
     <div className="flex flex-col sm:flex-row   gap-5  sm:gap-0 items-center sm:justify-between  ">
       <div className="flex items-center justify-end  gap-4 w-full">

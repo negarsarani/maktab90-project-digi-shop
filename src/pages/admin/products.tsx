@@ -25,7 +25,7 @@ const Products = () => {
 
   return (
     <div className="w-full h-full flex flex-col gap-5">
-      <NavbarTableProduct />
+      <NavbarTableProduct refetch={refetch} />
       {/* <ReactQueryDevtools /> */}
       {/* <butt onClick></butt> */}
       <div className="w-full pb-10 flex flex-col">
