@@ -16,7 +16,7 @@ const UploadImages = () => {
       reader.onerror = () => {
         console.log(reader.error);
       };
-    }
+    }vi
   };
     return (
         <>

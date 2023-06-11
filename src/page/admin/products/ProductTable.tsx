@@ -117,15 +117,19 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
                   <button className="text-sm text-gray-900 w-full">
                     <Image
                       src="/icons/trash.svg"
+                      id={item._id}
                       alt="حذف"
                       width={20}
                       height={20}
+                      onClick={()=>{
+                        
+                      }}
                     />
                   </button>
                   <button className="text-sm text-gray-900 w-full">
                     <Image
                       src="/icons/edit.svg"
-                      alt="حذف"
+                      alt="ویرایش"
                       width={22}
                       height={20}
                     />
