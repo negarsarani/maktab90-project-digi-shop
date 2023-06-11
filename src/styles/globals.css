@@ -17,7 +17,7 @@ html,
 }
 @font-face {
   font-family: FontLight;
-  src: url('../assets/fonts/MTNIrancell-Light.ttf');
+  src: url('../assets/fonts/vazir/Farsi-Digits-Without-Latin/Vazir-FD-WOL.ttf');
 }
 body{
   font-family: FontLight;
