@@ -5,15 +5,14 @@ import { log } from 'util';
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
   const token = request.cookies.get('accesstoken')?.value;
-  console.log(token);
+  const role = request.cookies.get('role')?.value;
 
-  if (!token) {
+  if (!token && role !== "ADMIN") {
     return NextResponse.redirect(new URL('/admin/login', request.url));
   }
   NextResponse.next();
 }
 
-// // See "Matching Paths" below to learn more
 export const config = {
   matcher: [
     '/admin',

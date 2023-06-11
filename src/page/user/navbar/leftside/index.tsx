@@ -1,22 +1,31 @@
 import { Linkouter, Input, Button } from '@/components';
 import Image from 'next/image';
+import { CookieValueTypes, getCookie } from 'cookies-next';
+import { useEffect, useState } from 'react';
 
 const Index = () => {
+  const [role, setRole] = useState<CookieValueTypes>();
+  useEffect(() => {
+    setRole(getCookie('role'));
+  },[]);
   return (
     <div className="w-6/12  flex items-center justify-end gap-5">
+      <div className={`${role === 'USER' ? 'hidden' : 'flex gap-2 items-center justify-center'}`}>
         <span className="hidden sm:flex"> ورود / ثبت نام</span>
-        
         <Linkouter
-          href={"admin/login"}
-          className="flex gap-2 items-center justify-center"
+          href={'/login'}
+          className={`flex  gap-2 items-center justify-center 
+          `}
         >
-        <Image
-          src="/icons/user/user.svg"
-          width={15}
-          height={20}
-          alt="ورود/ ثبت نام"
-        />
-      </Linkouter>
+          <Image
+            src="/icons/user/user.svg"
+            width={15}
+            height={20}
+            alt="ورود/ ثبت نام"
+          />
+        </Linkouter>
+      </div>
+
       <Linkouter
         href="/cart"
         className="flex gap-2  items-center justify-center"
