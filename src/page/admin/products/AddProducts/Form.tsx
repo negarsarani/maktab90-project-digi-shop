@@ -2,8 +2,11 @@ import TextEditor from './TextEditor';
 import { Input } from '@/components';
 import SelectBox from './SelectBox';
 import UploadImages from './UploadImages';
+import dynamic from 'next/dynamic';
 
 const Form = () => {
+  const Editor = dynamic(() => import("./TextEditor"), { ssr: false });
+
   return (
     <div className="h-[35rem] overflow-hidden overflow-y-auto overflow-x-auto mt-12">
       <form className="px-2">
@@ -37,7 +40,8 @@ const Form = () => {
           </div>
           <UploadImages />
           <div className="w-full ">
-            <TextEditor />
+            <Editor value={"توضیحات"} onChange={(v)=> console.log(v)
+            }/>
           </div>
         </div>
 

@@ -8,6 +8,8 @@ const UploadImages = () => {
   // const [uploading, setUploading] = useState(false)
   const HandleImage = (e) => {
     for (const file of e.target.files) {
+      console.log(e.target.files)
+      
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
@@ -16,8 +18,10 @@ const UploadImages = () => {
       reader.onerror = () => {
         console.log(reader.error);
       };
-    }vi
+    }
+    console.log(imgsSrc);
   };
+  
     return (
         <>
            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">

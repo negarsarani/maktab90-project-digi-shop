@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import useGetQuery from '@/hooks/useGetQuery';
 import { SortIcon } from '../shared/SortIcon';
 import useCategory from '@/data/shared';
+import ButtonsAction from './Buttons';
 type itemType = {};
 
 const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
@@ -114,26 +115,7 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
               </Td>
               <Td key={item.name} className="py-4 px-6  w-[10rem]">
                 <div className="flex items-center justify-center gap-2 lg:w-full w-[5rem]">
-                  <button className="text-sm text-gray-900 w-full">
-                    <Image
-                      src="/icons/trash.svg"
-                      id={item._id}
-                      alt="حذف"
-                      width={20}
-                      height={20}
-                      onClick={()=>{
-                        
-                      }}
-                    />
-                  </button>
-                  <button className="text-sm text-gray-900 w-full">
-                    <Image
-                      src="/icons/edit.svg"
-                      alt="ویرایش"
-                      width={22}
-                      height={20}
-                    />
-                  </button>
+                <ButtonsAction id={item._id}/>
                 </div>
               </Td>
             </tr>

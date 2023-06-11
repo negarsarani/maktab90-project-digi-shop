@@ -30,6 +30,8 @@
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
+    "ckeditor4": "^4.21.0",
+    "ckeditor4-react": "^4.2.0",
     "cookies-next": "^2.1.1",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.3",

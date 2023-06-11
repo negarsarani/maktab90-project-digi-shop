@@ -1,11 +1,11 @@
-import { Dispatch, ReactNode, SetStateAction } from 'react';
-import { Dialog } from '@headlessui/react';
+import { Dispatch, ReactNode, SetStateAction  , Fragment} from 'react';
+import { Dialog , Transition } from '@headlessui/react';
 import { Button } from '@/components';
 
 interface ModalProps {
   openModal: boolean;
   setOpenModal: Dispatch<
-    SetStateAction<{ filter: boolean; buttonOrange: boolean }>
+    SetStateAction<any>
   >;
   name: string;
   children: ReactNode;
@@ -13,13 +13,15 @@ interface ModalProps {
 
 const Modal = ({ openModal, setOpenModal, name, children }: ModalProps) => {
   const handleClose = () => {
-    setOpenModal((prevState) => ({
+    setOpenModal((prevState:any) => ({
       ...prevState,
       [name]: false,
     }));
   };
 
   return (
+    <Transition appear  show={openModal} as={Fragment}>    
+
     <Dialog
       open={openModal}
       onClose={handleClose}
@@ -36,7 +38,8 @@ const Modal = ({ openModal, setOpenModal, name, children }: ModalProps) => {
        
         
       </Dialog.Panel>
-    </Dialog>
+    </Dialog>  
+     </Transition>
   );
 };
 
