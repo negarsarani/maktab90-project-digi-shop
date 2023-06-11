@@ -3,7 +3,7 @@ import { Sidebar } from '@/layout/user';
 import { ButtonsNav, Logo_menu } from '@/page/user/navbar';
 import { Search } from '@/page/user/shared';
 import CategoryNav from '@/page/user/navbar/category';
-import useCategory, { orderedCategory } from '@/data/shared';
+import useCategory from '@/data/shared';
 import { OrderedCategory } from '@/types/type';
 const Header = () => {
   const [Data, SetData] = useState<{}>();
@@ -11,26 +11,21 @@ const Header = () => {
 
   // SetData({ category: categories, subCategories: subCategories });
   const [categories, subCategories] = useCategory();
-  console.log([categories, subCategories]);
-  useEffect(() => {
-    
-    const orderedData = categories?.map(
-      (item: { _id: string; name: string; icon: string }) => {
-        const FilterSub = subCategories?.filter(
-          (i: { category: {} }) => item._id === i.category
-        );
-        return {
-          id: item._id,
-          name: item.name,
-          icon: item.icon,
-          subCategories: FilterSub,
-        };
-      }
-    );
-    console.log(orderedData );
-    return SetData(orderedData);
-  },[]);
-  
+
+  const orderedData = categories?.map(
+    (item: { _id: string; name: string; icon: string }) => {
+      const FilterSub = subCategories?.filter(
+        (i: { category: {} }) => item._id === i.category
+      );
+      return {
+        id: item._id,
+        name: item.name,
+        icon: item.icon,
+        subCategories: FilterSub,
+      };
+    }
+  )
+
   return (
     <header className="bg-white w-full">
       <div className="w-full">
@@ -52,11 +47,11 @@ const Header = () => {
               <Search placeholder="به راحتی محصول مورد نظر خود را پیدا کنید..." />
             </div>
           </div>
-          <CategoryNav Data={Data} />
+          <CategoryNav Data={orderedData} />
         </div>
       </div>
       <Sidebar
-        Data={Data}
+        Data={orderedData}
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
       />

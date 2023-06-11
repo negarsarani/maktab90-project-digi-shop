@@ -21,23 +21,6 @@ function useCategory() {
 
 export default useCategory;
 
-export const orderedCategory = async () => {
-  // const [categories, subCategories] = await categoryData();
-  // const orderedData = categories.map(
-  //   (item: { _id: string; name: string; icon: string }) => {
-  //     const FilterSub = subCategories.filter(
-  //       (i: { category: {} }) => item._id === i.category
-  //     );
-  //     return {
-  //       id: item._id,
-  //       name: item.name,
-  //       icon: item.icon,
-  //       subCategories: FilterSub,
-  //     };
-  //   }
-  // );
-  // return orderedData;
-};
 export function useUsers() {
   getData('/users');
   const [isLoading, data, isError, refetch] = useQueries(
