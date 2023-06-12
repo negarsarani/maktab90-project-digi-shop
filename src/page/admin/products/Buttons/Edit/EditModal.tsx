@@ -12,7 +12,7 @@ interface props {
 const EditModal = ({ isOpen, setIsOpen }: props) => {
   return (
     <Modal openModal={isOpen} setOpenModal={setIsOpen} name="Edit">
-      {}
+      <div className='mt-10'>sadad</div>
     </Modal>
   );
 };

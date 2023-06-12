@@ -115,7 +115,7 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
               </Td>
               <Td key={item.name} className="py-4 px-6  w-[10rem]">
                 <div className="flex items-center justify-center gap-2 lg:w-full w-[5rem]">
-                <ButtonsAction id={item._id}/>
+                <ButtonsAction id={item._id} nameProduct={item.name}/>
                 </div>
               </Td>
             </tr>

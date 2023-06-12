@@ -20,7 +20,7 @@ const Modal = ({ openModal, setOpenModal, name, children }: ModalProps) => {
   };
 
   return (
-    <Transition appear  show={openModal} as={Fragment}>    
+    // <Transition appear  show={openModal} as={Fragment}>    
 
     <Dialog
       open={openModal}
@@ -39,7 +39,7 @@ const Modal = ({ openModal, setOpenModal, name, children }: ModalProps) => {
         
       </Dialog.Panel>
     </Dialog>  
-     </Transition>
+    //  </Transition>
   );
 };
 

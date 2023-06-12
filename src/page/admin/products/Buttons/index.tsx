@@ -1,12 +1,13 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import Edit from './Edit/Edit';
 import Delete from './Delete/Delete';
 import DeleteModal from './Delete/DeleteModal';
 import EditModal from './Edit/EditModal';
 interface props {
   id: string;
+  nameProduct:string
 }
-const ButtonsAction = ({ id }: props) => {
+const ButtonsAction = ({ id  , nameProduct}: props) => {
   let [isOpen, setIsOpen] = useState<{ Edit: boolean; Delete: boolean }>({
     Edit: false,
     Delete: false,
@@ -14,11 +15,15 @@ const ButtonsAction = ({ id }: props) => {
 
   return (
     <>
-    {isOpen.Edit && < DeleteModal isOpen={isOpen.Edit} setIsOpen={setIsOpen}/>  }
-    {isOpen.Delete && < EditModal isOpen={isOpen.Delete} setIsOpen={setIsOpen}/>  }
-      <div className='flex items-center justify-center gap-5'>
-        <Edit id={id}  setIsOpen={setIsOpen}/>
-        <Delete id={id} setIsOpen={setIsOpen}/>
+      {isOpen.Edit && (
+        <EditModal isOpen={isOpen.Edit} setIsOpen={setIsOpen} />
+      )}
+      {isOpen.Delete && (
+        <DeleteModal isOpen={isOpen.Delete} setIsOpen={setIsOpen}  nameProduct={nameProduct}/>
+      )}
+      <div className="flex items-center justify-center gap-5">
+        <Delete id={id} setIsOpen={setIsOpen} />
+        <Edit id={id} setIsOpen={setIsOpen} />
       </div>
     </>
   );
