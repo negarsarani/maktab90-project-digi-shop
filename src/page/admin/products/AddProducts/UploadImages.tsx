@@ -101,7 +101,6 @@ const UploadImages = () => {
                         name="file-upload"
                         type="file"
                         className="sr-only"
-                        multiple
                         onChange={HandleImage}
                       />
                     </label>

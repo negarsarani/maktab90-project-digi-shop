@@ -1,8 +1,10 @@
 import adminSlice from './slice/admin/adminSlice';
+import formProductSlice from './slice/admin/formProductSlice';
 import { configureStore } from '@reduxjs/toolkit';
 const store = configureStore({
   reducer: {
-    adminState: adminSlice
+    adminState: adminSlice,
+    formProductState: formProductSlice,
   },
 });
 

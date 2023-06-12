@@ -12,7 +12,7 @@ interface ModalProps {
 const ModalAddProduct = ({ name, openModal, setOpenModal }: ModalProps) => {
   return (
     <Modal name={name} openModal={openModal} setOpenModal={setOpenModal}>
-      <Form></Form>
+      <Form setOpenModal={setOpenModal}/>
     </Modal>
   );
 };
