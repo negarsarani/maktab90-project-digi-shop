@@ -1,7 +1,17 @@
-import React from 'react';
+import useCategory from '@/data/shared';
+import React, { useState } from 'react';
 
 const SelectBox = () => {
-  const 
+  const [categories, subCategories] = useCategory();
+  console.log(subCategories);
+
+  const [selectedCategory, SetSelecetesCategory] = useState();
+  const HandleSubCategory = () => {
+    const filterData = subCategories.filter(
+      (item: { category: string }) => item.category === selectedCategory
+    );
+    return filterData;
+  };
   return (
     <>
       <div className="sm:col-span-3">
@@ -17,10 +27,19 @@ const SelectBox = () => {
             name="country"
             autoComplete="country-name"
             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:max-w-xs sm:text-sm sm:leading-6"
+            onChange={(e: any) => {
+              SetSelecetesCategory(e.target.value);
+              console.log(selectedCategory);
+            }}
           >
-            <option>United States</option>
-            <option>Canada</option>
-            <option>Mexico</option>
+            <option disabled selected></option>
+            {categories.map((item: { _id: string; name: string }) => {
+              return (
+                <option key={item._id} id={item._id} value={item._id}>
+                  {item.name}
+                </option>
+              );
+            })}
           </select>
         </div>
       </div>
@@ -38,9 +57,13 @@ const SelectBox = () => {
             autoComplete="country-name"
             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:max-w-xs sm:text-sm sm:leading-6"
           >
-            <option>United States</option>
-            <option>Canada</option>
-            <option>Mexico</option>
+            {HandleSubCategory().map((item: { _id: string; name: string }) => {
+              return (
+                <option key={item._id} id={item._id} value={item._id}>
+                  {item.name}
+                </option>
+              );
+            })}
           </select>
         </div>
       </div>
