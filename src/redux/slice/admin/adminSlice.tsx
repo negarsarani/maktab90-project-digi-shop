@@ -40,10 +40,12 @@ export const adminSlice = createSlice({
       action: PayloadAction<{ name: keyof AdminStore; items: any; key: string }>
     ) => {
       const { name, items, key } = action.payload;
+
       state[name].data = items?.data[key];
-      console.log(items.total_pages);
 
       state[name].options.totalPages = items?.total_pages;
+
+      console.log(items.total_pages);
     },
     PAGINATE: (
       state,
@@ -62,6 +64,7 @@ export const adminSlice = createSlice({
       state[
         name
       ].url.path = `${state[name].url.keyApi}?page=${state[name].options.page}&limit=${state[name].options.limit}`;
+      console.log(state[name].data.length);
     },
     SORTDATA: (state, action) => {
       const { name, sortItem } = action.payload;
@@ -87,12 +90,56 @@ export const adminSlice = createSlice({
       ].url.path = `orders?page=${state[name].options.page}&limit=${state[name].options.limit}${state[name].filter}`;
     },
     FILTERREMOVE: (state, action) => {
-      const {name} = action.payload;
-      state[name].url.path = `${state[name].url.keyApi}?page=1&limit=4`
+      const { name } = action.payload;
+      state[name].url.path = `${state[name].url.keyApi}?page=1&limit=4`;
+    },
+    ACTIVEITEM: () => {},
+    // DELETEITEM: (state) => {
+    //   const {name} = action.payload
+
+    // },
+    DELETEITEM: (state, action) => {
+      const { name } = action.payload;
+      if (state[name].data.length === 0) {
+        state[name].options.page > state[name].options.totalPages &&
+          (state[name].options.page = --state[name].options.page);
+        // state[name].data = items?.data[key];
+      }
     },
   },
 });
 
-export const { DATA, PAGINATE, SORTDATA, FILTERDATA , FILTERREMOVE } = adminSlice.actions;
+export const {
+  DATA,
+  PAGINATE,
+  SORTDATA,
+  FILTERDATA,
+  FILTERREMOVE,
+  DELETEITEM,
+} = adminSlice.actions;
 
 export default adminSlice.reducer;
+// const [valueAdmin, dispatch] = useRedux((state) => state.adminState);
+// const [active, setActive] = useState(false);
+// const [loading, data] = useQueries(() => deleteData(`products/${id}`), ['Delete']);
+// const HandleDelete = () => {
+//   setActive(true);
+//   console.log(data);
+
+//   dispatch(DELETEITEM({ name: 'products' , item:data}));
+//   return setTimeout(() => {
+//     return refetch();
+//   }, 300);
+//   // if (isError) {
+//   //   toast.error('خطای شبکه  لطفا دوباره امتحان کنید', {
+//   //     position: 'top-right',
+//   //     autoClose: 5000,
+//   //     hideProgressBar: false,
+//   //     closeOnClick: true,
+//   //     pauseOnHover: true,
+//   //     draggable: true,
+//   //     progress: undefined,
+//   //     theme: 'light',
+//   //   });
+//   // }
+// };

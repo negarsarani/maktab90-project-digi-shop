@@ -35,8 +35,8 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
   }, [sortObj]);
   const handleSort = (event: any) => {
     const ITEM = event.currentTarget.id;
-    dispatch(SORTDATA({ name: 'products', sortItem: ITEM }));
     setTimeout(() => {
+      dispatch(SORTDATA({ name: 'products', sortItem: ITEM }));
       refetch();
     }, 100);
     ITEM === sortObj ? setSortObj({ key: '' }) : setSortObj({ key: ITEM });
@@ -115,7 +115,7 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
               </Td>
               <Td key={item.name} className="py-4 px-6  w-[10rem]">
                 <div className="flex items-center justify-center gap-2 lg:w-full w-[5rem]">
-                <ButtonsAction id={item._id} nameProduct={item.name}/>
+                <ButtonsAction id={item._id} nameProduct={item.name} refetch={refetch}/>
                 </div>
               </Td>
             </tr>

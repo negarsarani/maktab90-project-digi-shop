@@ -5,9 +5,10 @@ import DeleteModal from './Delete/DeleteModal';
 import EditModal from './Edit/EditModal';
 interface props {
   id: string;
-  nameProduct:string
+  nameProduct: string;
+  refetch: () => void;
 }
-const ButtonsAction = ({ id  , nameProduct}: props) => {
+const ButtonsAction = ({ id, nameProduct, refetch }: props) => {
   let [isOpen, setIsOpen] = useState<{ Edit: boolean; Delete: boolean }>({
     Edit: false,
     Delete: false,
@@ -15,11 +16,15 @@ const ButtonsAction = ({ id  , nameProduct}: props) => {
 
   return (
     <>
-      {isOpen.Edit && (
-        <EditModal isOpen={isOpen.Edit} setIsOpen={setIsOpen} />
-      )}
+      {isOpen.Edit && <EditModal isOpen={isOpen.Edit} setIsOpen={setIsOpen} />}
       {isOpen.Delete && (
-        <DeleteModal isOpen={isOpen.Delete} setIsOpen={setIsOpen}  nameProduct={nameProduct}/>
+        <DeleteModal
+        id={id}
+          refetch={refetch}
+          isOpen={isOpen.Delete}
+          setIsOpen={setIsOpen}
+          nameProduct={nameProduct}
+        />
       )}
       <div className="flex items-center justify-center gap-5">
         <Delete id={id} setIsOpen={setIsOpen} />
