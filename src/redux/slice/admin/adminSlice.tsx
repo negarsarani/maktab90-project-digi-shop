@@ -26,7 +26,7 @@ const initialState: AdminStore = {
     filter: '',
     sort: '',
     options: { limit: 4, page: 1, totalPages: '' },
-    url: { keyApi: 'orders', path: 'orders?page=1&limit=4' },
+    url: { keyApi: 'orders', path: `orders?page=1&limit=4` },
     data: [],
   },
 };
@@ -40,12 +40,9 @@ export const adminSlice = createSlice({
       action: PayloadAction<{ name: keyof AdminStore; items: any; key: string }>
     ) => {
       const { name, items, key } = action.payload;
-
-      state[name].data = items?.data[key];
-
       state[name].options.totalPages = items?.total_pages;
 
-      console.log(items.total_pages);
+      state[name].data = items?.data[key];
     },
     PAGINATE: (
       state,
@@ -100,11 +97,20 @@ export const adminSlice = createSlice({
     // },
     DELETEITEM: (state, action) => {
       const { name } = action.payload;
-      if (state[name].data.length === 0) {
-        state[name].options.page > state[name].options.totalPages &&
-          (state[name].options.page = --state[name].options.page);
-        // state[name].data = items?.data[key];
+      if ((state[name].data.length = 1)) {
+        state[name].options.page = --state[name].options.page;
+      let newUrl = state[name].url.path?.replace(
+        /page=\d+/,
+        `page=${state[name].options.page}`
+      );
+      console.log(newUrl);
+      console.log( state[name].url.path);
+        state[name].url.path = newUrl;
+   
+      console.log( state[name].url.path);
       }
+
+      
     },
   },
 });

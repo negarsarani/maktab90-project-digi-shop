@@ -4,6 +4,7 @@ import useQueries from '@/hooks/useQueries';
 import useRedux from '@/hooks/useRedux';
 import { Modal } from '@/page/admin/shared';
 import { DELETEITEM } from '@/redux/slice';
+import { useRouter } from 'next/router';
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { toast } from 'react-toastify';
 interface props {
@@ -26,27 +27,14 @@ const DeleteModal = ({
   id,
 }: props) => {
   const [valueAdmin, dispatch] = useRedux((state) => state.adminState);
-
+  const router = useRouter();
   const HandleDelete = () => {
-    
     deleteData(`/products/${id}`)
-    dispatch(DELETEITEM({ name: 'products'}));
-    // console.log(data);
-   return setTimeout(() => {
-     return refetch();
-    }, 100);
-    // if (isError) {
-    //   toast.error('خطای شبکه  لطفا دوباره امتحان کنید', {
-    //     position: 'top-right',
-    //     autoClose: 5000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     theme: 'light',
-    //   });
-    // }
+      .then(() => {
+        return dispatch(DELETEITEM({ name: 'products' }));
+      })
+      .then(() => refetch());
+    // router.push({ pathname:router.pathname , query:{...router.query , page:valueAdmin.products.options.totalPages} })
   };
   return (
     <Modal openModal={isOpen} setOpenModal={setIsOpen} name="Delete">
