@@ -2,47 +2,53 @@ import Image from 'next/image';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 interface props {
-  imgsSrc: string[];
-  setImgsSrc: Dispatch<SetStateAction<never[]>>;
-  thumbnail: string;
-  setThumbnail: Dispatch<SetStateAction<string>>;
+  setImgsSrc: Dispatch<SetStateAction<unknown[]>>;
+
+  setThumbnailSrc: Dispatch<SetStateAction<string |unknown[]>>;
 }
 const UploadImages = ({
-  imgsSrc,
   setImgsSrc,
-  thumbnail,
-  setThumbnail,
+
+  setThumbnailSrc,
 }: props) => {
-  // const [uploading, setUploading] = useState(false)
-  // const [uploading, setUploading] = useState(false)
-  const HandlemainImages = (e) => {
+  const [currentImages, setCurrentImages] = useState<string[]>([]);
+  const [currentThumbnail, setCurrentThumbnail] = useState('');
+  const HandlemainImages = (e: any) => {
     for (const file of e.target.files) {
       console.log(e.target.files);
 
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        setImgsSrc((imgs) => [...imgs, reader.result]);
+        setCurrentImages((imgs: string) => [...imgs, reader.result]);
       };
       reader.onerror = () => {
         console.log(reader.error);
       };
     }
-    console.log(imgsSrc);
+    const imageName2 = e.currentTarget.files;
+    
+    const entries = Object.entries(imageName2);
+    
+    const Array = entries.map((item) => item[1]);
+   return setImgsSrc(Array);
   };
-  const HandleThumbnails = (e) => {
+  const HandleThumbnails = (e: any) => {
     const file = e.target.files[0];
-    console.log(e.target.files);
-
+    console.log(Array);
+    
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      setThumbnail(reader.result);
+      setCurrentThumbnail(reader.result);
     };
     reader.onerror = () => {
       console.log(reader.error);
     };
-    console.log(thumbnail);
+    const imageName2 = e.currentTarget.files;
+    const entries = Object.entries(imageName2);
+   return setThumbnailSrc(imageName2[0]);
+
   };
 
   return (
@@ -57,9 +63,9 @@ const UploadImages = ({
           </label>
           <div className="mt-2 flex  flex-col justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
             <div className="text-center flex flex-col items-center justify-center">
-              {imgsSrc.length !== 0 ? (
+              {currentImages.length !== 0 ? (
                 <div className="flex flex-wrap gap-2 items-center justify-center mt-10">
-                  {imgsSrc?.map((link) => (
+                  {currentImages?.map((link) => (
                     <div key={link} className="w-20 aspect-square">
                       <Image
                         className="object-fill w-full h-full"
@@ -110,11 +116,11 @@ const UploadImages = ({
           </label>
           <div className="mt-2 flex  flex-col justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
             <div className="text-center flex flex-col items-center justify-center">
-              {thumbnail !== '' ? (
+              {currentThumbnail !== '' ? (
                 <div className="w-20 aspect-square">
                   <Image
-                    className="object-fill w-full h-full"
-                    src={thumbnail}
+                    className="object-fill aspect-square w-full h-full"
+                    src={currentThumbnail}
                     width={50}
                     height={50}
                     alt="l"

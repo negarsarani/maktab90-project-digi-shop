@@ -24,7 +24,7 @@ interface dataType {
 }
 const Form = ({ setOpenModal }: props) => {
   const [imgsSrc, setImgsSrc] = useState([]);
-  const [thumbnail, setThumbnail] = useState();
+  const [thumbnailSrc, setThumbnailSrc] = useState("");
   const [description, setDescription] = useState('ss');
   const {
     register,
@@ -52,10 +52,10 @@ const Form = ({ setOpenModal }: props) => {
       formData.append(key, data[key]);
     });
     formData.append('description', description);
-    // imgsSrc.map((item: string) => {
-      formData.append('images', '/C:/Users/Pictures/1_pXa8csNqRugQTile_zCfYQ.png');
-    // });
-    formData.append('thumbnail', '/C:/Users/Negar/Pictures/1_pXa8csNqRugQTile_zCfYQ.png');
+    imgsSrc.map((item: string) => {
+      formData.append('images', item);
+    });
+    formData.append('thumbnail',thumbnailSrc);
     try {
       postData('/products', formData).then((res) => console.log(res));
     } catch(error) {
@@ -167,10 +167,8 @@ const Form = ({ setOpenModal }: props) => {
           </div>
 
           <UploadImages
-            imgsSrc={imgsSrc}
             setImgsSrc={setImgsSrc}
-            thumbnail={thumbnail}
-            setThumbnail={setThumbnail}
+            setThumbnailSrc={setThumbnailSrc}
           />
           <div className="w-full ">
             <Editor
