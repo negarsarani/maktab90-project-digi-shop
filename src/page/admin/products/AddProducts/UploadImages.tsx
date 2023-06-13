@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
+import { PhotoIcon } from '@heroicons/react/24/solid';
 import { ProductModal } from '@/types/type';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 interface props {
@@ -10,15 +10,22 @@ interface props {
   errors: FieldErrors<{ images: string; thumbnail: string }>;
 
   setThumbnailSrc: Dispatch<SetStateAction<never | unknown>>;
+  editFlag:boolean
+  value:{images: string[]; thumbnail: string}
 }
 const UploadImages = ({
   register,
   setImgsSrc,
   setThumbnailSrc,
   errors,
+  editFlag,
+  value
 }: props) => {
   const [currentImages, setCurrentImages] = useState<string[]>([]);
   const [currentThumbnail, setCurrentThumbnail] = useState('');
+  if(){
+    currentImages
+  }
   const HandlemainImages = (e: any) => {
     for (const file of e.target.files) {
       console.log(e.target.files);
@@ -155,6 +162,7 @@ const UploadImages = ({
                     id="thumbnail"
                     name="thumbnail"
                     type="file"
+                    value={EditImage}
                     className="sr-only"
                     onChange={HandleThumbnails}
                   />

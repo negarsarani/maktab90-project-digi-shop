@@ -8,11 +8,13 @@ interface Inputtype {
   type: 'email' | 'text' | 'password' | 'number' | 'search'| "file"
   placeholder: string;
   autoComplete?: string;
+  value?: string
 }
 const Input = ({
   className,
   name,
   id,
+  value,
   type,
   placeholder,
   autoComplete,
@@ -24,6 +26,7 @@ const Input = ({
       id={id}
       name={name}
       type={type}
+      value={value}
       autoComplete={autoComplete}
       placeholder={placeholder}
       className={className}

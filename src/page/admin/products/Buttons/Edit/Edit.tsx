@@ -24,11 +24,14 @@ const Edit = ({ id, setIsOpen }: props) => {
         height={20}
         id={id}
         onClick={() => {
-          setIsOpen({
-            Edit: true,
-            Delete: false,
-          });
-          getData(`products/${id}`).then((res) => dispatch(ACTIVE(res.data.product)));
+          getData(`products/${id}`)
+            .then((res) => dispatch(ACTIVE(res.data.product)))
+            .then(() =>
+            setIsOpen({
+                Edit: true,
+                Delete: false,
+              })
+            )
         }}
       />
     </Button>

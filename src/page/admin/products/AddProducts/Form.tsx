@@ -5,7 +5,7 @@ import UploadImages from './UploadImages';
 import dynamic from 'next/dynamic';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import formProduct from '@/schemas/admin/formProduct';
 import postData from '@/api/postData';
 import { ProductModal } from '@/types/type';
@@ -23,7 +23,22 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
   const [imgsSrc, setImgsSrc] = useState<unknown[] | never[]>([]);
   const [thumbnailSrc, setThumbnailSrc] = useState<unknown | string>('');
   const [description, setDescription] = useState('ss');
-  const [value , dispatch] = useRedux(state => state.formProductState)
+  const [value, dispatch] = useRedux((state) => state.formProductState);
+  const [defaultValue, setDefaultValue] = useState();
+
+  console.log(value);
+  // useEffect(() => {
+  //   setDefaultValue({
+  //     name: value.name,
+  //     brand: value.name,
+  //     quantity: value.quantity,
+  //     price: value.price,
+  //     category: value.category,
+  //     subcategory: value.subcategory,
+  //     images: value.images,
+  //     thumbnail: value.thumbnail,
+  //   });
+  // }, [editFlag]);
   const {
     register,
     handleSubmit,
@@ -93,6 +108,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
                     type="text"
                     name="name"
                     id="name"
+                    value={editFlag && value.name}
                     autoComplete="given-name"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6"
                   />
@@ -115,6 +131,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
                     type="text"
                     name="brand"
                     id="brand"
+                    value={editFlag && value.brand}
                     autoComplete="given-name"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6"
                   />
@@ -136,6 +153,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
                     placeholder="مثال: آیفون 6"
                     type="number"
                     name="quantity"
+                    value={editFlag && value.quantity}
                     id="quantity"
                     autoComplete="given-name"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6"
@@ -157,6 +175,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
                     register={register}
                     placeholder="به تومان قیمت را وارد کنید"
                     type="number"
+                    value={editFlag && value.price}
                     name="price"
                     id="price"
                     autoComplete="given-name"
@@ -168,11 +187,17 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
                 </div>
               </div>
 
-              <SelectBox register={register} errors={errors} />
+              <SelectBox
+                register={register}
+                errors={errors}
+                editFlag={editFlag}
+              />
             </div>
           </div>
 
           <UploadImages
+          editFlag={editFlag}
+          value={value}
             errors={errors}
             register={register}
             setImgsSrc={setImgsSrc}
@@ -180,7 +205,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
           />
           <div className="w-full ">
             <Editor
-              value={description}
+              value={editFlag ? value.description : description}
               onChange={(value) => setDescription(value)}
             />
           </div>
