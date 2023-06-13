@@ -23,9 +23,9 @@ const UploadImages = ({
 }: props) => {
   const [currentImages, setCurrentImages] = useState<string[]>([]);
   const [currentThumbnail, setCurrentThumbnail] = useState('');
-  if(){
-    currentImages
-  }
+  // if(){
+  //   currentImages
+  // }
   const HandlemainImages = (e: any) => {
     for (const file of e.target.files) {
       console.log(e.target.files);
