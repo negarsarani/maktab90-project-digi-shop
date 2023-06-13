@@ -35,11 +35,20 @@ const Form = ({ setOpenModal }: props) => {
       thumbnail: '',
     },
   });
+
+  const formData = new FormData();
   const Editor = dynamic(() => import('./TextEditor'), { ssr: false });
-  const onSubmit = (formData) => {
-    console.log(formData);
-    // setOpenModal({ filter: false, buttonOrange: false })
+  const onSubmit = (data) => {
+    console.log(data);
+    
+    Object.keys(data).map((key) => {
+      formData.append(key, data[key])
+      
+    });      
+    
+    return setOpenModal({ filter: false, buttonOrange: false });
   };
+  
   return (
     <div className="h-[35rem] overflow-hidden overflow-y-auto overflow-x-auto mt-12">
       <form className="px-2" onSubmit={handleSubmit(onSubmit)}>
@@ -138,7 +147,7 @@ const Form = ({ setOpenModal }: props) => {
                 </div>
               </div>
 
-              <SelectBox />
+              <SelectBox register={register} errors={errors} />
             </div>
           </div>
           <UploadImages />
