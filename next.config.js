@@ -4,6 +4,10 @@ const nextConfig = {
   images:{
     domains:['localhost']
   },
+  // env:{
+  //   BASE_IMAGE_URL:BASE_IMAGE_URL,
+  //   BASE_THUMB_URL:BASE_THUMB_URL
+  // }
   // sassOptions: {
   //   includePaths: [path.join(__dirname, 'styles')],
   // },

@@ -90,7 +90,7 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
                 <div className="  lg:w-full w-[10rem]  flex items-center justify-center">
                   <div className="">
                     <Image
-                      src={item.images[0]}
+                      src={`http://localhost:8000/images/products/images/${item.images[0]}`}
                       alt={'item.name'}
                       className="rounded-xl "
                       width={80}

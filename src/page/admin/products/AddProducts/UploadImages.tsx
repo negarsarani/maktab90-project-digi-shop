@@ -1,11 +1,19 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
-
-const UploadImages = () => {
+interface props {
+  imgsSrc: string[];
+  setImgsSrc: Dispatch<SetStateAction<never[]>>;
+  thumbnail: string;
+  setThumbnail: Dispatch<SetStateAction<string>>;
+}
+const UploadImages = ({
+  imgsSrc,
+  setImgsSrc,
+  thumbnail,
+  setThumbnail,
+}: props) => {
   // const [uploading, setUploading] = useState(false)
-  const [imgsSrc, setImgsSrc] = useState([]);
-  const [thumbnail, setThumbnail] = useState('');
   // const [uploading, setUploading] = useState(false)
   const HandlemainImages = (e) => {
     for (const file of e.target.files) {
@@ -48,11 +56,28 @@ const UploadImages = () => {
             آپلود عکس های اصلی
           </label>
           <div className="mt-2 flex  flex-col justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-            <div className="text-center">
-              <PhotoIcon
-                className="mx-auto h-12 w-12 text-gray-300"
-                aria-hidden="true"
-              />
+            <div className="text-center flex flex-col items-center justify-center">
+              {imgsSrc.length !== 0 ? (
+                <div className="flex flex-wrap gap-2 items-center justify-center mt-10">
+                  {imgsSrc?.map((link) => (
+                    <div key={link} className="w-20 aspect-square">
+                      <Image
+                        className="object-fill w-full h-full"
+                        src={link}
+                        width={50}
+                        height={50}
+                        alt="l"
+                      />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <PhotoIcon
+                  className="mx-auto h-12 w-12 text-gray-300"
+                  aria-hidden="true"
+                />
+              )}
+
               <div className="mt-4 flex items-center justify-center text-sm leading-6 text-gray-600">
                 <label
                   htmlFor="mainImages"
@@ -72,19 +97,6 @@ const UploadImages = () => {
                 </label>
               </div>
             </div>
-            <div className="flex flex-wrap gap-2 items-center justify-center mt-10">
-              {imgsSrc?.map((link) => (
-                <div key={link} className="w-20 aspect-square">
-                  <Image
-                    className="object-fill w-full h-full"
-                    src={link}
-                    width={50}
-                    height={50}
-                    alt="l"
-                  />
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>
@@ -97,11 +109,24 @@ const UploadImages = () => {
             آپلود عکس تامبنیل
           </label>
           <div className="mt-2 flex  flex-col justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-            <div className="text-center">
-              <PhotoIcon
-                className="mx-auto h-12 w-12 text-gray-300"
-                aria-hidden="true"
-              />
+            <div className="text-center flex flex-col items-center justify-center">
+              {thumbnail !== '' ? (
+                <div className="w-20 aspect-square">
+                  <Image
+                    className="object-fill w-full h-full"
+                    src={thumbnail}
+                    width={50}
+                    height={50}
+                    alt="l"
+                  />
+                </div>
+              ) : (
+                <PhotoIcon
+                  className="mx-auto h-12 w-12 text-gray-300"
+                  aria-hidden="true"
+                />
+              )}
+
               <div className="mt-4 flex items-center justify-center text-sm leading-6 text-gray-600">
                 <label
                   htmlFor="thumbnail"
@@ -120,19 +145,7 @@ const UploadImages = () => {
                 </label>
               </div>
             </div>
-            <div className="flex flex-wrap gap-2 items-center justify-center mt-10">
-              {thumbnail !== '' && (
-                <div className="w-20 aspect-square">
-                  <Image
-                    className="object-fill w-full h-full"
-                    src={thumbnail}
-                    width={50}
-                    height={50}
-                    alt="l"
-                  />
-                </div>
-              )}
-            </div>
+            <div className="flex flex-wrap gap-2 items-center justify-center mt-10"></div>
           </div>
         </div>
       </div>

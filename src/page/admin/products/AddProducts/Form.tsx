@@ -5,15 +5,27 @@ import UploadImages from './UploadImages';
 import dynamic from 'next/dynamic';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import formProduct from '@/schemas/admin/formProduct';
+import postData from '@/api/postData';
 
 interface props {
   setOpenModal: Dispatch<
     SetStateAction<{ filter: boolean; buttonOrange: boolean }>
   >;
 }
+interface dataType {
+  name: string;
+  brand: string;
+  quantity: string;
+  price: string;
+  category: string;
+  subcategory: string;
+}
 const Form = ({ setOpenModal }: props) => {
+  const [imgsSrc, setImgsSrc] = useState([]);
+  const [thumbnail, setThumbnail] = useState();
+  const [description, setDescription] = useState('ss');
   const {
     register,
     handleSubmit,
@@ -30,25 +42,28 @@ const Form = ({ setOpenModal }: props) => {
       price: '',
       category: '',
       subcategory: '',
-      description: '',
-      mainImages: '',
-      thumbnail: '',
     },
   });
-
-  const formData = new FormData();
+  let formData = new FormData();
   const Editor = dynamic(() => import('./TextEditor'), { ssr: false });
-  const onSubmit = (data) => {
+  const onSubmit = (data: dataType) => {
     console.log(data);
-    
     Object.keys(data).map((key) => {
-      formData.append(key, data[key])
-      
-    });      
-    
+      formData.append(key, data[key]);
+    });
+    formData.append('description', description);
+    // imgsSrc.map((item: string) => {
+      formData.append('images', '/C:/Users/Pictures/1_pXa8csNqRugQTile_zCfYQ.png');
+    // });
+    formData.append('thumbnail', '/C:/Users/Negar/Pictures/1_pXa8csNqRugQTile_zCfYQ.png');
+    try {
+      postData('/products', formData).then((res) => console.log(res));
+    } catch(error) {
+      console.error(error);
+    }
     return setOpenModal({ filter: false, buttonOrange: false });
   };
-  
+
   return (
     <div className="h-[35rem] overflow-hidden overflow-y-auto overflow-x-auto mt-12">
       <form className="px-2" onSubmit={handleSubmit(onSubmit)}>
@@ -150,9 +165,19 @@ const Form = ({ setOpenModal }: props) => {
               <SelectBox register={register} errors={errors} />
             </div>
           </div>
-          <UploadImages />
+
+          <UploadImages
+            imgsSrc={imgsSrc}
+            setImgsSrc={setImgsSrc}
+            thumbnail={thumbnail}
+            setThumbnail={setThumbnail}
+          />
           <div className="w-full ">
-            <Editor value={'توضیحات'} onChange={(v) => console.log(v)} />
+            <Editor
+              value={description}
+              onChange={(value) =>  setDescription(value)
+              }
+            />
           </div>
         </div>
 

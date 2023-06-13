@@ -14,9 +14,6 @@ interface props {
     price: string;
     category: string;
     subcategory: string;
-    description: string;
-    mainImages: string;
-    thumbnail: string;
   }>;
   errors: FieldErrors<{ category: string; subcategory: string }>;
 }
