@@ -41,7 +41,6 @@ const UploadImages = ({
   };
   const HandleThumbnails = (e: any) => {
     const file = e.target.files[0];
-    console.log(Array);
 
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -53,7 +52,8 @@ const UploadImages = ({
     };
     const imageName2 = e.currentTarget.files;
     const entries = Object.entries(imageName2);
-    return setThumbnailSrc(imageName2[0]);
+    const Array = entries.map((item) => item[1]);
+    return setThumbnailSrc(Array[0]);
   };
 
   return (

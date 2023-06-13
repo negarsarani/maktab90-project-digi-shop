@@ -29,15 +29,16 @@ const formProduct = yup.object().shape({
     .required('مبلغ کالا الزامی می باشد'),
   category: yup.string().required('دسته بندی الزامی می باشد'),
   subcategory: yup.string().required('زیر دسته بندی الزامی می باشد'),
-  images: yup
-    .mixed()
-    .test(
-      'is-valid-type',
-      'تایپ های عکس باید jpg, gif, png, jpeg, svg, webp باشند',
-      (value) =>
-        isValidFileType(value !== '' && value?.name?.toLowerCase(), 'image')
-    )
-    .required('مبلغ کالا الزامی می باشد'),
+  // images: yup
+  //   .mixed()
+  //   .test(
+  //     'is-valid-type',
+  //     'تایپ های عکس باید jpg, gif, png, jpeg, svg, webp باشند',
+  //     (value) =>
+  //       isValidFileType(value !== '' && value?.name?.toLowerCase(), 'image')
+  //   )
+  //   .required('مبلغ کالا الزامی می باشد'),
+  images: yup.string().required('عکس کالا الزامی می باشد'),
   thumbnail: yup.string().required('تامبنیل الزامی می باشد')
 });
 

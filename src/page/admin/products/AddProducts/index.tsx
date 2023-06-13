@@ -9,10 +9,10 @@ interface ModalProps {
   refetch: () => void;
   name: string;
 }
-const ModalAddProduct = ({ name, openModal, setOpenModal }: ModalProps) => {
+const ModalAddProduct = ({ name, openModal, setOpenModal , refetch }: ModalProps) => {
   return (
     <Modal name={name} openModal={openModal} setOpenModal={setOpenModal}>
-      <Form setOpenModal={setOpenModal}/>
+      <Form setOpenModal={setOpenModal} refetch={refetch}/>
     </Modal>
   );
 };

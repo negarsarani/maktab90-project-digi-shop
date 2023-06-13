@@ -14,9 +14,10 @@ interface props {
   setOpenModal: Dispatch<
     SetStateAction<{ filter: boolean; buttonOrange: boolean }>
   >;
+  refetch:()=>void;
 }
 
-const Form = ({ setOpenModal }: props) => {
+const Form = ({ setOpenModal , refetch}: props) => {
   const [imgsSrc, setImgsSrc] = useState<unknown[] | never[]>([]);
   const [thumbnailSrc, setThumbnailSrc] = useState<unknown | string>('');
   const [description, setDescription] = useState('ss');
@@ -45,17 +46,20 @@ const Form = ({ setOpenModal }: props) => {
   const onSubmit = (data: ProductModal) => {
     console.log(data);
     Object.keys(data).map((key: any) => {
-      if (key !== 'images' || key !== 'thumbnail') {
+      if (key !== 'images' && key !== 'thumbnail') {
         return formData.append(key, data[key]);
       }
     });
     formData.append('description', description);
+    console.log(imgsSrc);
+    console.log(thumbnailSrc);
+    
     imgsSrc.map((item: any) => {
       formData.append('images', item);
     });
     formData.append('thumbnail', thumbnailSrc);
     try {
-      postData('/products', formData).then((res) => console.log(res));
+      postData('/products', formData).then((res) =>refetch());
     } catch (error) {
       console.error(error);
     }

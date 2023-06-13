@@ -98,7 +98,9 @@ export const adminSlice = createSlice({
     DELETEITEM: (state, action) => {
       const { name } = action.payload;
       if ((state[name].data.length = 1)) {
-        state[name].options.page = --state[name].options.page;
+        console.log("111111");
+        
+        state[name].options.page > 1 && (state[name].options.page = --state[name].options.page)
       let newUrl = state[name].url.path?.replace(
         /page=\d+/,
         `page=${state[name].options.page}`
