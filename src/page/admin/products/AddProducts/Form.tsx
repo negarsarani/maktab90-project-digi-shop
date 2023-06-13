@@ -8,23 +8,17 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Dispatch, SetStateAction, useState } from 'react';
 import formProduct from '@/schemas/admin/formProduct';
 import postData from '@/api/postData';
+import { ProductModal } from '@/types/type';
 
 interface props {
   setOpenModal: Dispatch<
     SetStateAction<{ filter: boolean; buttonOrange: boolean }>
   >;
 }
-interface dataType {
-  name: string;
-  brand: string;
-  quantity: string;
-  price: string;
-  category: string;
-  subcategory: string;
-}
+
 const Form = ({ setOpenModal }: props) => {
-  const [imgsSrc, setImgsSrc] = useState([]);
-  const [thumbnailSrc, setThumbnailSrc] = useState("");
+  const [imgsSrc, setImgsSrc] = useState<unknown[] | never[]>([]);
+  const [thumbnailSrc, setThumbnailSrc] = useState<unknown | string>('');
   const [description, setDescription] = useState('ss');
   const {
     register,
@@ -42,23 +36,27 @@ const Form = ({ setOpenModal }: props) => {
       price: '',
       category: '',
       subcategory: '',
+      images: [],
+      thumbnail: '',
     },
   });
   let formData = new FormData();
   const Editor = dynamic(() => import('./TextEditor'), { ssr: false });
-  const onSubmit = (data: dataType) => {
+  const onSubmit = (data: ProductModal) => {
     console.log(data);
-    Object.keys(data).map((key) => {
-      formData.append(key, data[key]);
+    Object.keys(data).map((key: any) => {
+      if (key !== 'images' || key !== 'thumbnail') {
+        return formData.append(key, data[key]);
+      }
     });
     formData.append('description', description);
-    imgsSrc.map((item: string) => {
+    imgsSrc.map((item: any) => {
       formData.append('images', item);
     });
-    formData.append('thumbnail',thumbnailSrc);
+    formData.append('thumbnail', thumbnailSrc);
     try {
       postData('/products', formData).then((res) => console.log(res));
-    } catch(error) {
+    } catch (error) {
       console.error(error);
     }
     return setOpenModal({ filter: false, buttonOrange: false });
@@ -167,14 +165,15 @@ const Form = ({ setOpenModal }: props) => {
           </div>
 
           <UploadImages
+            errors={errors}
+            register={register}
             setImgsSrc={setImgsSrc}
             setThumbnailSrc={setThumbnailSrc}
           />
           <div className="w-full ">
             <Editor
               value={description}
-              onChange={(value) =>  setDescription(value)
-              }
+              onChange={(value) => setDescription(value)}
             />
           </div>
         </div>

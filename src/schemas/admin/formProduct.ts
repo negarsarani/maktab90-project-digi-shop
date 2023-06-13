@@ -1,5 +1,16 @@
 import * as yup from 'yup';
+const MAX_FILE_SIZE = 102400; //100KB
 
+const validFileExtensions = {
+  image: ['jpg', 'gif', 'png', 'jpeg', 'svg', 'webp'],
+};
+
+function isValidFileType(fileName, fileType) {
+  return (
+    fileName &&
+    validFileExtensions[fileType].indexOf(fileName.split('.').pop()) > -1
+  );
+}
 const formProduct = yup.object().shape({
   name: yup
     .string()
@@ -18,6 +29,16 @@ const formProduct = yup.object().shape({
     .required('مبلغ کالا الزامی می باشد'),
   category: yup.string().required('دسته بندی الزامی می باشد'),
   subcategory: yup.string().required('زیر دسته بندی الزامی می باشد'),
-  // description: yup.string().required('توضیحات کالا الزامی می باشد'),
+  images: yup
+    .mixed()
+    .test(
+      'is-valid-type',
+      'تایپ های عکس باید jpg, gif, png, jpeg, svg, webp باشند',
+      (value) =>
+        isValidFileType(value !== '' && value?.name?.toLowerCase(), 'image')
+    )
+    .required('مبلغ کالا الزامی می باشد'),
+  thumbnail: yup.string().required('تامبنیل الزامی می باشد')
 });
+
 export default formProduct;

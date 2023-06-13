@@ -42,3 +42,14 @@ export interface OrderedCategory {
     category: string;
   }[];
 }
+export interface ProductModal {
+  name: string;
+  brand: string;
+  quantity: string;
+  price: string;
+  category: string;
+  subcategory: string;
+  [key: string]: string;
+  images: string,
+  thumbnail: string,
+}

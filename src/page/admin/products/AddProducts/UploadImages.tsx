@@ -1,15 +1,21 @@
 import Image from 'next/image';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
+import { ProductModal } from '@/types/type';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
 interface props {
-  setImgsSrc: Dispatch<SetStateAction<unknown[]>>;
+  register: UseFormRegister<ProductModal>;
 
-  setThumbnailSrc: Dispatch<SetStateAction<string |unknown[]>>;
+  setImgsSrc: Dispatch<SetStateAction<never[] | unknown[]>>;
+  errors: FieldErrors<{ images: string; thumbnail: string }>;
+
+  setThumbnailSrc: Dispatch<SetStateAction<never | unknown>>;
 }
 const UploadImages = ({
+  register,
   setImgsSrc,
-
   setThumbnailSrc,
+  errors,
 }: props) => {
   const [currentImages, setCurrentImages] = useState<string[]>([]);
   const [currentThumbnail, setCurrentThumbnail] = useState('');
@@ -27,16 +33,16 @@ const UploadImages = ({
       };
     }
     const imageName2 = e.currentTarget.files;
-    
+
     const entries = Object.entries(imageName2);
-    
+
     const Array = entries.map((item) => item[1]);
-   return setImgsSrc(Array);
+    return setImgsSrc(Array);
   };
   const HandleThumbnails = (e: any) => {
     const file = e.target.files[0];
     console.log(Array);
-    
+
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
@@ -47,21 +53,20 @@ const UploadImages = ({
     };
     const imageName2 = e.currentTarget.files;
     const entries = Object.entries(imageName2);
-   return setThumbnailSrc(imageName2[0]);
-
+    return setThumbnailSrc(imageName2[0]);
   };
 
   return (
     <>
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-        <div className="col-span-full">
+        <div className="col-span-full flex flex-col w-full justify-center items-center">
           <label
             htmlFor="cover-photo"
-            className="block text-sm font-medium leading-6 text-gray-900"
+            className="flex  justify-start w-full text-sm font-medium leading-6 text-gray-900"
           >
             آپلود عکس های اصلی
           </label>
-          <div className="mt-2 flex  flex-col justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+          <div className="mt-2 flex w-full flex-col justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
             <div className="text-center flex flex-col items-center justify-center">
               {currentImages.length !== 0 ? (
                 <div className="flex flex-wrap gap-2 items-center justify-center mt-10">
@@ -86,15 +91,16 @@ const UploadImages = ({
 
               <div className="mt-4 flex items-center justify-center text-sm leading-6 text-gray-600">
                 <label
-                  htmlFor="mainImages"
+                  htmlFor="images"
                   className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                 >
                   <span className="text-orangeAdmin">
                     فایل خود را انتخاب کنید
                   </span>
                   <input
-                    id="mainImages"
-                    name="mainImages"
+                    {...register('images')}
+                    id="images"
+                    name="images"
                     type="file"
                     className="sr-only"
                     multiple
@@ -103,18 +109,21 @@ const UploadImages = ({
                 </label>
               </div>
             </div>
+          </div>{' '}
+          <div className="h-5 text-orangeAdmin pt-2">
+            {errors.images?.message}
           </div>
         </div>
       </div>
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-        <div className="col-span-full">
+        <div className="col-span-full flex flex-col w-full items-center justify-center">
           <label
             htmlFor="cover-photo"
-            className="block text-sm font-medium leading-6 text-gray-900"
+            className="flex justify-start text-sm font-medium w-full leading-6 text-gray-900"
           >
             آپلود عکس تامبنیل
           </label>
-          <div className="mt-2 flex  flex-col justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+          <div className="mt-2 flex w-full flex-col justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
             <div className="text-center flex flex-col items-center justify-center">
               {currentThumbnail !== '' ? (
                 <div className="w-20 aspect-square">
@@ -142,6 +151,7 @@ const UploadImages = ({
                     فایل خود را انتخاب کنید
                   </span>
                   <input
+                    {...register('thumbnail')}
                     id="thumbnail"
                     name="thumbnail"
                     type="file"
@@ -149,10 +159,13 @@ const UploadImages = ({
                     onChange={HandleThumbnails}
                   />
                 </label>
+               
               </div>
-            </div>
+            </div> 
             <div className="flex flex-wrap gap-2 items-center justify-center mt-10"></div>
-          </div>
+          </div><div className="h-5 text-orangeAdmin pt-2">
+                  {errors.thumbnail?.message}
+                </div>
         </div>
       </div>
     </>

@@ -1,4 +1,5 @@
 import useCategory from '@/data/shared';
+import { ProductModal } from '@/types/type';
 import React, { useState } from 'react';
 import {
   Controller,
@@ -7,14 +8,7 @@ import {
   useForm,
 } from 'react-hook-form';
 interface props {
-  register: UseFormRegister<{
-    name: string;
-    brand: string;
-    quantity: string;
-    price: string;
-    category: string;
-    subcategory: string;
-  }>;
+  register: UseFormRegister<ProductModal>;
   errors: FieldErrors<{ category: string; subcategory: string }>;
 }
 const SelectBox = ({ register, errors }: props) => {
