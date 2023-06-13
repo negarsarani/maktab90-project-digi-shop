@@ -1,4 +1,7 @@
+import getData from '@/api/getData';
 import { Button } from '@/components';
+import useRedux from '@/hooks/useRedux';
+import { ACTIVE } from '@/redux/slice';
 import Image from 'next/image';
 import React, { Dispatch, SetStateAction } from 'react';
 interface props {
@@ -10,7 +13,8 @@ interface props {
     }>
   >;
 }
-const Edit = ({ id ,  setIsOpen}: props) => {
+const Edit = ({ id, setIsOpen }: props) => {
+  const [value, dispatch] = useRedux((state) => state.formProductState);
   return (
     <Button className="text-sm text-gray-900 w-full" type="button">
       <Image
@@ -20,10 +24,11 @@ const Edit = ({ id ,  setIsOpen}: props) => {
         height={20}
         id={id}
         onClick={() => {
-          return setIsOpen({
+          setIsOpen({
             Edit: true,
             Delete: false,
           });
+          getData(`products/${id}`).then((res) => dispatch(ACTIVE(res.data.product)));
         }}
       />
     </Button>

@@ -3,24 +3,27 @@ import { Button, Input } from '@/components';
 import SelectBox from './SelectBox';
 import UploadImages from './UploadImages';
 import dynamic from 'next/dynamic';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Dispatch, SetStateAction, useState } from 'react';
 import formProduct from '@/schemas/admin/formProduct';
 import postData from '@/api/postData';
 import { ProductModal } from '@/types/type';
+import useRedux from '@/hooks/useRedux';
 
 interface props {
-  setOpenModal: Dispatch<
-    SetStateAction<{ filter: boolean; buttonOrange: boolean }>
-  >;
-  refetch:()=>void;
+  setOpenModal:
+    | Dispatch<SetStateAction<{ filter: boolean; buttonOrange: boolean }>>
+    | Dispatch<SetStateAction<{ Edit: boolean; Delete: boolean }>>;
+  refetch: () => void;
+  editFlag?: boolean;
 }
 
-const Form = ({ setOpenModal , refetch}: props) => {
+const Form = ({ setOpenModal, refetch, editFlag }: props) => {
   const [imgsSrc, setImgsSrc] = useState<unknown[] | never[]>([]);
   const [thumbnailSrc, setThumbnailSrc] = useState<unknown | string>('');
   const [description, setDescription] = useState('ss');
+  const [value , dispatch] = useRedux(state => state.formProductState)
   const {
     register,
     handleSubmit,
@@ -44,7 +47,8 @@ const Form = ({ setOpenModal , refetch}: props) => {
   let formData = new FormData();
   const Editor = dynamic(() => import('./TextEditor'), { ssr: false });
   const onSubmit = (data: ProductModal) => {
-    console.log(data);
+    // if (editFlag) {
+    // }
     Object.keys(data).map((key: any) => {
       if (key !== 'images' && key !== 'thumbnail') {
         return formData.append(key, data[key]);
@@ -53,13 +57,13 @@ const Form = ({ setOpenModal , refetch}: props) => {
     formData.append('description', description);
     console.log(imgsSrc);
     console.log(thumbnailSrc);
-    
+
     imgsSrc.map((item: any) => {
       formData.append('images', item);
     });
     formData.append('thumbnail', thumbnailSrc);
     try {
-      postData('/products', formData).then((res) =>refetch());
+      postData('/products', formData).then((res) => refetch());
     } catch (error) {
       console.error(error);
     }
@@ -184,7 +188,11 @@ const Form = ({ setOpenModal , refetch}: props) => {
 
         <div className="mt-6 flex items-center justify-end gap-x-6">
           <Button
-            onClick={() => setOpenModal({ filter: false, buttonOrange: false })}
+            onClick={() =>
+              editFlag
+                ? setOpenModal({ filter: false, buttonOrange: false })
+                : setOpenModal({ Edit: false, Delete: false })
+            }
             type="button"
             className="text-sm font-semibold leading-6 text-gray-900"
           >

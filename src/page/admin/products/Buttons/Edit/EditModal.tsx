@@ -1,5 +1,6 @@
 import { Modal } from '@/page/admin/shared';
 import React, { Dispatch, SetStateAction } from 'react';
+import Form from '../../AddProducts/Form';
 interface props {
   isOpen: boolean;
   setIsOpen: Dispatch<
@@ -8,11 +9,12 @@ interface props {
       Delete: boolean;
     }>
   >;
+  refetch: () => void;
 }
-const EditModal = ({ isOpen, setIsOpen }: props) => {
+const EditModal = ({ isOpen, setIsOpen, refetch }: props) => {
   return (
     <Modal openModal={isOpen} setOpenModal={setIsOpen} name="Edit">
-      <div className='mt-10'>sadad</div>
+      <Form setOpenModal={setIsOpen} refetch={refetch}  editFlag={isOpen}/>
     </Modal>
   );
 };

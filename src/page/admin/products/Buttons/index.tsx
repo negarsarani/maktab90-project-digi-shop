@@ -16,7 +16,7 @@ const ButtonsAction = ({ id, nameProduct, refetch }: props) => {
 
   return (
     <>
-      {isOpen.Edit && <EditModal isOpen={isOpen.Edit} setIsOpen={setIsOpen} />}
+      {isOpen.Edit && <EditModal refetch={refetch} isOpen={isOpen.Edit} setIsOpen={setIsOpen} />}
       {isOpen.Delete && (
         <DeleteModal
         id={id}

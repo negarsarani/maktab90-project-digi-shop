@@ -8,7 +8,6 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import useGetQuery from '@/hooks/useGetQuery';
 import { SortIcon } from '../shared/SortIcon';
-import useCategory from '@/data/shared';
 import ButtonsAction from './Buttons';
 type itemType = {};
 
@@ -17,7 +16,6 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
   const [sortObj, setSortObj] = useState({ key: '' });
   const router = useRouter();
   const queries = useGetQuery();
-  const [category, subCategory] = useCategory();
   useEffect(() => {
     const slicePath = valueAdmin.products.url.path.split('?')[1];
     router.push({

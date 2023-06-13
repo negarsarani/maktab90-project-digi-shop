@@ -18,9 +18,9 @@ export type TableProps = {
 };
 
 export type ChildAdminInit = {
-  filter:string,
+  filter: string;
   sort: string;
-  options: { limit: number; page: number , totalPages: number | string};
+  options: { limit: number; page: number; totalPages: number | string };
   url: { keyApi: string; path: string };
   data: any[];
 };
@@ -43,13 +43,13 @@ export interface OrderedCategory {
   }[];
 }
 export interface ProductModal {
+  [key: string]: string |never[];
   name: string;
   brand: string;
   quantity: string;
   price: string;
   category: string;
   subcategory: string;
-  [key: string]: string;
-  images: string,
-  thumbnail: string,
+  images: never[];
+  thumbnail: string;
 }
