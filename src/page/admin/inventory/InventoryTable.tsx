@@ -82,7 +82,7 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
                 </div>
               </Td>
               <Td key={item.name} className="py-4 px-6 border-b  w-[14rem] ">
-              <EditText values={item.price}/>
+              <EditText id={item._id} values={item.price} name={"price"}/>
 
                 {/* {selectedItemId.price && selectedItemId.id === item._id ? (
                   <div className="flex items-center lg:w-full w-[14rem] justify-center ">
@@ -109,7 +109,7 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
                 )} */}
               </Td>
               <Td key={item.name} className="py-4 px-6 border-b w-[14rem] ">
-                <EditText values={item.quantity}/>
+                <EditText values={item.quantity} name={"quantity"} id={item._id}/>
                 {selectedItemId.Inventory && selectedItemId.id === item._id  (
                 //   <div className="flex items-center lg:w-full w-[14rem] justify-center ">
                 //     <Input

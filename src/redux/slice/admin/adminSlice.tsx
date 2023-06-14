@@ -1,7 +1,12 @@
 import { ChildAdminInit } from '@/types/type';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-interface inventory extends ChildAdminInit{
-  updateItems:{id:string , price:number , quantity:number}[]
+interface inventory extends ChildAdminInit {
+  updateItems: {
+    id: string;
+    price?: undefined | number | string;
+    quantity?: number | string | undefined;
+    [key: string]: string | number | undefined;
+  }[];
 }
 export interface AdminStore {
   products: ChildAdminInit;
@@ -24,7 +29,7 @@ const initialState: AdminStore = {
     options: { limit: 4, page: 1, totalPages: '' },
     url: { keyApi: 'products', path: 'products?page=1&limit=4' },
     data: [],
-    updateItems:[]
+    updateItems: [],
   },
   orders: {
     filter: '',
@@ -52,6 +57,7 @@ export const adminSlice = createSlice({
       state,
       action: PayloadAction<{ name: keyof AdminStore; item: string }>
     ) => {
+      state.inventory.updateItems = [];
       const { name, item } = action.payload;
       if (item === 'Next') {
         state[name].options.page = ++state[name].options.page;
@@ -65,7 +71,6 @@ export const adminSlice = createSlice({
       state[
         name
       ].url.path = `${state[name].url.keyApi}?page=${state[name].options.page}&limit=${state[name].options.limit}`;
-      console.log(state[name].data.length);
     },
     SORTDATA: (state, action) => {
       const { name, sortItem } = action.payload;
@@ -102,22 +107,37 @@ export const adminSlice = createSlice({
     DELETEITEM: (state, action) => {
       const { name } = action.payload;
       if ((state[name].data.length = 1)) {
-        console.log('111111');
-
         state[name].options.page > 1 &&
           (state[name].options.page = --state[name].options.page);
         let newUrl = state[name].url.path?.replace(
           /page=\d+/,
           `page=${state[name].options.page}`
         );
-        console.log(newUrl);
-        console.log(state[name].url.path);
-        state[name].url.path = newUrl;
 
-        console.log(state[name].url.path);
+        state[name].url.path = newUrl;
       }
     },
-    UPDATAINVENTORY: (state, action) => {},
+    UPDATAINVENTORY: (state, action) => {
+      const { item, type } = action?.payload;
+      const newItem: any = { id: item?.id };
+      newItem[item?.name] = item?.value;
+      console.log(newItem);
+
+      if (type === 'newAdd') {
+        state.inventory.updateItems = [...state.inventory.updateItems, newItem];
+      } else if (type === 'valueAdd') {
+        const arrayProduct = state.inventory.updateItems.map((product) => {
+          if (product.id === item.id) {
+            product[item.name] = item.value;
+            return product;
+          }
+          return product;
+        });
+        state.inventory.updateItems = [...arrayProduct];
+      } else {
+        state.inventory.updateItems = [];
+      }
+    },
   },
 });
 
@@ -128,6 +148,7 @@ export const {
   FILTERDATA,
   FILTERREMOVE,
   DELETEITEM,
+  UPDATAINVENTORY,
 } = adminSlice.actions;
 
 export default adminSlice.reducer;
