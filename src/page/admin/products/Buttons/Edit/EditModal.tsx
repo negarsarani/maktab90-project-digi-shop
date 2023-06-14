@@ -1,6 +1,12 @@
 import { Modal } from '@/page/admin/shared';
 import React, { Dispatch, SetStateAction } from 'react';
 import Form from '../../AddProducts/Form';
+import getData from '@/api/getData';
+import useRedux from '@/hooks/useRedux';
+import { ACTIVE } from '@/redux/slice';
+import useQueries from '@/hooks/useQueries';
+import CircularProgress from '@mui/material/CircularProgress';
+
 interface props {
   isOpen: boolean;
   setIsOpen: Dispatch<
@@ -10,12 +16,28 @@ interface props {
     }>
   >;
   refetch: () => void;
+  id: string;
 }
-const EditModal = ({ isOpen, setIsOpen, refetch }: props) => {
+const EditModal = ({ isOpen, setIsOpen, refetch, id }: props) => {
+  const [isLoading, data, isError, refetchs] = useQueries(
+    () => getData(`products/${id}`),
+    ['product', id]
+  );
+  const [value, dispatch] = useRedux((state) => state.formProductState);
+  if (data) {
+     dispatch(ACTIVE(data.data.product));
+  }
   return (
-    <Modal openModal={isOpen} setOpenModal={setIsOpen} name="Edit">
-      <Form setOpenModal={setIsOpen} refetch={refetch}  editFlag={isOpen}/>
-    </Modal>
+    <>
+      {' '}
+      <Modal openModal={isOpen} setOpenModal={setIsOpen} name="Edit">
+        {isLoading ? (
+          <CircularProgress color="secondary"/>
+        ) : (
+          <Form setOpenModal={setIsOpen} refetch={refetch} editFlag={isOpen} />
+        )}
+      </Modal>
+    </>
   );
 };
 

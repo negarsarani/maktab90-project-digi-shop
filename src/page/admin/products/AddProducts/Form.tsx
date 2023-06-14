@@ -27,18 +27,32 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
   const [defaultValue, setDefaultValue] = useState();
 
   console.log(value);
-  // useEffect(() => {
-  //   setDefaultValue({
-  //     name: value.name,
-  //     brand: value.name,
-  //     quantity: value.quantity,
-  //     price: value.price,
-  //     category: value.category,
-  //     subcategory: value.subcategory,
-  //     images: value.images,
-  //     thumbnail: value.thumbnail,
-  //   });
-  // }, [editFlag]);
+  useEffect(() => {
+    if (editFlag) {
+      setDefaultValue({
+        name: value.name,
+        brand: value.name,
+        quantity: value.quantity,
+        price: value.price,
+        category: value.category,
+        subcategory: value.subcategory,
+        images: value.images,
+        thumbnail: value.thumbnail,
+      });
+    } else {
+      setDefaultValue({
+        name: '',
+        brand: '',
+        quantity: '',
+        price: '',
+        category: '',
+        subcategory: '',
+        images: [],
+        thumbnail: '',
+      });
+    }
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -48,16 +62,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
   } = useForm({
     resolver: yupResolver(formProduct),
     mode: 'all',
-    defaultValues: {
-      name: '',
-      brand: '',
-      quantity: '',
-      price: '',
-      category: '',
-      subcategory: '',
-      images: [],
-      thumbnail: '',
-    },
+    defaultValues: defaultValue,
   });
   let formData = new FormData();
   const Editor = dynamic(() => import('./TextEditor'), { ssr: false });
@@ -196,8 +201,8 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
           </div>
 
           <UploadImages
-          editFlag={editFlag}
-          value={value}
+            editFlag={editFlag}
+            value={value}
             errors={errors}
             register={register}
             setImgsSrc={setImgsSrc}

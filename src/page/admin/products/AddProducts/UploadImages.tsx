@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { PhotoIcon } from '@heroicons/react/24/solid';
 import { ProductModal } from '@/types/type';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
@@ -10,7 +10,7 @@ interface props {
   errors: FieldErrors<{ images: string; thumbnail: string }>;
 
   setThumbnailSrc: Dispatch<SetStateAction<never | unknown>>;
-  editFlag:boolean
+  editFlag:boolean | undefined
   value:{images: string[]; thumbnail: string}
 }
 const UploadImages = ({
@@ -23,9 +23,18 @@ const UploadImages = ({
 }: props) => {
   const [currentImages, setCurrentImages] = useState<string[]>([]);
   const [currentThumbnail, setCurrentThumbnail] = useState('');
-  // if(){
-  //   currentImages
-  // }
+  useEffect(()=>{
+    if(editFlag){
+    const congigImage =value.images.map(item => `http://localhost:8000/images/products/images/${item}`)
+    const congigThumbnail = `http://localhost:8000/images/products/images/${value.thumbnail}`
+    console.log("img" ,congigImage);
+    console.log( "thumb" ,congigThumbnail);
+    
+    setCurrentImages(congigImage)
+    setCurrentThumbnail(congigThumbnail)
+  }
+  },[])
+  
   const HandlemainImages = (e: any) => {
     for (const file of e.target.files) {
       console.log(e.target.files);
@@ -162,7 +171,7 @@ const UploadImages = ({
                     id="thumbnail"
                     name="thumbnail"
                     type="file"
-                    value={EditImage}
+                    // value={EditImage}
                     className="sr-only"
                     onChange={HandleThumbnails}
                   />
