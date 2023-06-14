@@ -4,6 +4,7 @@ import { headerInventoryTable } from '@/data/admin';
 import { Input } from '@/components';
 import { useState } from 'react';
 import { Tbody, Th, Thead, Td } from '@/page/admin';
+import EditText from './changeInput';
 
 const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
   const [changeData, setChangeData] = useState([]);
@@ -65,7 +66,7 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
                 <div className="  flex  lg:w-full w-[6rem] items-center justify-center">
                   <div className=''>
                     <Image
-                    src={item.images[0]}
+                    src={`http://localhost:8000/images/products/images/${item.images[0]}`}
                     alt={'item.name'}
                     className="rounded-xl "
                     width={70}
@@ -81,7 +82,9 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
                 </div>
               </Td>
               <Td key={item.name} className="py-4 px-6 border-b  w-[14rem] ">
-                {selectedItemId.price && selectedItemId.id === item._id ? (
+              <EditText values={item.price}/>
+
+                {/* {selectedItemId.price && selectedItemId.id === item._id ? (
                   <div className="flex items-center lg:w-full w-[14rem] justify-center ">
                     <Input
                       className="text-sm text-center  w-full flex items-center justify-center py-3   bg-white border-opacity-40 border-2 rounded-lg  border-orangeAdmin focus:border-none focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-orangeAdmin shadow-md text-gray-900 placeholder:py-2"
@@ -103,32 +106,40 @@ const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
                       {item.price}
                     </span>
                   </div>
-                )}
+                )} */}
               </Td>
               <Td key={item.name} className="py-4 px-6 border-b w-[14rem] ">
-                {selectedItemId.Inventory && selectedItemId.id === item._id ? (
-                  <div className="flex items-center lg:w-full w-[14rem] justify-center ">
-                    <Input
-                      className="text-sm text-center w-full flex items-center justify-center py-3 w0full  bg-white border-opacity-40 border-2 rounded-lg  border-orangeAdmin focus:border-none focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-orangeAdmin shadow-md text-gray-900 placeholder:py-2"
-                      placeholder="فاقد موجودی"
-                      type="number"
-                      name="price"
-                      id="inventoryInput"
-                    />
-                  </div>
-                ) : (
-                  <div className="flex items-center  lg:w-full w-[14rem] justify-center   ">
-                    <span
-                      className="text-sm text-center w-full flex items-center justify-center  py-3  bg-white border-2 rounded-xl  border-gray-100  shadow-md  text-gray-900"
-                      id="inventory"
-                      onClick={(event: React.MouseEvent<HTMLElement>) =>
-                        handleInputChange(item._id, event.currentTarget.id)
-                      }
-                    >
-                      {item.quantity}
-                    </span>
-                  </div>
-                )}
+                <EditText values={item.quantity}/>
+                {selectedItemId.Inventory && selectedItemId.id === item._id  (
+                //   <div className="flex items-center lg:w-full w-[14rem] justify-center ">
+                //     <Input
+                //       className="text-sm text-center w-full flex items-center justify-center py-3 w0full  bg-white border-opacity-40 border-2 rounded-lg  border-orangeAdmin focus:border-none focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-orangeAdmin shadow-md text-gray-900 placeholder:py-2"
+                //       placeholder="فاقد موجودی"
+                //       type="number"
+                //       name="price"
+                //       id="inventoryInput"
+                //     />
+                //     <div>
+                    
+
+                //     </div>
+                //   </div>
+                // ) : (
+                //   <div className="flex items-center  lg:w-full w-[14rem] justify-center   ">
+                //     <span
+                //       className="text-sm text-center w-full flex items-center justify-center  py-3  bg-white border-2 rounded-xl  border-gray-100  shadow-md  text-gray-900"
+                //       id="inventory"
+                //       onClick={(event: React.MouseEvent<HTMLElement>) =>
+                //         handleInputChange(item._id, event.currentTarget.id)
+                //       }
+                //     >
+                //       {item.quantity}
+                //     </span>
+                    
+                //   </div>
+                )
+                }
+                
               </Td>
             </tr>
           );

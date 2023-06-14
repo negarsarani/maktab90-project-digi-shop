@@ -1,8 +1,11 @@
 import { ChildAdminInit } from '@/types/type';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+interface inventory extends ChildAdminInit{
+  updateItems:{id:string , price:number , quantity:number}[]
+}
 export interface AdminStore {
   products: ChildAdminInit;
-  inventory: ChildAdminInit;
+  inventory: inventory;
   orders: ChildAdminInit;
   [key: string]: ChildAdminInit | any;
 }
@@ -21,6 +24,7 @@ const initialState: AdminStore = {
     options: { limit: 4, page: 1, totalPages: '' },
     url: { keyApi: 'products', path: 'products?page=1&limit=4' },
     data: [],
+    updateItems:[]
   },
   orders: {
     filter: '',
@@ -98,22 +102,22 @@ export const adminSlice = createSlice({
     DELETEITEM: (state, action) => {
       const { name } = action.payload;
       if ((state[name].data.length = 1)) {
-        console.log("111111");
-        
-        state[name].options.page > 1 && (state[name].options.page = --state[name].options.page)
-      let newUrl = state[name].url.path?.replace(
-        /page=\d+/,
-        `page=${state[name].options.page}`
-      );
-      console.log(newUrl);
-      console.log( state[name].url.path);
-        state[name].url.path = newUrl;
-   
-      console.log( state[name].url.path);
-      }
+        console.log('111111');
 
-      
+        state[name].options.page > 1 &&
+          (state[name].options.page = --state[name].options.page);
+        let newUrl = state[name].url.path?.replace(
+          /page=\d+/,
+          `page=${state[name].options.page}`
+        );
+        console.log(newUrl);
+        console.log(state[name].url.path);
+        state[name].url.path = newUrl;
+
+        console.log(state[name].url.path);
+      }
     },
+    UPDATAINVENTORY: (state, action) => {},
   },
 });
 
