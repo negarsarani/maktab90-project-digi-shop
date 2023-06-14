@@ -27,35 +27,33 @@ const UploadImages = ({
   const [currentThumbnail, setCurrentThumbnail] = useState('');
   useEffect(() => {
     if (editFlag) {
-      const congigImage = value.images.map(
-        (item) => `http://localhost:8000/images/products/images/${item}`
+      const configImage: { id: string; img: string }[] = value.images.map(
+        (item) => {
+          const generateId: any = setTimeout(() => Date.now(), 400);
+          return {
+            id: generateId,
+            img: `http://localhost:8000/images/products/images/${item}`,
+          };
+        }
       );
-      const congigThumbnail = `http://localhost:8000/images/products/images/${value.thumbnail}`;
-      console.log('img', congigImage);
-      console.log('thumb', congigThumbnail);
+      const congigThumbnail = `http://localhost:8000/images/products/thumbnails/${value.thumbnail}`;
 
-      setCurrentImages(congigImage);
+      setCurrentImages(configImage);
       setCurrentThumbnail(congigThumbnail);
     }
   }, []);
 
   const HandlemainImages = (e: any) => {
-   const array = Object.entries(e.target.files)
-   array.map((file:any) => {
-     const reader = new FileReader();
-    const generateId  = setTimeout(() => Date.now(), 400);
+    const array = Object.entries(e.target.files);
+    array.map((file: any) => {
+      const reader = new FileReader();
+      const generateId = setTimeout(() => Date.now(), 400);
       reader.readAsDataURL(file[1]);
       reader.onload = () => {
-  
-       return  setCurrentImages((imgs: { id: number; img: string }) => [
-          ...imgs,
-          { id: generateId, img: reader.result },
-        ]);  
-        
-        
+        return setCurrentImages((imgs: { id: string; img: string }) => {
+          return [...imgs, { id: generateId, img: reader.result }];
+        });
       };
-    
-      
     });
 
     const imageName2 = e.currentTarget.files;
@@ -89,7 +87,7 @@ const UploadImages = ({
       const id = event.target.id;
       const filterImg = currentImages.filter((item) => +item.id !== +id);
       console.log(currentImages, id);
-      setCurrentImages(filterImg)
+      setCurrentImages(filterImg);
       // console.log(filterImg , id);
     } else {
       setCurrentThumbnail('');
@@ -116,7 +114,7 @@ const UploadImages = ({
                         src={link.img}
                         width={50}
                         height={50}
-                        alt="l"
+                        alt="عکس کالا"
                       />
                       <Image
                         className="absolute top-2 right-2 cursor-pointer"
@@ -182,7 +180,7 @@ const UploadImages = ({
                     src={currentThumbnail}
                     width={50}
                     height={50}
-                    alt="l"
+                    alt="عکس کالا"
                   />
                   <Image
                     className="absolute top-2 right-2 cursor-pointer"

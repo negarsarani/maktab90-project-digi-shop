@@ -193,6 +193,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
               </div>
 
               <SelectBox
+              value={value}
                 register={register}
                 errors={errors}
                 editFlag={editFlag}

@@ -10,7 +10,6 @@ interface Props {
 const Form = ({ errors, register }: Props) => {
   return (
     <>
-      {' '}
       <div>
         <label
           htmlFor="email"
