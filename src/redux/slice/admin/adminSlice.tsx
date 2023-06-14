@@ -152,27 +152,3 @@ export const {
 } = adminSlice.actions;
 
 export default adminSlice.reducer;
-// const [valueAdmin, dispatch] = useRedux((state) => state.adminState);
-// const [active, setActive] = useState(false);
-// const [loading, data] = useQueries(() => deleteData(`products/${id}`), ['Delete']);
-// const HandleDelete = () => {
-//   setActive(true);
-//   console.log(data);
-
-//   dispatch(DELETEITEM({ name: 'products' , item:data}));
-//   return setTimeout(() => {
-//     return refetch();
-//   }, 300);
-//   // if (isError) {
-//   //   toast.error('خطای شبکه  لطفا دوباره امتحان کنید', {
-//   //     position: 'top-right',
-//   //     autoClose: 5000,
-//   //     hideProgressBar: false,
-//   //     closeOnClick: true,
-//   //     pauseOnHover: true,
-//   //     draggable: true,
-//   //     progress: undefined,
-//   //     theme: 'light',
-//   //   });
-//   // }
-// };
