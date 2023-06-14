@@ -24,7 +24,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
   const [thumbnailSrc, setThumbnailSrc] = useState<unknown | string>('');
   const [description, setDescription] = useState('ss');
   const [value, dispatch] = useRedux((state) => state.formProductState);
-  const [defaultValue, setDefaultValue] = useState();
+  const [defaultValue, setDefaultValue] = useState<ProductModal>();
 
   console.log(value);
   useEffect(() => {
