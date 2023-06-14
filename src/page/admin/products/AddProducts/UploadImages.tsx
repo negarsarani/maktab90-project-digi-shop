@@ -10,8 +10,8 @@ interface props {
   errors: FieldErrors<{ images: string; thumbnail: string }>;
 
   setThumbnailSrc: Dispatch<SetStateAction<never | unknown>>;
-  editFlag:boolean | undefined
-  value:{images: string[]; thumbnail: string}
+  editFlag: boolean | undefined;
+  value: { images: string[]; thumbnail: string };
 }
 const UploadImages = ({
   register,
@@ -19,35 +19,45 @@ const UploadImages = ({
   setThumbnailSrc,
   errors,
   editFlag,
-  value
+  value,
 }: props) => {
-  const [currentImages, setCurrentImages] = useState<string[]>([]);
+  const [currentImages, setCurrentImages] = useState<
+    { id: string; img: string }[]
+  >([]);
   const [currentThumbnail, setCurrentThumbnail] = useState('');
-  useEffect(()=>{
-    if(editFlag){
-    const congigImage =value.images.map(item => `http://localhost:8000/images/products/images/${item}`)
-    const congigThumbnail = `http://localhost:8000/images/products/images/${value.thumbnail}`
-    console.log("img" ,congigImage);
-    console.log( "thumb" ,congigThumbnail);
-    
-    setCurrentImages(congigImage)
-    setCurrentThumbnail(congigThumbnail)
-  }
-  },[])
-  
-  const HandlemainImages = (e: any) => {
-    for (const file of e.target.files) {
-      console.log(e.target.files);
+  useEffect(() => {
+    if (editFlag) {
+      const congigImage = value.images.map(
+        (item) => `http://localhost:8000/images/products/images/${item}`
+      );
+      const congigThumbnail = `http://localhost:8000/images/products/images/${value.thumbnail}`;
+      console.log('img', congigImage);
+      console.log('thumb', congigThumbnail);
 
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        setCurrentImages((imgs: string) => [...imgs, reader.result]);
-      };
-      reader.onerror = () => {
-        console.log(reader.error);
-      };
+      setCurrentImages(congigImage);
+      setCurrentThumbnail(congigThumbnail);
     }
+  }, []);
+
+  const HandlemainImages = (e: any) => {
+   const array = Object.entries(e.target.files)
+   array.map((file:any) => {
+     const reader = new FileReader();
+    const generateId  = setTimeout(() => Date.now(), 400);
+      reader.readAsDataURL(file[1]);
+      reader.onload = () => {
+  
+       return  setCurrentImages((imgs: { id: number; img: string }) => [
+          ...imgs,
+          { id: generateId, img: reader.result },
+        ]);  
+        
+        
+      };
+    
+      
+    });
+
     const imageName2 = e.currentTarget.files;
 
     const entries = Object.entries(imageName2);
@@ -71,7 +81,20 @@ const UploadImages = ({
     const Array = entries.map((item) => item[1]);
     return setThumbnailSrc(Array[0]);
   };
-
+  const handleDeleteImg = (
+    event: any,
+    name: 'currentImages' | 'currentThumbnail'
+  ) => {
+    if (name === 'currentImages') {
+      const id = event.target.id;
+      const filterImg = currentImages.filter((item) => +item.id !== +id);
+      console.log(currentImages, id);
+      setCurrentImages(filterImg)
+      // console.log(filterImg , id);
+    } else {
+      setCurrentThumbnail('');
+    }
+  };
   return (
     <>
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -87,13 +110,24 @@ const UploadImages = ({
               {currentImages.length !== 0 ? (
                 <div className="flex flex-wrap gap-2 items-center justify-center mt-10">
                   {currentImages?.map((link) => (
-                    <div key={link} className="w-20 aspect-square">
+                    <div key={link.id} className="w-20 relative aspect-square">
                       <Image
                         className="object-fill w-full h-full"
-                        src={link}
+                        src={link.img}
                         width={50}
                         height={50}
                         alt="l"
+                      />
+                      <Image
+                        className="absolute top-2 right-2 cursor-pointer"
+                        src={'/icons/close.svg'}
+                        width={20}
+                        height={20}
+                        alt="l"
+                        id={link.id}
+                        onClick={(event: any) =>
+                          handleDeleteImg(event, 'currentImages')
+                        }
                       />
                     </div>
                   ))}
@@ -142,13 +176,23 @@ const UploadImages = ({
           <div className="mt-2 flex w-full flex-col justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
             <div className="text-center flex flex-col items-center justify-center">
               {currentThumbnail !== '' ? (
-                <div className="w-20 aspect-square">
+                <div className="w-20 aspect-square relative">
                   <Image
                     className="object-fill aspect-square w-full h-full"
                     src={currentThumbnail}
                     width={50}
                     height={50}
                     alt="l"
+                  />
+                  <Image
+                    className="absolute top-2 right-2 cursor-pointer"
+                    src={'/icons/close.svg'}
+                    width={20}
+                    height={20}
+                    alt="l"
+                    onClick={(event: any) =>
+                      handleDeleteImg(event, 'currentThumbnail')
+                    }
                   />
                 </div>
               ) : (
@@ -176,13 +220,13 @@ const UploadImages = ({
                     onChange={HandleThumbnails}
                   />
                 </label>
-               
               </div>
-            </div> 
+            </div>
             <div className="flex flex-wrap gap-2 items-center justify-center mt-10"></div>
-          </div><div className="h-5 text-orangeAdmin pt-2">
-                  {errors.thumbnail?.message}
-                </div>
+          </div>
+          <div className="h-5 text-orangeAdmin pt-2">
+            {errors.thumbnail?.message}
+          </div>
         </div>
       </div>
     </>
