@@ -15,52 +15,62 @@ interface props {
 const SaveData = ({ openModal, setOpenModal, name, refetch }: props) => {
   const [DataId, setDataID] = useState<string>();
   const { mutate, isLoading, isError, isSuccess, data } = useMutationQuery(
-    (dataEdit) => patchData(`/products/${DataId}`, dataEdit)
+    (data) => patchData(`/products/${data.id}`, data.dataEdit)
   );
   const [valueAdmin, dispatch] = useRedux((state) => state.adminState);
-  const HandleEdit = () => {
-    valueAdmin.inventory.updateItems.map(
-      (item: { id: string; price?: string; quantity?: string }) => {
-        console.log(item);
-    
-        const formData = new FormData();
-        Object.keys(item).map((key: any) => {
-            if (key !== 'id') {
+  const HandleEdit = async () => {
+    try {
+      const responses = await Promise.all(
+        valueAdmin.inventory.updateItems.map(
+          (item: { id: string; price?: string; quantity?: string }) => {
+            console.log(item);
+
+            const formData = new FormData();
+            Object.keys(item).map((key: any) => {
+              if (key !== 'id') {
                 return formData.append(key, item[key]);
-            }
+              }
+            });
+            // setDataID(item.id);
+            mutate({ dataEdit: formData, id: item.id });
+            // return patchData(`/products/${item.id}`, formData)
+            
+            console.log( isLoading, isError, isSuccess);
+
+          }
+        )
+      );
+      if (!isLoading ) {
+        toast.success('تغییرات  اعمال شد', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
         });
-        setDataID(item.id);
-        
-        return patchData(`/products/${item.id}`, formData)
       }
-    );
-    
-      setTimeout(() => {
-       return refetch()
-      }, 200);
+
+      return refetch();
+    } catch (error) {
+      console.log(error);
+      if (isError) {
+        toast.error('تغییرات با خطا مواجه شد', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      }
+    }
   };
-  isSuccess &&
-      toast.success('تغییرات با موفقیت اعمال شد', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
-    isSuccess &&
-      toast.error('تغییرات با خطا مواجه شد', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+
   return (
     <Modal name={name} openModal={openModal} setOpenModal={setOpenModal}>
       {valueAdmin.inventory.updateItems.length === 0 ? (
