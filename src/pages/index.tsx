@@ -4,6 +4,7 @@ export default function Home() {
   return (
     <div>
       <Slider />
+      HI
     </div>
   );
 }
