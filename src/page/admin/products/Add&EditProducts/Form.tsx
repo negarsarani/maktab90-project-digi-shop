@@ -212,7 +212,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
           <div className="w-full ">
             <Editor
               value={editFlag ? value.description : description}
-              onChange={(value) => setDescription(value)}
+              onChange={(value) => {return setDescription(value)}}
             />
           </div>
         </div>

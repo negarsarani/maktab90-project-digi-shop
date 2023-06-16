@@ -1,3 +1,5 @@
+import { Context } from '@ckeditor/ckeditor5-core';
+import { CKEditorContext } from '@ckeditor/ckeditor5-react';
 import { ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import { QueryClientProvider } from '@tanstack/react-query';
@@ -5,6 +7,8 @@ import theme from '@/styles/Theme/Theme';
 import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { Mainlayout, Adminlayout } from './featured';
+
+
 type LayoutType = {
   Component: any;
   children: ReactNode;
@@ -19,6 +23,7 @@ import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
 import store from '../redux/store';
 import { Provider } from 'react-redux';
 import { queryClient } from '@/react-query/queryClient';
+
 const Layout = ({ Component, children, emotionCache }: LayoutType) => {
   const {
     asPath, // the value: "/question/how-do-you-get-the-current-url-in-nextjs/"
@@ -34,6 +39,7 @@ const Layout = ({ Component, children, emotionCache }: LayoutType) => {
             <Provider store={store}>
               <QueryClientProvider client={queryClient}>
                 <AnimatePresence mode="wait" initial={false}>
+                <CKEditorContext context={Context}>
                   <Adminlayout>{children}</Adminlayout>
                   <ToastContainer
                     position="top-right"
@@ -47,6 +53,8 @@ const Layout = ({ Component, children, emotionCache }: LayoutType) => {
                     pauseOnHover
                     theme="light"
                   />
+                  </CKEditorContext>
+
                   {/* <ReactQueryDevtoolsPanel /> */}
                 </AnimatePresence>
               </QueryClientProvider>

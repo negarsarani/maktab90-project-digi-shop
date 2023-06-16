@@ -10,25 +10,28 @@ import {
 interface props {
   register: UseFormRegister<ProductModal>;
   errors: FieldErrors<{ category: string; subcategory: string }>;
-  value: { category: string; subcategory: string };
+  value: { category: string; subcategory: { _id: string } };
   editFlag: boolean;
 }
 const SelectBox = ({ register, errors, value, editFlag }: props) => {
   const [categories, subCategories] = useCategory();
   const [selectedCategory, SetSelecetesCategory] = useState();
 
+  
   useEffect(() => {
     if (editFlag) {
       const category: string = value.category._id;
       SetSelecetesCategory(category._id);
-      HandleSubCategory()
+      return HandleSubCategory(category._id);
     }
   }, []);
-  const HandleSubCategory = () => {
+  const HandleSubCategory = (itemDefualt?:string) => {
+    console.log(itemDefualt);
+    
     const filterData = subCategories?.filter(
-      (item: { category: string }) => item.category === selectedCategory
+      (item: { category: string }) =>{return itemDefualt ? item.category === itemDefualt :  item.category === selectedCategory }
     );
-    return filterData;
+    return  filterData;
   };
   return (
     <>
@@ -106,8 +109,10 @@ const SelectBox = ({ register, errors, value, editFlag }: props) => {
           >
             {editFlag
               ? HandleSubCategory()?.map(
-                  (item: { _id: string; name: string }) => {                    
-                    return value.subcategory._id === item._id ? (
+                  (item: { _id: string; name: string }) => {
+                    
+                    return value.subcategory._id === item._id ?
+                     (
                       <option
                         key={item._id}
                         id={item._id}
@@ -125,7 +130,6 @@ const SelectBox = ({ register, errors, value, editFlag }: props) => {
                 )
               : HandleSubCategory()?.map(
                   (item: { _id: string; name: string }) => {
-                    
                     return (
                       <option key={item._id} id={item._id} value={item._id}>
                         {item.name}

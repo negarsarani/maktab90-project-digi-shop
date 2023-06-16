@@ -1,6 +1,6 @@
 import { Modal } from '@/page/admin/shared';
 import React, { Dispatch, SetStateAction } from 'react';
-import Form from '../../AddProducts/Form';
+import Form from '../../Add&EditProducts/Form';
 import getData from '@/api/getData';
 import useRedux from '@/hooks/useRedux';
 import { ACTIVE } from '@/redux/slice';
@@ -25,14 +25,14 @@ const EditModal = ({ isOpen, setIsOpen, refetch, id }: props) => {
   );
   const [value, dispatch] = useRedux((state) => state.formProductState);
   if (data) {
-     dispatch(ACTIVE(data.data.product));
+    dispatch(ACTIVE(data.data.product));
   }
   return (
     <>
       {' '}
       <Modal openModal={isOpen} setOpenModal={setIsOpen} name="Edit">
         {isLoading ? (
-          <CircularProgress color="secondary"/>
+          <CircularProgress color="secondary" />
         ) : (
           <Form setOpenModal={setIsOpen} refetch={refetch} editFlag={isOpen} />
         )}
