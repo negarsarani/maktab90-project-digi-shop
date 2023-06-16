@@ -5,6 +5,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import useMutationQuery from '@/hooks/mutationQuery';
 import { toast } from 'react-toastify';
 import patchData from '@/api/patchData';
+import { UPDATAINVENTORY } from '@/redux/slice';
 
 interface props {
   openModal: boolean;
@@ -34,12 +35,12 @@ const SaveData = ({ openModal, setOpenModal, name, refetch }: props) => {
             // setDataID(item.id);
             mutate({ dataEdit: formData, id: item.id });
             // return patchData(`/products/${item.id}`, formData)
-            
             console.log( isLoading, isError, isSuccess);
-
+            return dispatch(UPDATAINVENTORY({item : "" , type:"delete"}))
           }
         )
       );
+      if(isSuccess) return console.log("hi succes");
       if (!isLoading ) {
         toast.success('تغییرات  اعمال شد', {
           position: 'top-right',

@@ -7,25 +7,25 @@ import { Tbody, Th, Thead, Td } from '@/page/admin';
 import EditText from './changeInput';
 
 const InventoryTable = ({ isLoading, value, isError }: TableProps) => {
-  const [changeData, setChangeData] = useState([]);
+  // const [changeData, setChangeData] = useState([]);
   const [selectedItemId, setSelectedItemId] = useState({
     id: '',
     price: false,
     Inventory: false,
   });
-  const handleInputChange = (itemId: string, item: string) => {
-    item === 'inventory'
-      ? setSelectedItemId({
-          id: itemId,
-          price: false,
-          Inventory: true,
-        })
-      : setSelectedItemId({
-          id: itemId,
-          price: true,
-          Inventory: false,
-        });
-  };
+  // const handleInputChange = (itemId: string, item: string) => {
+  //   item === 'inventory'
+  //     ? setSelectedItemId({
+  //         id: itemId,
+  //         price: false,
+  //         Inventory: true,
+  //       })
+  //     : setSelectedItemId({
+  //         id: itemId,
+  //         price: true,
+  //         Inventory: false,
+  //       });
+  // };
   return (
     <table className={`w-full bg-white ${isError && 'h-60'}  `}>
       <Thead className=" ">
