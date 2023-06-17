@@ -12,20 +12,20 @@ interface props {
 }
 function Card({ href, srcImg, name, desc, price, id }: props) {
   return (
-    <div className="bg-white rounded-xl  shadow-xl">
-      <div className='  w-full'>
-         <div className="flex items-center justify-center p-5 w-full">
+    <div className="bg-white rounded-xl pt-6 shadow-xl w-64 ">
+      <div className='  flex items-center justify-center  flex-col gap-7'>
+         <div className="flex items-center justify-center px-5  w-full">
         <Linkrouter href={href}>
           <Image
             src={`http://localhost:8000/images/products/images/${srcImg}`}
             alt={name}
-            width={180}
-            height={180}
+            width={150}
+            height={150}
             className='rounded-xl'
           />
         </Linkrouter>
       </div>
-      <div className='px-5 py-2  w-full '>
+      <div className='px-5 py-2  w-full gap-7 flex flex-col items-center justify-center'>
         <div className='w-full '>
         <div className='truncate'>
           <Linkrouter href={href} className="truncate w-full">
@@ -34,9 +34,9 @@ function Card({ href, srcImg, name, desc, price, id }: props) {
         </div>
         <div className='w-full truncate'>{"ssssssssssssssssssssssssxxxxxxxccccs"}</div>
       </div>
-      <div className="flex justify-between items-center">
+      <div className="flex w-full justify-between items-center gap-10">
         <Button type="button" className="bg-btnCard p-2 rounded-lg">
-          <Linkrouter href={href}>
+          <Linkrouter href={href} >
             <Image
               src={'/icons/user/BuyCard.svg'}
               alt={name}
@@ -45,8 +45,8 @@ function Card({ href, srcImg, name, desc, price, id }: props) {
             />
           </Linkrouter>
         </Button>
-        <div className="flex items-center  gap-1 justify-between">
-          <span>{price}</span> <span>تومان</span>
+        <div className="flex items-center  gap-1 justify-between ">
+          <span className='text-sm'>{price}</span> <span className='text-sm'>تومان</span>
         </div>
       </div>
       </div>

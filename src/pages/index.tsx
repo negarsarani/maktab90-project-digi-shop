@@ -1,15 +1,23 @@
-import { WatchCategory , AccessoriesCategory , LaptopCategory ,MobileCategory , TabletCategory   } from '@/page/user';
+import {
+  WatchCategory,
+  AccessoriesCategory,
+  LaptopCategory,
+  MobileCategory,
+  TabletCategory,
+} from '@/page/user';
 import Slider from '@/page/user/Home/sliderHeader/slider';
 
 export default function Home() {
   return (
     <div>
       <Slider />
-     <WatchCategory/>
-     <AccessoriesCategory/>
-     <TabletCategory/>
-     <MobileCategory/>
-     <LaptopCategory/>
+      <div className=" 2xl:container 2xl:mx-auto lg:px-10 px-5 pb-5">
+        <WatchCategory />
+        <AccessoriesCategory />
+        <TabletCategory />
+        <MobileCategory />
+        <LaptopCategory />
+      </div>
     </div>
   );
 }

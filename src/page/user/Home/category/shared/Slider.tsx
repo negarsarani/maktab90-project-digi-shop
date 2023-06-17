@@ -14,9 +14,9 @@ const Slider = ({ children }: props) => {
       slidesPerView={1}
       spaceBetween={0}
       // centeredSlides={true}
-      navigation={true}
+      // navigation={true}
       
-      modules={[Navigation]}
+      // modules={[Navigation]}
       className="swiper-wrapper"
       breakpoints={{
 

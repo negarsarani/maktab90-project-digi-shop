@@ -3,7 +3,7 @@ import { Disclosure, Transition } from '@headlessui/react';
 
 const Footer = () => {
   return (
-    <footer className="bg-white w-full ">
+    <footer className="bg-white w-full  ">
       <div className="w-full flex  pt-10 flex-wrap px-10 items-center justify-between">
         <div className=" w-full pb-2">
           <div className="text-teal-600">
