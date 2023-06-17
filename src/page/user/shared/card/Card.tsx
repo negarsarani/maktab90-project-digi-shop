@@ -8,8 +8,9 @@ interface props {
   name: string;
   desc: string;
   price: string;
+  id:string
 }
-function Card({ href, srcImg, name, desc, price }: props) {
+function Card({ href, srcImg, name, desc, price , id}: props) {
   return (
     <div>
       <div>

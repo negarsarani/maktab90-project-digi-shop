@@ -54,6 +54,7 @@ export interface ProductModal {
   thumbnail: string;
 }
 export type dataCardType ={
+  id:string
   href: string;
   srcImg: string;
   name: string;

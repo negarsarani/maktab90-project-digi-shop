@@ -8,7 +8,7 @@ interface props {
   href: string;
   data: dataCardType[];
 }
-const Category = ({ bgColor, title, data, href }: props) => {
+const ParentCategory = ({ bgColor, title, data, href }: props) => {
   return (
     <div className={`${bgColor}`}>
       <div className="flex items-center justify-between text-black">
@@ -23,6 +23,7 @@ const Category = ({ bgColor, title, data, href }: props) => {
             return (
               <Card
                 key={item.name}
+                id={item.id}
                 desc={item.desc}
                 href={item.href}
                 name={item.name}
@@ -37,4 +38,4 @@ const Category = ({ bgColor, title, data, href }: props) => {
   );
 };
 
-export default Category;
+export default ParentCategory;
