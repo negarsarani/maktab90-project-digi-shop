@@ -1,4 +1,4 @@
-import { WatchCategory } from '@/page/user';
+import { WatchCategory , AccessoriesCategory , LaptopCategory ,MobileCategory , TabletCategory   } from '@/page/user';
 import Slider from '@/page/user/Home/sliderHeader/slider';
 
 export default function Home() {
@@ -6,6 +6,10 @@ export default function Home() {
     <div>
       <Slider />
      <WatchCategory/>
+     <AccessoriesCategory/>
+     <TabletCategory/>
+     <MobileCategory/>
+     <LaptopCategory/>
     </div>
   );
 }

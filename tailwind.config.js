@@ -27,7 +27,7 @@ module.exports = {
         pinkLight: '#d6b1c2',
         pinkLighter: '#cec0cc',
         pinkLighter: '#abc5c8',
-        pinkLighter: '#f4f0d3',
+        yellowLighter: '#f4f0d3',
       },
     },
   },

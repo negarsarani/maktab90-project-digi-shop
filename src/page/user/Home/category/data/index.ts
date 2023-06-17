@@ -13,6 +13,34 @@ const dataCategory = [
     url: '/products?limit=6&category=647f18eb6dd9b0e1d228fe00',
     bg: 'bg-grayMediumism',
   },
+  {
+    name: 'لپ تاپ',
+    value: 'laptop',
+    href: '',
+    url: '/products?limit=6&category=647f19326dd9b0e1d228fe06',
+    bg: 'bg-pinkLight',
+  },
+  {
+    name: 'موبایل',
+    value: 'mobile',
+    href: '',
+    url: '/products?limit=6&category=647f18876dd9b0e1d228fdf8',
+    bg: 'bg-blueLight',
+  },
+  {
+    name: 'تبلت',
+    value: 'tablet',
+    href: '',
+    url: '/products?limit=6&category=647f18ae6dd9b0e1d228fdfc',
+    bg: 'bg-yellowLighter',
+  },
+  {
+    name: 'لوازم جانبی',
+    value: 'accessories',
+    href: '',
+    url: '/products?limit=6&category=647f19556dd9b0e1d228fe0a',
+    bg: 'bg-pinkLight',
+  },
 ];
 
 function FindDataCategory(

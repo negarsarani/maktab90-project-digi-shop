@@ -19,11 +19,11 @@ interface props {
 }
 const ParentCategory = ({ bgColor, title, data, href, isLoading }: props) => {
   return (
-    <div className={`${bgColor}`}>
-      <div className="flex items-center justify-between text-black">
-        <span>{title}</span>
+    <div className={`${bgColor} py-5 rounded-sm my-10`}>
+      <div className="flex items-center justify-between text-black py-5 px-5">
+        <span>{title} در دیجی شاپ</span>
         <Linkrouter href={href}>
-          <span>مشاهده همه</span>
+          <span className='hover:text-gray-700'>مشاهده همه</span>
         </Linkrouter>
       </div>
       <div className=" overflow-hidden w-full overflow-x-scroll flex ">
