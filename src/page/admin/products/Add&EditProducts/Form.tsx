@@ -5,7 +5,7 @@ import UploadImages from './UploadImages';
 import dynamic from 'next/dynamic';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import formProduct from '@/schemas/admin/formProduct';
 import postData from '@/api/postData';
 import { ProductModal } from '@/types/type';
@@ -20,9 +20,10 @@ interface props {
 }
 
 const Form = ({ setOpenModal, refetch, editFlag }: props) => {
+  const refTextEditor = useRef(null);
   const [imgsSrc, setImgsSrc] = useState<unknown[] | never[]>([]);
   const [thumbnailSrc, setThumbnailSrc] = useState<unknown | string>('');
-  const [description, setDescription] = useState('ss');
+  const [description, setDescription] = useState();
   const [value, dispatch] = useRedux((state) => state.formProductState);
   const [defaultValue, setDefaultValue] = useState<ProductModal>();
 
@@ -39,6 +40,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
         images: value.images,
         thumbnail: value.thumbnail,
       });
+    return  setDescription(value.description)
     } else {
       setDefaultValue({
         name: '',
@@ -67,8 +69,8 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
   let formData = new FormData();
   const Editor = dynamic(() => import('./TextEditor'), { ssr: false });
   const onSubmit = (data: ProductModal) => {
-    // if (editFlag) {
-    // }
+    console.log(refTextEditor.currentValue);
+
     Object.keys(data).map((key: any) => {
       if (key !== 'images' && key !== 'thumbnail') {
         return formData.append(key, data[key]);
@@ -193,7 +195,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
               </div>
 
               <SelectBox
-              value={value}
+                value={value}
                 register={register}
                 errors={errors}
                 editFlag={editFlag}
@@ -210,10 +212,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
             setThumbnailSrc={setThumbnailSrc}
           />
           <div className="w-full ">
-            <Editor
-              value={editFlag ? value.description : description}
-              onChange={(value) => {return setDescription(value)}}
-            />
+            <Editor refTextEditor={refTextEditor} value={description} />
           </div>
         </div>
 

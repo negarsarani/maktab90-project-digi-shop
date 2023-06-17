@@ -1,22 +1,22 @@
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-// import { CKEditor } from '@ckeditor/ckeditor5-react';
-// import dynamic from 'next/dynamic';
-// const Editor = dynamic(() => import('./TextEditor'), { ssr: false });
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 interface props {
-  value: string;
-  onChange: (x:string) => void;
+  value: string |undefined;
+  refTextEditor: any;
 }
-const TextEditor = ({ value, onChange }: props) => {
+const TextEditor = ({ value, refTextEditor }: props) => {
+  const [values, setValue] = useState('');
+  // useEffect(() => {value  ? }, []);
   return (
-    // <CKEditor
-    //   editor={ClassicEditor}
-    //   data={value}
-    //   onChange={(event, editor) => {
-    //     const data = editor.getData();
-    //     onChange(data);
-    //   }}
-    // />
-    ""
+    <ReactQuill
+      theme="snow"
+      value={value ? value :values}
+      onChange={(e) => {
+        setValue(e);
+        refTextEditor.currentValue = e;
+      }}
+    />
   );
 };
 
