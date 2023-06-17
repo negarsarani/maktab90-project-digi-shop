@@ -19,17 +19,17 @@ interface props {
 }
 const ParentCategory = ({ bgColor, title, data, href, isLoading }: props) => {
   return (
-    <div className={`${bgColor} pb-5 rounded-lg my-10`}>
+    <div className={`${bgColor} pb-5 rounded-lg my-10 `}>
       <div className="flex items-center justify-between text-black py-5 px-5">
         <span>{title} در دیجی شاپ</span>
         <Linkrouter href={href}>
           <span className='hover:text-gray-700'>مشاهده همه</span>
         </Linkrouter>
       </div>
-      <div className=" ">
+      <div className=" w-full px-10">
         <Slider>
           {isLoading ? (
-            <div className="flex w-full gap-10">
+            <div className="flex w-full gap-10 ">
               <Skeletoncard />
               <Skeletoncard />
               <Skeletoncard />
@@ -46,7 +46,7 @@ const ParentCategory = ({ bgColor, title, data, href, isLoading }: props) => {
                 href: string;
               }) => {
                 return (
-                  <SwiperSlide key={item._id} className='  lg:mx-5 md:mx-7 mx-10 '>
+                  <SwiperSlide key={item._id} className=' '>
                     <Card
                       key={item.name}
                       id={item._id}
