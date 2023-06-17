@@ -39,7 +39,7 @@ const Layout = ({ Component, children, emotionCache }: LayoutType) => {
             <Provider store={store}>
               <QueryClientProvider client={queryClient}>
                 <AnimatePresence mode="wait" initial={false}>
-                <CKEditorContext context={Context}>
+                {/* <CKEditorContext context={Context}> */}
                   <Adminlayout>{children}</Adminlayout>
                   <ToastContainer
                     position="top-right"
@@ -53,7 +53,7 @@ const Layout = ({ Component, children, emotionCache }: LayoutType) => {
                     pauseOnHover
                     theme="light"
                   />
-                  </CKEditorContext>
+                  {/* </CKEditorContext> */}
 
                   {/* <ReactQueryDevtoolsPanel /> */}
                 </AnimatePresence>
