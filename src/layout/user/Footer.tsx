@@ -196,21 +196,21 @@ const Footer = () => {
           </ul>
           <div className="flex items-center justify-center md:justify-end  w-full">
             <Image
-              src={'/user/footer/licences1.svg'}
+              src={'/icons/user/footer/licences1.svg'}
               alt=""
               width={80}
               height={80}
              
             />
             <Image
-              src={'/user/footer/licences2.svg'}
+              src={'/icons/user/footer/licences2.svg'}
               alt=""
               width={80}
               height={80}
           
             />
             <Image
-              src={'/user/footer/licences3.svg'}
+              src={'/icons/user/footer/licences3.svg'}
               alt=""
               width={80}
               height={80}

@@ -53,3 +53,10 @@ export interface ProductModal {
   images: never[];
   thumbnail: string;
 }
+export type dataCardType ={
+  href: string;
+  srcImg: string;
+  name: string;
+  desc: string;
+  price: string;
+}

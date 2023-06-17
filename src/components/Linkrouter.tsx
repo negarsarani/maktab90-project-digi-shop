@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 type Linkrouter = {
   children: ReactNode;
   href: string;
-  className: string;
+  className?: string;
   onClick?:  (()=> void) | undefined;
 };
 const Linkrouter = ({ children, href, className, onClick }: Linkrouter) => {
