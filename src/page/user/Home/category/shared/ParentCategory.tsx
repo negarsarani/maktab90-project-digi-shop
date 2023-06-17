@@ -2,6 +2,7 @@ import Linkrouter from '@/components/Linkrouter';
 import Slider from './Slider';
 import { Card, Skeletoncard } from '@/page/user/shared';
 import { dataCardType } from '@/types/type';
+import { SwiperSlide } from 'swiper/react';
 interface props {
   bgColor: string;
   title: string;
@@ -25,15 +26,14 @@ const ParentCategory = ({ bgColor, title, data, href, isLoading }: props) => {
           <span>مشاهده همه</span>
         </Linkrouter>
       </div>
-      <div>
-        <Slider className={"flex gap-10"}>
+      <div className=" overflow-hidden w-full overflow-x-scroll flex ">
+        <Slider>
           {isLoading ? (
-            <div className='flex w-full gap-10'>
+            <div className="flex w-full gap-10">
               <Skeletoncard />
               <Skeletoncard />
               <Skeletoncard />
               <Skeletoncard />
-
             </div>
           ) : (
             data?.map(
@@ -46,15 +46,17 @@ const ParentCategory = ({ bgColor, title, data, href, isLoading }: props) => {
                 href: string;
               }) => {
                 return (
-                  <Card
-                    key={item.name}
-                    id={item._id}
-                    desc={item.description}
-                    href={'#'}
-                    name={item.name}
-                    price={item.price}
-                    srcImg={item.images[0]}
-                  ></Card>
+                  <SwiperSlide key={item._id} className='px-10 '>
+                    <Card
+                      key={item.name}
+                      id={item._id}
+                      desc={item.description}
+                      href={'#'}
+                      name={item.name}
+                      price={item.price}
+                      srcImg={item.images[0]}
+                    />
+                  </SwiperSlide>
                 );
               }
             )

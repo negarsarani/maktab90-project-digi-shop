@@ -12,8 +12,9 @@ interface props {
 }
 function Card({ href, srcImg, name, desc, price, id }: props) {
   return (
-    <div className="bg-white rounded-xl w-64 shadow-xl overflow-hidden ">
-      <div className="flex items-center justify-center p-5 w-full">
+    <div className="bg-white rounded-xl  shadow-xl">
+      <div className='  w-full'>
+         <div className="flex items-center justify-center p-5 w-full">
         <Linkrouter href={href}>
           <Image
             src={`http://localhost:8000/images/products/images/${srcImg}`}
@@ -49,6 +50,8 @@ function Card({ href, srcImg, name, desc, price, id }: props) {
         </div>
       </div>
       </div>
+      </div>
+     
       
     </div>
   );
