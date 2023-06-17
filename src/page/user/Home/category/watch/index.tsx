@@ -12,17 +12,15 @@ const Index = () => {
   };
   const [isLoading, data] = useQueries(() => getData(url), ['watchcategory']);
 
-  if (isLoading) {
-    return <Skeletoncard />;
-  }
   return (
     <div>
       <ParentCategory
+        isLoading={isLoading}
         bgColor={bg}
         data={data?.data.products}
         href={href}
         title={name}
-      ></ParentCategory>
+      />
     </div>
   );
 };

@@ -3,8 +3,9 @@ import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
 interface props {
     children:ReactNode 
+    className:string
 }
-const Slider = ({children}:props) => {
+const Slider = ({children , className}:props) => {
     const [sliderRef] = useKeenSlider({
         loop: true,
         rtl: true,
@@ -15,7 +16,7 @@ const Slider = ({children}:props) => {
       })
     
       return (
-        <div ref={sliderRef} className="keen-slider">
+        <div ref={sliderRef} className={`keen-slider ${className}`}>
           {/* <div className="keen-slider__slide number-slide1">1</div>
           <div className="keen-slider__slide number-slide2">2</div>
           <div className="keen-slider__slide number-slide3">3</div>
