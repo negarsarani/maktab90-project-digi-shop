@@ -1,7 +1,6 @@
 import  {  ReactNode } from "react"
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
-import "./styles.css"
 interface props {
     children:ReactNode 
 }

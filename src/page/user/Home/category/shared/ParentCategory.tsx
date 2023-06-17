@@ -6,7 +6,14 @@ interface props {
   bgColor: string;
   title: string;
   href: string;
-  data: dataCardType[];
+  data: {
+    _id: string;
+    name: string;
+    price: string;
+    description: string;
+    images: string[];
+    href: string;
+  }[];
 }
 const ParentCategory = ({ bgColor, title, data, href }: props) => {
   return (
@@ -19,19 +26,28 @@ const ParentCategory = ({ bgColor, title, data, href }: props) => {
       </div>
       <div>
         <Slider>
-          {data?.map((item: dataCardType) => {
-            return (
-              <Card
-                key={item.name}
-                id={item.id}
-                desc={item.desc}
-                href={item.href}
-                name={item.name}
-                price={item.price}
-                srcImg={item.srcImg}
-              ></Card>
-            );
-          })}
+          {data?.map(
+            (item: {
+              _id: string;
+              name: string;
+              price: string;
+              description: string;
+              images: string[];
+              href: string;
+            }) => {
+              return (
+                <Card
+                  key={item.name}
+                  id={item._id}
+                  desc={item.description}
+                  href={'#'}
+                  name={item.name}
+                  price={item.price}
+                  srcImg={item.images[0]}
+                ></Card>
+              );
+            }
+          )}
         </Slider>
       </div>
     </div>

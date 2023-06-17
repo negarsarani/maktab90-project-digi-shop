@@ -15,7 +15,7 @@ function Card({ href, srcImg, name, desc, price , id}: props) {
     <div>
       <div>
         <Linkrouter href={href}>
-          <Image src={srcImg} alt={name} width={20} height={20} />
+          <Image src={`http://localhost:8000/images/products/images/${srcImg}`} alt={name} width={20} height={20} />
         </Linkrouter>
       </div>
       <div>
