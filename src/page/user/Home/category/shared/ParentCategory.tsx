@@ -47,7 +47,8 @@ const ParentCategory = ({ bgColor, title, data, href, isLoading }: props) => {
               }) => {
                 return (
                   <SwiperSlide key={item._id} className=' '>
-                    <Card
+                    <div className='flex items-center justify-center w-full'>
+                     <Card
                       key={item.name}
                       id={item._id}
                       desc={item.description}
@@ -55,7 +56,9 @@ const ParentCategory = ({ bgColor, title, data, href, isLoading }: props) => {
                       name={item.name}
                       price={item.price}
                       srcImg={item.images[0]}
-                    />
+                    /> 
+                    </div>
+                    
                   </SwiperSlide>
                 );
               }

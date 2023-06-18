@@ -1,5 +1,5 @@
 import getData from '@/api/getData';
-import { CategoryProduct, Filter } from '@/page/user/category';
+import { CategoryProduct, Filter } from '@/page/user/categories';
 import { productType } from '@/types/type';
 interface props {
   nameCategory: string;
@@ -16,10 +16,9 @@ const Index = ({ nameCategory, data }: props) => {
 
   return (
     <div>
-      {/* <Filter name={nameCategory}>
-        ddd
-      </Filter> */}
+      <Filter name={nameCategory}>
         <CategoryProduct data={serverData} />
+      </Filter>
     </div>
   );
 };
@@ -35,7 +34,7 @@ export const getServerSideProps = async ({ params }) => {
     return item.slugname === slug;
   });
 
-  const DataCategory = await getData(`/products?category=${findId._id}`);
+  const DataCategory = await getData(`/products?category=${findId?._id}`);
   console.log(DataCategory);
 
   try {

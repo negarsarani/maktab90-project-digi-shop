@@ -15,11 +15,11 @@ const Slider = ({ children }: props) => {
       spaceBetween={0}
       className="swiper-wrapper"
       breakpoints={{
-        650: {
+        670: {
           slidesPerView: 2,
           spaceBetween: 0,
         },
-        900: {
+        928: {
           slidesPerView: 3,
           spaceBetween: 0,
         },
@@ -27,7 +27,7 @@ const Slider = ({ children }: props) => {
           slidesPerView: 3,
           spaceBetween: 0,
         },
-        1200: {
+        1210: {
           slidesPerView: 4,
           spaceBetween: 0,
         },
