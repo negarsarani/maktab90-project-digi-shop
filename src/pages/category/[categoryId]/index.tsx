@@ -1,11 +1,8 @@
 import getData from '@/api/getData';
 import { CategoryProduct, Filter } from '@/page/user/category';
-import { querykeys } from '@/react-query/constants';
 import { productType } from '@/types/type';
-import { useQueries } from '@tanstack/react-query';
-import React from 'react';
 interface props {
-  id: string;
+  nameCategory: string;
   data: {
     data: { products: productType[] };
     page: string | number;
@@ -14,19 +11,15 @@ interface props {
     total_pages: string | number;
   };
 }
-const Index = ({ id, data }: props) => {
+const Index = ({ nameCategory, data }: props) => {
   const serverData = data.data.products;
-  console.log(data);
 
   return (
     <div>
-      <Filter />
-      <CategoryProduct />
-      {`category ${id}`}{' '}
-      {serverData.map((item) => (
-        <div key={item._id}>{item.name}</div>
-      ))}{' '}
-      dcdscsc
+      {/* <Filter name={nameCategory}>
+        ddd
+      </Filter> */}
+        <CategoryProduct data={serverData} />
     </div>
   );
 };
@@ -48,14 +41,14 @@ export const getServerSideProps = async ({ params }) => {
   try {
     return {
       props: {
-        id: slug,
+        nameCategory: findId.name,
         data: DataCategory,
       },
     };
   } catch (error) {
     return {
       props: {
-        id: slug,
+        nameCategory: findId.name,
         data: ['lll'],
       },
     };

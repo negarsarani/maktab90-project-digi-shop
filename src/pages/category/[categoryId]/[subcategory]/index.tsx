@@ -18,3 +18,6 @@ export   const getServerSideProps = async ({params}) => {
   }}
     
 }
+Index.getLayout = function PageLayout(page: any) {
+  return <> {page}</>;
+};

@@ -1,4 +1,4 @@
-import  {  ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Fragment, useState } from 'react';
 import { Dialog, Disclosure, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
@@ -11,7 +11,6 @@ import {
 import Sort from './Sort';
 import FilterProduct from './Filter';
 
-
 const subCategories = [
   { name: 'Totes', href: '#' },
   { name: 'Backpacks', href: '#' },
@@ -19,7 +18,6 @@ const subCategories = [
   { name: 'Hip Bags', href: '#' },
   { name: 'Laptop Sleeves', href: '#' },
 ];
-
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -80,8 +78,7 @@ const Filter = ({ children, name }: props) => {
 
                   {/* Filters */}
                   <form className="mt-4 border-t border-gray-200">
-                    
-                  <FilterProduct/>
+                    <FilterProduct />
                   </form>
                 </Dialog.Panel>
               </Transition.Child>
@@ -122,9 +119,9 @@ const Filter = ({ children, name }: props) => {
             </h2>
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-            <form className="hidden lg:block">
-             <FilterProduct/>
-</form>
+              <form className="hidden lg:block">
+                <FilterProduct />
+              </form>
               {/* Filters */}
               <div className="lg:col-span-3">{children}</div>
             </div>

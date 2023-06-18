@@ -6,7 +6,7 @@ interface props {
   href: string;
   srcImg: string;
   name: string;
-  desc: string;
+  desc: string |undefined
   price: string;
   id: string;
 }
@@ -32,7 +32,7 @@ function Card({ href, srcImg, name, desc, price, id }: props) {
             {name} 
           </Linkrouter>
         </div>
-        <div className='w-full truncate'>{"ssssssssssssssssssssssssxxxxxxxccccs"}</div>
+        <div className='w-full truncate'>{desc}</div>
       </div>
       <div className="flex w-full justify-between items-center gap-10">
         <Button type="button" className="bg-btnCard p-2 rounded-lg">

@@ -69,4 +69,5 @@ export type productType = {
   quantity: string;
   price: string;
   images: string[];
+  description?:string;
 };
