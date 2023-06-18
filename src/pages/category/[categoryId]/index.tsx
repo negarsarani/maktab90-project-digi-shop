@@ -1,4 +1,5 @@
 import getData from '@/api/getData';
+import { CategoryProduct, Filter } from '@/page/user/category';
 import { querykeys } from '@/react-query/constants';
 import { productType } from '@/types/type';
 import { useQueries } from '@tanstack/react-query';
@@ -19,6 +20,8 @@ const Index = ({ id, data }: props) => {
 
   return (
     <div>
+      <Filter />
+      <CategoryProduct />
       {`category ${id}`}{' '}
       {serverData.map((item) => (
         <div key={item._id}>{item.name}</div>
