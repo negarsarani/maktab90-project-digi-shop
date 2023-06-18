@@ -4,16 +4,13 @@ import { ButtonsNav, Logo_menu } from '@/page/user/navbar';
 import { Search } from '@/page/user/shared';
 import CategoryNav from '@/page/user/navbar/category';
 import useCategory from '@/data/shared';
-import { OrderedCategory } from '@/types/type';
 const Header = () => {
-  const [Data, SetData] = useState<{}>();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // SetData({ category: categories, subCategories: subCategories });
   const [categories, subCategories] = useCategory();
 
   const orderedData = categories?.map(
-    (item: { _id: string; name: string; icon: string }) => {
+    (item: { _id: string; name: string; icon: string , slugname:string }) => {
       const FilterSub = subCategories?.filter(
         (i: { category: {} }) => item._id === i.category
       );
@@ -21,6 +18,7 @@ const Header = () => {
         id: item._id,
         name: item.name,
         icon: item.icon,
+        slug:item.slugname,
         subCategories: FilterSub,
       };
     }
