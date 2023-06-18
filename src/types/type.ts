@@ -44,7 +44,7 @@ export interface OrderedCategory {
   }[];
 }
 export interface ProductModal {
-  [key: string]: string |never[];
+  [key: string]: string | never[];
   name: string;
   brand: string;
   quantity: string;
@@ -54,11 +54,19 @@ export interface ProductModal {
   images: never[];
   thumbnail: string;
 }
-export type dataCardType ={
-  id:string
+export type dataCardType = {
+  id: string;
   href: string;
   srcImg: string;
   name: string;
   desc: string;
   price: string;
-}
+};
+export type productType = {
+  _id: string;
+  name: string;
+  brand: string;
+  quantity: string;
+  price: string;
+  images: string[];
+};

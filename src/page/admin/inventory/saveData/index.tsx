@@ -40,7 +40,6 @@ const SaveData = ({ openModal, setOpenModal, name, refetch }: props) => {
           }
         )
       );
-      if(isSuccess) return console.log("hi succes");
       if (!isLoading ) {
         toast.success('تغییرات  اعمال شد', {
           position: 'top-right',

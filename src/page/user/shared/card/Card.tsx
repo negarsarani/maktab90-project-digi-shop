@@ -12,7 +12,7 @@ interface props {
 }
 function Card({ href, srcImg, name, desc, price, id }: props) {
   return (
-    <div className="bg-white rounded-xl p-4 sm:mx-4  mx-1 sm:w-64 s-full ">
+    <div className="bg-white rounded-xl p-4 sm:mx-4  mx-1 sm:w-64 pt-10 s-full ">
       <div className='  flex items-center justify-center  flex-col gap-7'>
          <div className="flex items-center justify-center px-5  w-full">
         <Linkrouter href={href}>

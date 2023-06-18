@@ -1,14 +1,15 @@
 import getData from '@/api/getData';
 import useQueries from '@/hooks/useQueries';
+import { querykeys } from '@/react-query/constants';
 
 function useCategory() {
   const [isLoading, dataCategory, isError, refetch] = useQueries(
     () => getData('/categories?limit=1000'),
-    ['categories']
+    [querykeys.category[0]]
   );
   const [isLoadingSub, dataSubCategory, isErrorSub, refetchSub] = useQueries(
     () => getData('/subcategories?limit=1000'),
-    ['subcategories']
+    [querykeys.subcategory[0]]
   );
   const [categories, subCategories] = [dataCategory, dataSubCategory];
 
@@ -29,3 +30,4 @@ export function useUsers() {
   );
   return data?.data?.users
 }
+
