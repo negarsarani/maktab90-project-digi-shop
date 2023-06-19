@@ -12,7 +12,7 @@ interface props {
 }
 function Card({ href, srcImg, name, desc, price, id }: props) {
   return (
-    <div className="bg-white rounded-xl  w-64  pt-10 s-full ">
+    <div className="bg-white rounded-xl  w-64  pt-10 s-full shadow-md ">
       <div className='  flex items-center justify-center  flex-col gap-7'>
          <div className="flex items-center justify-center px-5  w-full">
         <Linkrouter href={href}>
@@ -34,19 +34,19 @@ function Card({ href, srcImg, name, desc, price, id }: props) {
         </div>
         <div className='w-full truncate'>{desc}</div>
       </div>
-      <div className="flex w-full justify-between items-center gap-10">
+      <div className="flex w-full justify-between items-center ">
         <Button type="button" className="bg-btnCard p-2 rounded-lg">
           <Linkrouter href={href} >
             <Image
               src={'/icons/user/BuyCard.svg'}
               alt={name}
-              width={25}
-              height={25}
+              width={20}
+              height={20}
             />
           </Linkrouter>
         </Button>
         <div className="flex items-center  gap-1 justify-between ">
-          <span className='text-sm'>{price}</span> <span className='text-sm'>تومان</span>
+          <span className=' text-sm'>{price}</span> <span className='text-sm '>تومان</span>
         </div>
       </div>
       </div>

@@ -65,7 +65,7 @@ const PopoverMenu = ({ data }: props) => {
                 <div className="p-4">
                   {data?.subCategories?.map((item) => (
                     <Linkouter
-                      href={`category/${data.slug}/${item.slugname}`}
+                      href={`${data.slug}/${item.slugname}`}
                       // id={item.id}
                       key={item.name}
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50 "

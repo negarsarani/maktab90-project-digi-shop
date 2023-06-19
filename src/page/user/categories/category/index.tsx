@@ -6,7 +6,7 @@ interface props {
 const Index = ({ data }: props) => {
   return (
     <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 gap-5  ">
-      {data.map((item) => {
+      {data?.map((item) => {
         return (
           <div className="flex justify-center items-center w-full  " key={item._id}>
             <Card
