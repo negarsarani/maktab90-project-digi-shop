@@ -1,9 +1,7 @@
 import { Fragment, useState, useRef } from 'react';
 import { Popover, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
-function classNames(...classes: any[]) {
-  return classes.filter(Boolean).join(' ');
-}
+import { XMarkIcon } from '@heroicons/react/24/outline';
+
 import { OrderedCategory } from '@/types/type';
 import Image from 'next/image';
 import { Linkouter } from '@/components';
@@ -33,31 +31,24 @@ const PopoverMenu = ({ data }: props) => {
     >
       <Popover.Group className="flex">
         <Popover className=" flex relative">
-          <Popover.Button className="flex  items-center justify-center  text-sm  font-semibold leading-6 text-gray-900 border-none focus:border-none outline-none">
-            <div onMouseEnter={handleMouseEnter}>
-              <Linkouter
-                className="flex items-center justify-center gap-3"
-                href={`/category/${data.slug}`}
-              >
-                <Image
-                  src={`http://localhost:8000/images/categories/icons/${data.icon}`}
-                  alt={data.name}
-                  width={25}
-                  height={25}
-                />
-                <span className="hover:text-zinc-600 hover:bg-zinc-200 hover:bg-opacity-30  rounded-md">
-                  {data.name}
-                </span>
-              </Linkouter>
-            </div>
-            <div className='hover:bg-zinc-200 hover:bg-opacity-30 rounded-full p-1'>
-              <ChevronDownIcon
-                className={`h-5 w-5 flex-none `}
-                aria-hidden="true"
+          <Popover.Button
+            onMouseEnter={handleMouseEnter}
+            className="flex items-center justify-center  text-sm  font-semibold leading-6 text-gray-900 border-none focus:border-none outline-none"
+          >
+            <Linkouter
+              className="flex items-center justify-center gap-3"
+              href={`/category/${data.slug}`}
+            >
+              <Image
+                src={`http://localhost:8000/images/categories/icons/${data.icon}`}
+                alt={data.name}
+                width={25}
+                height={25}
               />
-            </div>
+              <span>{data.name}</span>
+            </Linkouter>
           </Popover.Button>
-          <div className=" bg-inherit pt-4 w-full flex flex-col absolute left-20 top-full">
+          <div className=" bg-inherit pt-4 w-full flex flex-col absolute top-full">
             <Transition
               as={Fragment}
               show={isPopoverOpen}
@@ -69,11 +60,12 @@ const PopoverMenu = ({ data }: props) => {
               leaveTo="opacity-0 translate-y-1"
             >
               <Popover.Panel
-                className=" w-[17rem] h-full overflow-hidden rounded-3xl bg-white  shadow-lg ring-1 ring-gray-900/5"
+                className=" w-[19rem] h-full overflow-hidden rounded-3xl bg-white  shadow-lg ring-1 ring-gray-900/5"
                 static
               >
                 <div className="p-4">
                   {data?.subCategories?.map((item) => (
+                    
                     <Linkouter
                       href={`/category/${data.slug}/${item.slugname}`}
                       onClick={handleMouseLeave}
@@ -84,6 +76,8 @@ const PopoverMenu = ({ data }: props) => {
                         <p className="mt-1 text-gray-600">{item.name}</p>
                       </div>
                     </Linkouter>
+                 
+                    
                   ))}
                 </div>
                 <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50"></div>
