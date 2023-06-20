@@ -1,16 +1,23 @@
 import { productType } from '@/types/type';
 import { Card } from '@/page/user/shared';
+import { Paginate } from '@/page/user/categories';
+
 interface props {
   data: productType[];
 }
 const Index = ({ data }: props) => {
-  if(data.length === 0) {
-   return <div className='w-full animate-pulse items-center flex h-full justify-center'>  <span>کالایی یافت نشد</span></div>
+  if (data.length === 0) {
+    return (
+      <div className="w-full animate-pulse items-center flex h-full justify-center">
+        {' '}
+        <span>کالایی یافت نشد</span>
+      </div>
+    );
   }
   return (
-    <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 gap-5  ">
-      { (
-        data?.map((item) => {
+    <div className=' flex items-center justify-center flex-col gap-24'>
+      <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3  xl:grid-cols-4 container mx-auto gap-5  ">
+        {data?.map((item) => {
           return (
             <div
               className="flex justify-center items-center w-full  "
@@ -26,8 +33,9 @@ const Index = ({ data }: props) => {
               />
             </div>
           );
-        })
-      ) }
+        })}
+      </div>
+      <Paginate />
     </div>
   );
 };
