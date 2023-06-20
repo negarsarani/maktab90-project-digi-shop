@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@wojtekmaj/enzyme-adapter-utils": "^0.1.14",
     "@emotion/react": "^11.11.1",
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.0",

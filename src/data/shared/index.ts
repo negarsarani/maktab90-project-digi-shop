@@ -12,7 +12,7 @@ function useCategory() {
     [querykeys.subcategory[0]]
   );
   const [categories, subCategories] = [dataCategory, dataSubCategory];
-
+ console.log(categories?.data?.categories ,  subCategories?.data?.subcategories)
   return [
     categories?.data?.categories,
     subCategories?.data?.subcategories,
