@@ -15,7 +15,7 @@ function Card({ href, srcImg, name, desc, price, id }: props) {
     <div className="bg-white rounded-xl  w-64  pt-10 s-full shadow-md ">
       <div className='  flex items-center justify-center  flex-col gap-7'>
          <div className="flex items-center justify-center px-5  w-full">
-        <Linkrouter href={href}>
+        <Linkrouter href={`/products/${id}`}>
           <Image
             src={`http://localhost:8000/images/products/images/${srcImg}`}
             alt={name}
@@ -28,7 +28,7 @@ function Card({ href, srcImg, name, desc, price, id }: props) {
       <div className='px-5 py-2  w-full gap-7 flex flex-col items-center justify-center'>
         <div className='w-full '>
         <div className='truncate'>
-          <Linkrouter href={href} className="truncate w-full">
+          <Linkrouter href={`/products/${id}`} className="truncate w-full">
             {name} 
           </Linkrouter>
         </div>
@@ -36,7 +36,7 @@ function Card({ href, srcImg, name, desc, price, id }: props) {
       </div>
       <div className="flex w-full justify-between items-center ">
         <Button type="button" className="bg-btnCard p-2 rounded-lg">
-          <Linkrouter href={href} >
+          <Linkrouter href={`/products/${id}`} >
             <Image
               src={'/icons/user/BuyCard.svg'}
               alt={name}
