@@ -9,9 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-basic-styles": "^38.0.1",
-    "@emotion/cache": "^11.11.0",
-    "@emotion/react": "^11.11.0",
+    "@wojtekmaj/enzyme-adapter-utils": "^0.1.14",
+    "@emotion/react": "^11.11.1",
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.1",
@@ -33,6 +32,7 @@
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.3",
     "flowbite": "^1.6.5",
+    "formik": "^2.4.2",
     "framer-motion": "^10.12.16",
     "jss-rtl": "^0.3.0",
     "keen-slider": "^6.8.5",
@@ -45,6 +45,7 @@
     "react-edit-text": "^5.1.0",
     "react-editext": "^6.0.0",
     "react-hook-form": "^7.44.3",
+    "react-image-zoom": "^1.3.1",
     "react-query": "^3.39.3",
     "react-quill": "^2.0.0",
     "react-redux": "^8.0.5",

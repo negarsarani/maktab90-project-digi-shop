@@ -11,6 +11,7 @@ interface props {
     thumbsSwiper:null
 }
 const MainSlider = ({thumbsSwiper}:props) => {
+
     return (
         <Swiper
         style={{
@@ -25,6 +26,7 @@ const MainSlider = ({thumbsSwiper}:props) => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper2"
       >
+        
         <SwiperSlide>
           <div className="bg-zinc-300 p-3 rounded-md">
             <img
