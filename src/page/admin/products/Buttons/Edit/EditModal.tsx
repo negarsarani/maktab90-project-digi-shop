@@ -5,7 +5,6 @@ import getData from '@/api/getData';
 import useRedux from '@/hooks/useRedux';
 import { ACTIVE } from '@/redux/slice';
 import useQueries from '@/hooks/useQueries';
-import CircularProgress from '@mui/material/CircularProgress';
 
 interface props {
   isOpen: boolean;
@@ -32,7 +31,7 @@ const EditModal = ({ isOpen, setIsOpen, refetch, id }: props) => {
       {' '}
       <Modal openModal={isOpen} setOpenModal={setIsOpen} name="Edit">
         {isLoading ? (
-          <CircularProgress color="secondary" />
+          <div>لطفا صبر کنید ...</div>
         ) : (
           <Form setOpenModal={setIsOpen} refetch={refetch} editFlag={isOpen} />
         )}

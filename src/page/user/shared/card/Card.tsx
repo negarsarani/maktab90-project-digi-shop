@@ -46,7 +46,7 @@ function Card({ href, srcImg, name, desc, price, id }: props) {
           </Linkrouter>
         </Button>
         <div className="flex items-center  gap-1 justify-between ">
-          <span className=' text-sm'>{price}</span> <span className='text-sm '>تومان</span>
+          <span className=' text-sm'> { Intl.NumberFormat('fa-IR').format(price)}</span> <span className='text-sm '>تومان</span>
         </div>
       </div>
       </div>
