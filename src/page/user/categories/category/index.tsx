@@ -3,10 +3,16 @@ import { Card } from '@/page/user/shared';
 import { Paginate } from '@/page/user/categories';
 
 interface props {
-  data: productType[];
+   data: {
+    data: { products: productType[] };
+    page: string | number;
+    per_page: string | number;
+    total: string | number;
+    total_pages: number;
+  };
 }
 const Index = ({ data }: props) => {
-  if (data.length === 0) {
+  if (data.data.products.length === 0) {
     return (
       <div className="w-full animate-pulse items-center flex h-full justify-center">
         {' '}
@@ -17,7 +23,7 @@ const Index = ({ data }: props) => {
   return (
     <div className=' flex items-center justify-center flex-col gap-24'>
       <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3  xl:grid-cols-4 container mx-auto gap-5  ">
-        {data?.map((item) => {
+        {data.data.products?.map((item) => {
           return (
             <div
               className="flex justify-center items-center w-full  "
@@ -35,7 +41,7 @@ const Index = ({ data }: props) => {
           );
         })}
       </div>
-      <Paginate />
+      <Paginate total_pages={data.total_pages}/>
     </div>
   );
 };

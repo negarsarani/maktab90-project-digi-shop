@@ -1,7 +1,9 @@
 import getData from '@/api/getData';
 import { CategoryProduct, Filter } from '@/page/user/categories';
 import { productType } from '@/types/type';
+import { redirect } from 'next/dist/server/api-utils';
 import { useRouter } from 'next/router';
+import { NextResponse } from 'next/server';
 import { useEffect } from 'react';
 
 interface props {
@@ -19,14 +21,7 @@ interface props {
 const Index = ({ nameCategory, data, slug }: props) => {
   const router = useRouter();
 
-  useEffect(() => {
-    router.replace({
-      pathname: `/category/${slug}`,
-      query: { sort: '-createdAt' },
-    });
-  }, []);
-
-  const serverData = data.data.products;
+  const serverData = data;
 
   return (
     <div>
@@ -39,7 +34,9 @@ const Index = ({ nameCategory, data, slug }: props) => {
 
 export default Index;
 
-export const getServerSideProps = async ({ params }) => {
+export const getServerSideProps = async (req, res) => {
+  const params = req.params;
+
   const category = await getData('/categories?limit=1000').then(
     (res: any) => res?.data?.categories
   );
@@ -49,9 +46,14 @@ export const getServerSideProps = async ({ params }) => {
     return item.slugname === slug;
   });
 
-  const DataCategory = await getData(`/products?category=${findId?._id}&sort=-createdAt`);
+  const DataCategory = await getData(
+    `/products?category=${findId?._id}&sort=${
+      params.sort || '-createdAt'
+    }&page=${params.page || 1}&limit=${params.limit || 3}`
+  );
+  console.log(DataCategory);
 
-  try {
+  if (DataCategory.status === 'success') {
     return {
       props: {
         nameCategory: findId.name,
@@ -59,12 +61,11 @@ export const getServerSideProps = async ({ params }) => {
         slug: slug,
       },
     };
-  } catch (error) {
+  } else {
     return {
-      props: {
-        nameCategory: findId.name,
-        data: ['lll'],
-        slug: slug,
+      redirect: {
+        destination: '/404',
+        permanent: false,
       },
     };
   }
