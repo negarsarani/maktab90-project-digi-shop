@@ -1,12 +1,15 @@
 import getData from '@/api/getData';
 import { productType } from '@/types/type';
+import {Products} from '@/page/user'
 interface props {
   data: productType;
 }
 const SingleProduct = ({ data }: props) => {
   console.log(data);
 
-  return <div>singlam</div>;
+  return <div>
+    <Products/>
+  </div>
 };
 
 export default SingleProduct;
