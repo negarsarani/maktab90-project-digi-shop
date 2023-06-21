@@ -1,6 +1,7 @@
 import { Button, Linkouter } from '@/components';
 import Image from 'next/image';
 import React from 'react';
+import ButtonCart from './ButtonCart';
 interface props {
   data: {
     rating: [Object];
@@ -20,7 +21,7 @@ interface props {
 }
 const Index = ({ data }: props) => {
   return (
-    <div className='lg:col-span-6 sm:col-span-8 '>
+    <div className="lg:col-span-6 sm:col-span-8 ">
       {' '}
       <h3 className="mb-3">
         تبلت سامسونگ مدل Galaxy Tab A7 Lite (2021, 8.7") 4G SM-T225 ظرفیت 32/3
@@ -64,38 +65,7 @@ const Index = ({ data }: props) => {
                 </div>
               </div>
               <div className="flex ">
-                <Button
-                  type="button"
-                  className="bg-btnCard   p-2 rounded-lg flex items-center justify-center gap-5 px-3"
-                >
-                  <Image
-                    src={'/icons/user/BuyCard.svg'}
-                    alt={'name'}
-                    width={20}
-                    height={20}
-                  />
-                  <span className="text-white ">افزودن به سبد خرید</span>
-                </Button>
-
-                {/* <Button type="button" className=" p-2 bg-btnCard rounded-r-lg">
-                <Image
-                  src={'/icons/user/Minus.svg'}
-                  alt="minus"
-                  width={20}
-                  height={10}
-                />
-              </Button>
-              <div className="border flex items-center justify-center p-2  ">
-                <span>dscsdcvd</span>
-              </div>
-              <Button type="button" className="p-2 bg-btnCard rounded-l-lg">
-                <Image
-                  src={'/icons/user/Plus.svg'}
-                  alt="plus"
-                  width={20}
-                  height={10}
-                />
-              </Button> */}
+                <ButtonCart quantity={data.quantity} />
               </div>
             </div>
           </div>
