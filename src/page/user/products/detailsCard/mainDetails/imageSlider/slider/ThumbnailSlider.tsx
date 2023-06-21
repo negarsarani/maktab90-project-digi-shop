@@ -12,7 +12,6 @@ interface props {
   images: [];
 }
 const ThumbnailSlider = ({ setThumbsSwiper, images }: props) => {
-  console.log(images);
   
   return (
     <div className="py-5">
@@ -27,7 +26,7 @@ const ThumbnailSlider = ({ setThumbsSwiper, images }: props) => {
       >
         {images?.map((item) => (
           <SwiperSlide key={item}>
-            <div className="bg-zinc-300 p-[.35rem] rounded-md">
+            <div className="bg-white cursor-pointer p-[.35rem] rounded-md">
               <img
                 className="rounded-md"
                 src={`http://localhost:8000/images/products/images/${item}`}

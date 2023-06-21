@@ -57,15 +57,13 @@ const MainSlider = ({ thumbsSwiper, images }: props) => {
         >
           {images.map((item) => (
             <SwiperSlide key={item}>
-              <div>
-                <div>
-                  <div className="bg-zinc-300 p-4 rounded-lg ">
-                    <div>
-                      <div className="relative">
-                        <ImageMagnifier
-                          src={`http://localhost:8000/images/products/images/${item}`}
-                        />
-                      </div>
+              <div className=" bg-white rounded-lg ">
+                <div className="bg-white p-4 rounded-lg ">
+                  <div>
+                    <div className="relative">
+                      <ImageMagnifier
+                        src={`http://localhost:8000/images/products/images/${item}`}
+                      />
                     </div>
                   </div>
                 </div>

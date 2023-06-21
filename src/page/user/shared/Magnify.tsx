@@ -28,6 +28,7 @@ import { useState } from 'react'
       }}>
       <img
         src={src}
+        className='rounded-md'
         style={{ height: height, width: width }}
         onMouseEnter={e => {
           const elem = e.currentTarget

@@ -16,7 +16,7 @@ const Index = () => {
       <ParentCategory
         isLoading={isLoading}
         bgColor={bg}
-        data={data?.data.products}
+        data={data?.data?.products}
         href={href}
         title={name}
       />

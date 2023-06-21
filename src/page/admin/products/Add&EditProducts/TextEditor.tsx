@@ -1,25 +1,22 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
-// import ReactQuill from 'react-quill';
-// import 'react-quill/dist/quill.snow.css';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 interface props {
   value: string |undefined;
   refTextEditor: any;
 }
 const TextEditor = ({ value, refTextEditor }: props) => {
   const [values, setValue] = useState('');
-  // useEffect(() => {value  ? }, []);
   return (
-    <div>
-      
-    </div>
-    // <ReactQuill
-    //   theme="snow"
-    //   value={value ? value :values}
-    //   onChange={(e) => {
-    //     setValue(e);
-    //     refTextEditor.currentValue = e;
-    //   }}
-    // />
+
+    <ReactQuill
+      theme="snow"
+      value={value ? value :values}
+      onChange={(e) => {
+        setValue(e);
+        refTextEditor.currentValue = e;
+      }}
+    />
   );
 };
 

@@ -27,7 +27,6 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
   const [value, dispatch] = useRedux((state) => state.formProductState);
   const [defaultValue, setDefaultValue] = useState<ProductModal>();
 
-  console.log(value);
   useEffect(() => {
     if (editFlag) {
       setDefaultValue({
@@ -71,25 +70,23 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
   const onSubmit = (data: ProductModal) => {
     console.log(refTextEditor.currentValue);
 
-    Object.keys(data).map((key: any) => {
-      if (key !== 'images' && key !== 'thumbnail') {
-        return formData.append(key, data[key]);
-      }
-    });
-    formData.append('description', description);
-    console.log(imgsSrc);
-    console.log(thumbnailSrc);
+    // Object.keys(data).map((key: any) => {
+    //   if (key !== 'images' && key !== 'thumbnail') {
+    //     return formData.append(key, data[key]);
+    //   }
+    // });
+    // formData.append('description', description);
 
-    imgsSrc.map((item: any) => {
-      formData.append('images', item);
-    });
-    formData.append('thumbnail', thumbnailSrc);
-    try {
-      postData('/products', formData).then((res) => refetch());
-    } catch (error) {
-      console.error(error);
-    }
-    return setOpenModal({ filter: false, buttonOrange: false });
+    // imgsSrc.map((item: any) => {
+    //   formData.append('images', item);
+    // });
+    // formData.append('thumbnail', thumbnailSrc);
+    // try {
+    //   postData('/products', formData).then((res) => refetch());
+    // } catch (error) {
+    //   console.error(error);
+    // }
+    // return setOpenModal({ filter: false, buttonOrange: false });
   };
 
   return (

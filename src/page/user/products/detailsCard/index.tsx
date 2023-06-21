@@ -1,5 +1,7 @@
-import DetailCard from './detailsCard'
-import SimilarProducts from './similarProducts'
+import { Button } from '@/components';
+import Image from 'next/image';
+import TabsDetails from './tabsDetails';
+import MainDetails from './mainDetails';
 interface props{
   data: {
     rating: [Object],
@@ -17,13 +19,12 @@ interface props{
     slugname: string,
   }
 }
-const Products = ({data}:props) => {
+export default function Index({data}:props) {
   return (
-    <div className=" w-full py-10 px-5 ">
-     <DetailCard data={data}/>
-     <SimilarProducts/>
+    <div className="">
+      <MainDetails data={data}>
+        <TabsDetails data={data} />
+      </MainDetails>
     </div>
   );
-};
-
-export default Products;
+}
