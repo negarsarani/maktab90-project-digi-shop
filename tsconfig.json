@@ -19,6 +19,12 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/page/user/products/imageSlider/slider/MainSlider.tsx", "src/page/user/shared/zoom.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/page/user/products/imageSlider/slider/mainslider/MainSlider.tsx",
+    "src/page/user/shared/zoom.js"
+  ],
   "exclude": ["node_modules"]
 }

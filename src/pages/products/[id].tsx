@@ -2,12 +2,30 @@ import getData from '@/api/getData';
 import { productType } from '@/types/type';
 import { Products } from '@/page/user';
 interface props {
-  data: productType;
+  data: {
+    data: {
+      product: {
+        rating: [Object];
+        _id: string;
+        category: [Object];
+        subcategory: [Object];
+        name: string;
+        price: 526777;
+        quantity: 444;
+        brand: string;
+        description: string;
+        thumbnail: string;
+        images: [];
+        createdAt: string;
+        slugname: string;
+      };
+    };
+  };
 }
 const SingleProduct = ({ data }: props) => {
   return (
     <div>
-      <Products />
+      <Products data={data.data.product} />
     </div>
   );
 };
