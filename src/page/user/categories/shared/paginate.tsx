@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 interface props {
-  total_pages: number;
+  total_pages: number |string;
 }
 const Paginate = ({ total_pages }: props) => {
   const router = useRouter();

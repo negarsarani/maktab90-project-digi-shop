@@ -3,12 +3,12 @@ import { Card } from '@/page/user/shared';
 import { Paginate } from '@/page/user/categories';
 
 interface props {
-   data: {
+  data: {
     data: { products: productType[] };
     page: string | number;
     per_page: string | number;
     total: string | number;
-    total_pages: number;
+    total_pages: string | number;
   };
 }
 const Index = ({ data }: props) => {

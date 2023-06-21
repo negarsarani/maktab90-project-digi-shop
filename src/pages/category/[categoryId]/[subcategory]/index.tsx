@@ -14,21 +14,20 @@ interface props {
   };
 }
 const Index = ({ nameSubCategory , data}: props) => {
-  console.log(nameSubCategory , data);
   
-  const serverData = data.data.products;
 
   return (
     <div>
       <Filter name={nameSubCategory}>
-        <CategoryProduct data={serverData} />
+        <CategoryProduct data={data} />
       </Filter>
     </div>
   );
 };
 
 export default Index;
-export const getServerSideProps = async ({ params }) => {
+export const getServerSideProps = async ( req ) => {
+  const params = req.params;
   const subcategory = await getData('/subcategories?limit=1000').then(
     (res: any) => res?.data?.subcategories
   );
@@ -40,19 +39,20 @@ export const getServerSideProps = async ({ params }) => {
   });
 
   const DataSubCategory = await getData(`/products?subcategory=${findId?._id}`);
-
-  try {
+  
+  if (DataSubCategory.status === 'success') {
     return {
       props: {
-        nameSubCategory: findId.name,
+        nameCategory: findId.name,
         data: DataSubCategory,
+        slug: slug,
       },
     };
-  } catch (error) {
+  } else {
     return {
-      props: {
-        nameSubCategory: findId.name,
-        data: ['lll'],
+      redirect: {
+        destination: '/404',
+        permanent: false,
       },
     };
   }

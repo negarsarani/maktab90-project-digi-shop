@@ -21,12 +21,11 @@ interface props {
 const Index = ({ nameCategory, data, slug }: props) => {
   const router = useRouter();
 
-  const serverData = data;
-
+  
   return (
     <div>
       <Filter name={nameCategory}>
-        <CategoryProduct data={serverData} />
+        <CategoryProduct data={data} />
       </Filter>
     </div>
   );
@@ -51,7 +50,6 @@ export const getServerSideProps = async (req, res) => {
       params.sort || '-createdAt'
     }&page=${params.page || 1}&limit=${params.limit || 3}`
   );
-  console.log(DataCategory);
 
   if (DataCategory.status === 'success') {
     return {
