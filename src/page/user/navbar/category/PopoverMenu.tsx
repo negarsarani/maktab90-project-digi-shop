@@ -10,6 +10,7 @@ interface props {
 }
 const PopoverMenu = ({ data }: props) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+console.log(data);
 
   const handleMouseEnter = () => {
 
@@ -37,7 +38,7 @@ const PopoverMenu = ({ data }: props) => {
               href={`/category/${data.slug}`}
             >
               <Image
-                src={`http://localhost:8000/images/categories/icons/categories-647f18876dd9b0e1d228fdf8-1686050951199.png`}
+                src={`http://localhost:8000/images/categories/icons/${data.icon}`}
                 alt={data.name}
                 width={25}
                 height={25}
