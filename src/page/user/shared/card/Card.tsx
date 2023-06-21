@@ -7,7 +7,7 @@ interface props {
   srcImg: string;
   name: string;
   desc: string |undefined
-  price: string;
+  price: number;
   id: string;
 }
 function Card({ href, srcImg, name, desc, price, id }: props) {

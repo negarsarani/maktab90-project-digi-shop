@@ -21,7 +21,6 @@ interface props {
 const Index = ({ nameCategory, data, slug }: props) => {
   const router = useRouter();
 
-  
   return (
     <div>
       <Filter name={nameCategory}>
@@ -40,16 +39,17 @@ export const getServerSideProps = async (req, res) => {
     (res: any) => res?.data?.categories
   );
 
-  const slug = params.categoryId;
+  const slug = req.query.categoryId;
   const findId = category.find((item: { slugname: string }) => {
     return item.slugname === slug;
   });
 
   const DataCategory = await getData(
     `/products?category=${findId?._id}&sort=${
-      params.sort || '-createdAt'
-    }&page=${params.page || 1}&limit=${params.limit || 3}`
+      req.query.sort || '-createdAt'
+    }&page=${ req.query.page || 1}&limit=${ req.query.limit || 3}`
   );
+
 
   if (DataCategory.status === 'success') {
     return {
