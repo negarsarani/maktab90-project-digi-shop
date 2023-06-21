@@ -40,6 +40,7 @@ export interface OrderedCategory {
   subCategories: {
     _id: string;
     name: string;
+    slugname?:string
     category: string;
   }[];
 }

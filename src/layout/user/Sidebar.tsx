@@ -51,7 +51,7 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen, Data }: props) => {
                   <Disclosure as="div" className="-mx-3" key={data.id}>
                     {({ open }) => (
                       <>
-                        <div className='flex justify-between w-full items-center '>
+                        <div className="flex justify-between w-full items-center ">
                           <div className="flex items-center justify-center gap-3 px-4 ">
                             <Image
                               src={`http://localhost:8000/images/categories/icons/${data.icon}`}
@@ -59,8 +59,13 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen, Data }: props) => {
                               width={25}
                               height={25}
                             />
-                            <Linkouter className='hover:text-grayDarkLight hover:font-bold' href={`category/${data.slug}`}>{data.name}</Linkouter>
-                            
+                            <Linkouter
+                              className="hover:text-grayDarkLight hover:font-bold"
+                              href={`/category/${data.slug}`}
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              {data.name}
+                            </Linkouter>
                           </div>
                           <Disclosure.Button className="flex rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 ">
                             <div className="p-2 hover:bg-gray-50 rounded-full">
@@ -83,8 +88,9 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen, Data }: props) => {
                                 className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                               >
                                 <Linkrouter
-                                  href={`category/${data.slug}/${item.slugname}`}
+                                  href={`/category/${data.slug}/${item.slugname}`}
                                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                  onClick={() => setMobileMenuOpen(false)}
                                 >
                                   {item.name}
                                 </Linkrouter>

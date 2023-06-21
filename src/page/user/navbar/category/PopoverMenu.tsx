@@ -10,7 +10,6 @@ interface props {
 }
 const PopoverMenu = ({ data }: props) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-console.log(data);
 
   const handleMouseEnter = () => {
 
