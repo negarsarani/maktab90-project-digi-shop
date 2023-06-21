@@ -1,32 +1,32 @@
 import getData from '@/api/getData';
 import { productType } from '@/types/type';
-import {Products} from '@/page/user'
+import { Products } from '@/page/user';
 interface props {
   data: productType;
 }
 const SingleProduct = ({ data }: props) => {
-  console.log(data);
-
-  return <div>
-    <Products/>
-  </div>
+  return (
+    <div>
+      <Products />
+    </div>
+  );
 };
 
 export default SingleProduct;
 
 export const getServerSideProps = async ({ params }) => {
-  try {
-    const Dataproduct = await getData(`/products/${params.id}`);
-
+  const Dataproduct = await getData(`/products/${params.id}`);
+  if (Dataproduct.status === 'success') {
     return {
       props: {
         data: Dataproduct,
       },
     };
-  } catch (error) {
+  } else {
     return {
-      props: {
-        data: ['lll'],
+      redirect: {
+        destination: '/404',
+        permanent: false,
       },
     };
   }

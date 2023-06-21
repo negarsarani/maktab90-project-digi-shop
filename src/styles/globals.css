@@ -125,3 +125,38 @@ body {
     fill: black !important;
     stroke: black !important;
 }
+
+.slider-container {
+  width: 400px;
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 8px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+.slide-wrapper {
+  position: relative;
+}
+
+.image-container {
+  position: relative;
+}
+
+.zoomed-in-container {
+  position: absolute;
+  z-index: 10;
+  background-color: #fff;
+  border: 1px solid #d4d4d4;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.zoomed-in-wrapper {
+  width: 200px; /* Adjust the width as needed */
+  height: 200px; /* Adjust the height as needed */
+  overflow: hidden;
+}
