@@ -5,7 +5,17 @@ import UploadImages from './UploadImages';
 import dynamic from 'next/dynamic';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+// import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import formProduct from '@/schemas/admin/formProduct';
 import postData from '@/api/postData';
 import { ProductModal } from '@/types/type';
@@ -23,6 +33,10 @@ interface props {
 }
 
 const Form = ({ setOpenModal, refetch, editFlag }: props) => {
+  const ReactQuill = useMemo(
+    () => dynamic(import('react-quill'), { ssr: false }),
+    []
+  );
   const refTextEditor = useRef(null);
   const [imgsSrc, setImgsSrc] = useState<unknown[] | never[]>([]);
   const [thumbnailSrc, setThumbnailSrc] = useState<unknown | string>('');
@@ -241,23 +255,23 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
                   موجودی
                 </label>
                 <div className="mt-2">
-                <Controller
-                      control={control}
-                      name="quantity"
-                      // rules={{ required: true }}
-                      render={({ field: { onChange, value, name } }) => {
-                        return (
-                          <input
-                            // {...field}
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6"
-                            type="number"
-                            name={name}
-                            onChange={onChange}
-                            value={value}
-                          />
-                        );
-                      }}
-                    />
+                  <Controller
+                    control={control}
+                    name="quantity"
+                    // rules={{ required: true }}
+                    render={({ field: { onChange, value, name } }) => {
+                      return (
+                        <input
+                          // {...field}
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6"
+                          type="number"
+                          name={name}
+                          onChange={onChange}
+                          value={value}
+                        />
+                      );
+                    }}
+                  />
                   {/* <Input
                     register={register}
                     placeholder="مثال: آیفون 6"
@@ -281,23 +295,23 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
                   قیمت
                 </label>
                 <div className="mt-2">
-                <Controller
-                      control={control}
-                      name="price"
-                      rules={{ required: true }}
-                      render={({ field: { onChange, value, name } }) => {
-                        return (
-                          <input
-                            // {...field}
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6"
-                            type="number"
-                            name={name}
-                            onChange={onChange}
-                            value={value}
-                          />
-                        );
-                      }}
-                    />
+                  <Controller
+                    control={control}
+                    name="price"
+                    rules={{ required: true }}
+                    render={({ field: { onChange, value, name } }) => {
+                      return (
+                        <input
+                          // {...field}
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6"
+                          type="number"
+                          name={name}
+                          onChange={onChange}
+                          value={value}
+                        />
+                      );
+                    }}
+                  />
                   {/* <Input
                     register={register}
                     placeholder="به تومان قیمت را وارد کنید"
@@ -315,7 +329,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
               </div>
 
               <SelectBox
-              control={control}
+                control={control}
                 register={register}
                 errors={errors}
                 editFlag={editFlag}
@@ -332,7 +346,13 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
             setThumbnailSrc={setThumbnailSrc}
           />
           <div className="w-full ">
-            <Editor refTextEditor={refTextEditor} value={description} />
+            <ReactQuill
+              theme="snow"
+              value={description}
+              onChange={(e) => {
+                return setDescription(e)
+              }}
+            />
           </div>
         </div>
 
