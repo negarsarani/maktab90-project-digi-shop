@@ -113,7 +113,6 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
       setValue('subcategory', value.subcategory._id);
       setValue('category', value.category._id);
       setDescription(value.description);
-      console.log(value.category.name);
       SetSelecetesCategory(value.category._id)
     }
   }, [value]);
