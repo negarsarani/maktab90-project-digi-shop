@@ -48,11 +48,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
   const createProduct = async (formData) => {
     return postData('/products', formData).then((res) => refetch());
   };
-  const updateProduct = async (id, formData) => {
-    patchData('http://localhost:8000/api/products/' + id, formData).then(
-      (res) => refetch()
-    );
-  };
+  const updateProduct = async (id, formData) => patchData('http://localhost:8000/api/products/' + id, formData);
   const mutation = useMutation({
     mutationFn: createProduct,
     onSuccess: () => {
@@ -71,12 +67,12 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
   const mutationEdit = useMutation({
     mutationFn: ({ id, formData }) => updateProduct(id, formData),
     onSuccess: () => {
-      reset();
-      return setOpenModal({ filter: false, buttonOrange: false });
+      refetch();
+      setOpenModal({ filter: false, buttonOrange: false });
+      
     },
   });
 
-  
   useEffect(() => {
     if (value.name !== '') {
       setValue('name', value.name);
@@ -87,7 +83,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
       setValue('subcategory', value.subcategory._id);
       setValue('category', value.category._id);
       setDescription(value.description);
-      SetSelecetesCategory(value.category._id)
+      SetSelecetesCategory(value.category._id);
     }
   }, [value]);
 
@@ -305,8 +301,8 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
               </div>
 
               <SelectBox
-              selectedCategory={selectedCategory}
-              SetSelecetesCategory={SetSelecetesCategory}
+                selectedCategory={selectedCategory}
+                SetSelecetesCategory={SetSelecetesCategory}
                 control={control}
                 register={register}
                 errors={errors}
@@ -328,7 +324,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
               theme="snow"
               value={description}
               onChange={(e) => {
-                return setDescription(e)
+                return setDescription(e);
               }}
             />
           </div>
@@ -336,7 +332,8 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
 
         <div className="mt-6 flex items-center justify-end gap-x-6">
           <Button
-            onClick={() => {}
+            onClick={
+              () => {}
               // editFlag
               //   ? setOpenModal({ filter: false, buttonOrange: false })
               //   : setOpenModal({ Edit: false, Delete: false })
