@@ -11,7 +11,7 @@ export default function Example() {
     توضیحات: [
       {
         name: 'description',
-        description: 'فروشگاه دیجی شاپاین کالا را معرفی میکند.',
+        description: 'فروشگاه دیجی شاپ این کالا را معرفی میکند.',
       },
     ],
     نظرات: [
@@ -56,21 +56,20 @@ export default function Example() {
           ))}
         </Tab.List>
         <Tab.Panels className="mt-2">
-          {Object.keys(categories)}
           {Object.values(categories).map((posts, idx) => (
             <Tab.Panel
               key={idx}
-              className={classNames(
-                'rounded-xl bg-white p-3  ring-0 focus:ring-0',
-                'ring-white ring-opacity-60  focus:outline-none focus:ring-2'
-              )}
+              className="rounded-xl bg-white p-3  ring-0 focus:ring-0
+              ring-white ring-opacity-60  focus:outline-none"
             >
               {posts.map((post) => {
                 if (post.name == 'description') {
                   return (
-                    <ul key={post.description}>
-                      <ReadMore> {post.description}</ReadMore>
-                    </ul>
+                    < div key={post.description} className="w-full">
+                      
+                        <ReadMore>{post.description}</ReadMore>
+                      
+                    </div>
                   );
                 }
                 if (post.name === 'comments') {
