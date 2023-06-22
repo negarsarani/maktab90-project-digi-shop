@@ -2,16 +2,23 @@ import { useState } from 'react';
 import { Tab } from '@headlessui/react';
 import ReadMore from './shared/RaedMore';
 
-function classNames(...classes) {
+function classNames(...classes:string[]) {
   return classes.filter(Boolean).join(' ');
 }
-
-export default function Example() {
+type postType = {
+  description?:string; productDescription?:string 
+    ; name:string ; id:number ; title:string ; date:string ; commentCount:string ; shareCount:string
+}
+interface props {
+  data: {description:string};
+}
+export default function Index({ data }: props) {
   let [categories, setCatg] = useState({
     توضیحات: [
       {
         name: 'description',
-        description: 'فروشگاه دیجی شاپ این کالا را معرفی میکند.',
+        description: `فروشگاه دیجی شاپ این کالا را معرفی میکند`,
+        productDescription: `${data.description || ""}`,
       },
     ],
     نظرات: [
@@ -62,13 +69,14 @@ export default function Example() {
               className="rounded-xl bg-white p-3  ring-0 focus:ring-0
               ring-white ring-opacity-60  focus:outline-none"
             >
-              {posts.map((post) => {
+              {posts.map((post :postType) => {
                 if (post.name == 'description') {
                   return (
-                    < div key={post.description} className="w-full">
-                      
-                        <ReadMore>{post.description}</ReadMore>
-                      
+                    <div key={post.description} className="w-full">
+                        <p>{post.description}</p>{' '}
+                      <ReadMore> 
+                        {post.productDescription}
+                      </ReadMore>
                     </div>
                   );
                 }

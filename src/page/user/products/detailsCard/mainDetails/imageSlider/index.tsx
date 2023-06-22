@@ -14,8 +14,8 @@ export default function Index({ images }: props) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <div className="w-full lg:col-span-3 
-    sm:col-span-4 ">
+    <div className="w-full lg:col-span-3 md:col-span-4 col-span-full
+      ">
       <MainSlider thumbsSwiper={thumbsSwiper} images={images} />
       <ThumbnailSlider setThumbsSwiper={setThumbsSwiper} images={images} />
     </div>

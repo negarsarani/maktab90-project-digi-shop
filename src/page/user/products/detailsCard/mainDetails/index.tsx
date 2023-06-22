@@ -26,10 +26,7 @@ const Index = ({ data , children}: props) => {
       <ImageSlider images={data.images} />
       <DetailsTop data={data} />
       <DetailsFixed data={data} />
-      <div className='col-span-full'>
-      {children}
-
-      </div>
+     
     </div>
   );
 };

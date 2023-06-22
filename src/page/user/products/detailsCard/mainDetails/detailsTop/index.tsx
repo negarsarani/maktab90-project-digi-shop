@@ -21,7 +21,7 @@ interface props {
 }
 const Index = ({ data }: props) => {
   return (
-    <div className="lg:col-span-6 sm:col-span-8 ">
+    <div className="lg:col-span-6 md:col-span-8 ">
       {' '}
       <h3 className="mb-3">
         تبلت سامسونگ مدل Galaxy Tab A7 Lite (2021, 8.7") 4G SM-T225 ظرفیت 32/3
