@@ -25,7 +25,6 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
   }, []);
   useEffect(() => {
     const slicePath = valueAdmin.products.url.path.split('?')[1];
-    console.log(queries);
     router.push({
       pathname: '',
       query: slicePath,

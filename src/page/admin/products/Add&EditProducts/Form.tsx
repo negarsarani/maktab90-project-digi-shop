@@ -76,33 +76,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
     },
   });
 
-  // useEffect(() => {
-
-  //   if (editFlag) {
-  //     setDefaultValue({
-  //       name: value.name,
-  //       brand: value.name,
-  //       quantity: value.quantity,
-  //       price: value.price,
-  //       category: value.category,
-  //       subcategory: value.subcategory,
-  //       images: value.images,
-  //       thumbnail: value.thumbnail,
-  //     });
-  //     return setDescription(value.description);
-  //   } else {
-  //     setDefaultValue({
-  //       name: '',
-  //       brand: '',
-  //       quantity: '',
-  //       price: '',
-  //       category: '',
-  //       subcategory: '',
-  //       images: [],
-  //       thumbnail: '',
-  //     });
-  //   }
-  // }, []);
+  
   useEffect(() => {
     if (value.name !== '') {
       setValue('name', value.name);

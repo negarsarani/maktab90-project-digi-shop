@@ -11,7 +11,6 @@ function EditText({ values, id, name }: props) {
   const [value, setValue] = useState(values);
   const [valueAdmin, dispatch] = useRedux((state) => state.adminState);
   const handleSave = (val:string) => {
-    console.log('Edited Value -> ', val);
     if (val !== '') {
       setValue(val)
       const FindData = valueAdmin.orders.data.map((item: { id: string }) => {

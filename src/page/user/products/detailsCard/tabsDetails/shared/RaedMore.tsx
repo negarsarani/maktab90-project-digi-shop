@@ -9,11 +9,15 @@ const ReadMore = ({ children }: { children: ReactNode }) => {
   return (
     <div className="w-full">
       <div className="w-full break-words">
-        {isReadMore ? text?.slice(0, 150) : text}
+        <div
+          className={`w-full truncate ${isReadMore ?" h-12" : "h-full"}  `}
+          dangerouslySetInnerHTML={{ __html: text }}
+        ></div>
+        {/* {isReadMore ? text?.slice(0, 150) : text} */}
       </div>
       <span
         onClick={toggleReadMore}
-        className="text-[rgb(192,192,192)] cursor-pointer"
+        className="text-[rgb(192,192,192)] bg-white bg-opacity-30 cursor-pointer"
       >
         {isReadMore ? '...read more' : ' show less'}
       </span>
