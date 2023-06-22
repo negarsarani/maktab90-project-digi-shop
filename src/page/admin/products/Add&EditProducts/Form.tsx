@@ -10,6 +10,9 @@ import formProduct from '@/schemas/admin/formProduct';
 import postData from '@/api/postData';
 import { ProductModal } from '@/types/type';
 import useRedux from '@/hooks/useRedux';
+import useMutationCustom from '@/hooks/mutationQuery';
+import { useMutation } from '@tanstack/react-query';
+import patchData from '@/api/patchData';
 
 interface props {
   setOpenModal:
@@ -26,67 +29,129 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
   const [description, setDescription] = useState();
   const [value, dispatch] = useRedux((state) => state.formProductState);
   const [defaultValue, setDefaultValue] = useState<ProductModal>();
+  const createProduct = async (formData) => {
+    return postData('/products', formData).then((res) => refetch());
+  };
+  const updateProduct = async (id, formData) => {
+    patchData('http://localhost:8000/api/products/' + id, formData).then(
+      (res) => refetch()
+    );
+  };
+  const mutation = useMutation({
+    mutationFn: createProduct,
+    onSuccess: () => {
+      reset();
+      return setOpenModal({ filter: false, buttonOrange: false });
+    },
+  });
 
+  // const mutationEdit = useMutation({
+  //   mutationFn: ({ id, formData }) => updateProduct(id, formData),
+  //   onSuccess: () => {
+  //     reset();
+  //     return setOpenModal({ filter: false, buttonOrange: false });
+  //   },
+  // });
+  const mutationEdit = useMutation({
+    mutationFn: ({ id, formData }) => updateProduct(id, formData),
+    onSuccess: () => {
+      reset();
+      return setOpenModal({ filter: false, buttonOrange: false });
+    },
+  });
+
+  // useEffect(() => {
+
+  //   if (editFlag) {
+  //     setDefaultValue({
+  //       name: value.name,
+  //       brand: value.name,
+  //       quantity: value.quantity,
+  //       price: value.price,
+  //       category: value.category,
+  //       subcategory: value.subcategory,
+  //       images: value.images,
+  //       thumbnail: value.thumbnail,
+  //     });
+  //     return setDescription(value.description);
+  //   } else {
+  //     setDefaultValue({
+  //       name: '',
+  //       brand: '',
+  //       quantity: '',
+  //       price: '',
+  //       category: '',
+  //       subcategory: '',
+  //       images: [],
+  //       thumbnail: '',
+  //     });
+  //   }
+  // }, []);
   useEffect(() => {
-    if (editFlag) {
-      setDefaultValue({
-        name: value.name,
-        brand: value.name,
-        quantity: value.quantity,
-        price: value.price,
-        category: value.category,
-        subcategory: value.subcategory,
-        images: value.images,
-        thumbnail: value.thumbnail,
-      });
-    return  setDescription(value.description)
-    } else {
-      setDefaultValue({
-        name: '',
-        brand: '',
-        quantity: '',
-        price: '',
-        category: '',
-        subcategory: '',
-        images: [],
-        thumbnail: '',
-      });
+    if (value.name !== '') {
+      setValue('name', value.name);
+      setValue('price', value.price);
+      setValue('brand', value.brand);
+      setValue('quantity', value.quantity);
+      setValue('category', value.category._id);
+      setValue('subcategory', value.subcategory._id);
+      setValue('category', value.category._id);
+      setDescription(value.description);
+      console.log(value.category.name);
     }
-  }, []);
+  }, [value]);
 
   const {
     register,
     handleSubmit,
     reset,
     control,
+    setValue,
+    getValues,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(formProduct),
     mode: 'all',
-    defaultValues: defaultValue,
+    defaultValues: {
+      name: '',
+      brand: '',
+      quantity: '',
+      price: '',
+      category: '',
+      subcategory: '',
+      images: [],
+      thumbnail: '',
+    },
   });
   let formData = new FormData();
   const Editor = dynamic(() => import('./TextEditor'), { ssr: false });
   const onSubmit = (data: ProductModal) => {
     console.log(refTextEditor.currentValue);
 
-    // Object.keys(data).map((key: any) => {
-    //   if (key !== 'images' && key !== 'thumbnail') {
-    //     return formData.append(key, data[key]);
-    //   }
-    // });
-    // formData.append('description', description);
+    Object.keys(data).map((key: any) => {
+      if (key !== 'images' && key !== 'thumbnail') {
+        return formData.append(key, data[key]);
+      }
+    });
+    formData.append('description', description);
 
-    // imgsSrc.map((item: any) => {
-    //   formData.append('images', item);
-    // });
-    // formData.append('thumbnail', thumbnailSrc);
+    imgsSrc.map((item: any) => {
+      formData.append('images', item);
+    });
+    formData.append('thumbnail', thumbnailSrc);
     // try {
     //   postData('/products', formData).then((res) => refetch());
     // } catch (error) {
     //   console.error(error);
     // }
     // return setOpenModal({ filter: false, buttonOrange: false });
+
+    editFlag
+      ? mutationEdit.mutate({
+          id: value.id,
+          formData: formData,
+        })
+      : mutation.mutate(formData);
   };
 
   return (
@@ -104,9 +169,27 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
                   نام محصول
-                </label>
+                </label>{' '}
                 <div className="mt-2">
-                  <Input
+                  <Controller
+                    control={control}
+                    name="name"
+                    // rules={{ required: true }}
+                    render={({ field: { onChange, value, name } }) => {
+                      return (
+                        <input
+                          // {...field}
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6"
+                          type="text"
+                          name={name}
+                          onChange={onChange}
+                          value={value}
+                        />
+                      );
+                    }}
+                  />{' '}
+                </div>
+                {/* <Input
                     register={register}
                     placeholder="مثال: آیفون 6"
                     type="text"
@@ -115,8 +198,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
                     value={editFlag && value.name}
                     autoComplete="given-name"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6"
-                  />
-                </div>
+                  /> */}
                 <div className="h-5 text-orangeAdmin pt-2">
                   {errors.name?.message}
                 </div>
@@ -129,15 +211,22 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
                   برند
                 </label>
                 <div className="mt-2">
-                  <Input
-                    register={register}
-                    placeholder="مثال: آیفون 6"
-                    type="text"
+                  <Controller
+                    control={control}
                     name="brand"
-                    id="brand"
-                    value={editFlag && value.brand}
-                    autoComplete="given-name"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6"
+                    // rules={{ required: true }}
+                    render={({ field: { onChange, value, name } }) => {
+                      return (
+                        <input
+                          // {...field}
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6"
+                          type="text"
+                          name={name}
+                          onChange={onChange}
+                          value={value}
+                        />
+                      );
+                    }}
                   />
                 </div>
                 <div className="h-5 text-orangeAdmin pt-2">
@@ -152,7 +241,24 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
                   موجودی
                 </label>
                 <div className="mt-2">
-                  <Input
+                <Controller
+                      control={control}
+                      name="quantity"
+                      // rules={{ required: true }}
+                      render={({ field: { onChange, value, name } }) => {
+                        return (
+                          <input
+                            // {...field}
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6"
+                            type="number"
+                            name={name}
+                            onChange={onChange}
+                            value={value}
+                          />
+                        );
+                      }}
+                    />
+                  {/* <Input
                     register={register}
                     placeholder="مثال: آیفون 6"
                     type="number"
@@ -161,7 +267,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
                     id="quantity"
                     autoComplete="given-name"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6"
-                  />
+                  /> */}
                 </div>
                 <div className="h-5 text-orangeAdmin pt-2">
                   {errors.quantity?.message}
@@ -175,7 +281,24 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
                   قیمت
                 </label>
                 <div className="mt-2">
-                  <Input
+                <Controller
+                      control={control}
+                      name="price"
+                      rules={{ required: true }}
+                      render={({ field: { onChange, value, name } }) => {
+                        return (
+                          <input
+                            // {...field}
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6"
+                            type="number"
+                            name={name}
+                            onChange={onChange}
+                            value={value}
+                          />
+                        );
+                      }}
+                    />
+                  {/* <Input
                     register={register}
                     placeholder="به تومان قیمت را وارد کنید"
                     type="number"
@@ -184,7 +307,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
                     id="price"
                     autoComplete="given-name"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:text-sm sm:leading-6"
-                  />
+                  /> */}
                 </div>
                 <div className="h-5 text-orangeAdmin pt-2">
                   {errors.price?.message}
@@ -192,7 +315,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
               </div>
 
               <SelectBox
-                value={value}
+              control={control}
                 register={register}
                 errors={errors}
                 editFlag={editFlag}

@@ -12,25 +12,22 @@ interface props {
   errors: FieldErrors<{ category: string; subcategory: string }>;
   value: { category: string; subcategory: { _id: string } };
   editFlag: boolean;
+  control: any;
 }
-const SelectBox = ({ register, errors, value, editFlag }: props) => {
+const SelectBox = ({ register, errors, value, editFlag, control }: props) => {
   const [categories, subCategories] = useCategory();
   const [selectedCategory, SetSelecetesCategory] = useState();
 
-  
   useEffect(() => {
-    if (editFlag) {
-      const category: string = value.category._id;
-      SetSelecetesCategory(category._id);
-      return HandleSubCategory(category._id);
-    }
+    HandleSubCategory();
   }, []);
-  const HandleSubCategory = (itemDefualt?:string) => {
-    
-    const filterData = subCategories?.filter(
-      (item: { category: string }) =>{return itemDefualt ? item.category === itemDefualt :  item.category === selectedCategory }
-    );
-    return  filterData;
+  const HandleSubCategory = (itemDefualt?: string) => {
+    const filterData = subCategories?.filter((item: { category: string }) => {
+      return itemDefualt
+        ? item.category === itemDefualt
+        : item.category === selectedCategory;
+    });
+    return filterData;
   };
   return (
     <>
@@ -42,7 +39,32 @@ const SelectBox = ({ register, errors, value, editFlag }: props) => {
           دسته بندی
         </label>
         <div className="mt-2">
-          <select
+          <Controller
+            control={control}
+            name="category"
+            // rules={{ required: true }}
+            render={({ field: { onChange, value, name } }) => {
+              return (
+                <select
+                  // {...field}
+                  value={value}
+                  name={name}
+                  onChange={onChange}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:max-w-xs sm:text-sm sm:leading-6"
+                >
+                  {/* <option value=""> انتخاب دسته بندی </option> */}
+                  {categories?.map((item: { _id: string; name: string }) => {
+                    return (
+                      <option key={item._id} id={item._id} value={item._id}>
+                        {item.name}
+                      </option>
+                    );
+                  })}
+                </select>
+              );
+            }}
+          />
+          {/* <select
             {...register('category')}
             name="category"
             id="category"
@@ -52,8 +74,8 @@ const SelectBox = ({ register, errors, value, editFlag }: props) => {
               SetSelecetesCategory(e.target.value);
             }}
           >
-            <option disabled selected></option>
-            {editFlag
+            <option disabled selected></option> */}
+          {/* {editFlag
               ? categories?.map((item: { _id: string; name: string }) => {
                   return value.category._id === item._id ? (
                     <option
@@ -76,15 +98,15 @@ const SelectBox = ({ register, errors, value, editFlag }: props) => {
                       {item.name}
                     </option>
                   );
-                })}
-            {/* {categories?.map((item: { _id: string; name: string }) => {
+                })} */}
+          {/* {categories?.map((item: { _id: string; name: string }) => {
               return (
                 <option key={item._id} id={item._id} value={item._id}>
                   {item.name}
                 </option>
               );
             })} */}
-          </select>
+          {/* </select> */}
           <div className="h-5 text-orangeAdmin pt-2">
             {errors.category?.message}
           </div>
@@ -98,14 +120,43 @@ const SelectBox = ({ register, errors, value, editFlag }: props) => {
           زیر دسته بندی
         </label>
         <div className="mt-2">
-          <select
+          <Controller
+            control={control}
+            name="subcategory"
+            // rules={{ required: true }}
+            render={({ field: { onChange, value, name } }) => {
+              return (
+                <select
+                  // {...field}
+                  value={value}
+                  name={name}
+                  onChange={onChange}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:max-w-xs sm:text-sm sm:leading-6"
+                >
+                  
+                  
+                  
+                  {subCategories?.map((item: { _id: string; name: string }) => {
+                    return (
+                      <option key={item._id} id={item._id} value={item._id}>
+                        {item.name}
+                      </option>
+                    );
+                  })
+                  
+                  }
+                </select>
+              );
+            }}
+          />
+          {/* <select
             {...register('subcategory')}
             id="subcategory"
             name="subcategory"
             autoComplete="country-name"
             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:max-w-xs sm:text-sm sm:leading-6"
-          >
-            {editFlag
+          > */}
+          {/* {editFlag
               ? HandleSubCategory()?.map(
                   (item: { _id: string; name: string }) => {
                     
@@ -134,15 +185,15 @@ const SelectBox = ({ register, errors, value, editFlag }: props) => {
                       </option>
                     );
                   }
-                )}
-            {/* {HandleSubCategory()?.map((item: { _id: string; name: string }) => {
+                )} */}
+          {/* {HandleSubCategory()?.map((item: { _id: string; name: string }) => {
               return (
                 <option key={item._id} id={item._id} value={item._id}>
                   {item.name}
                 </option>
               );
             })} */}
-          </select>
+          {/* </select> */}
           <div className="h-5 text-orangeAdmin pt-2">
             {errors.subcategory?.message}
           </div>

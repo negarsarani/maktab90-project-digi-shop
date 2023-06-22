@@ -19,15 +19,12 @@ const Products = () => {
   isLoading === false &&
     dispatch(DATA({ items: data, name: 'products', key: 'products' }));
 
-  useEffect(() => {
-    console.log(getCookie('accesstoken'));
-  });
+
 
   return (
     <div className="w-full h-full flex flex-col gap-5">
       <NavbarTableProduct refetch={refetch} />
-      {/* <ReactQueryDevtools /> */}
-      {/* <butt onClick></butt> */}
+ 
       <div className="w-full pb-10 flex flex-col">
         <div className="overflow-hidden bg-white flex flex-col overflow-x-auto w-full rounded-t-xl">
           <ProductTable
