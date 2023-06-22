@@ -64,7 +64,7 @@ const Filter = ({ children, name }: props) => {
                 <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
                   <div className="flex items-center justify-between px-4">
                     <h2 className="text-lg font-medium text-gray-900">
-                      Filters
+                      فیلتر
                     </h2>
                     <button
                       type="button"
@@ -76,7 +76,6 @@ const Filter = ({ children, name }: props) => {
                     </button>
                   </div>
 
-                  {/* Filters */}
                   <form className="mt-4 border-t border-gray-200">
                     <FilterProduct />
                   </form>
@@ -87,24 +86,24 @@ const Filter = ({ children, name }: props) => {
         </Transition.Root>
 
         <main className="mx-auto  px-2 sm:px-2 lg:px-8">
-          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
-            <h2 className="text-4xl font-bold tracking-tight text-gray-900">
+          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24 px-4">
+            <h2 className="md:text-4xl font-bold tracking-tight text-lg  text-gray-900">
               {name}
             </h2>
 
-            <div className="flex items-center">
+            <div className="flex gap-6 items-center">
               <Sort />
 
               <button
                 type="button"
-                className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7"
+                className=" text-gray-400 hover:text-gray-500 sm:ml-7"
               >
                 <span className="sr-only">نمایش</span>
                 <Squares2X2Icon className="h-5 w-5" aria-hidden="true" />
               </button>
               <button
                 type="button"
-                className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
+                className=" text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
                 onClick={() => setMobileFiltersOpen(true)}
               >
                 <span className="sr-only">فلیتر محصول</span>

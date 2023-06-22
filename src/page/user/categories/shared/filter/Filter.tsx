@@ -13,15 +13,13 @@ interface props {}
 const FilterProduct = ({}: props) => {
   return (
     <>
-      {' '}
-      <h3 className="sr-only">Categories</h3>
       <ul
         role="list"
         className="space-y-4 border-b px-2 py-3 font-medium text-gray-900 border-gray-200 pb-6 text-sm "
       >
         {subCategories.map((category) => (
           <li key={category.name}>
-            <a className="block px-2 py-3" href={category.href}>
+            <a className="block px-2 py-3 " href={category.href}>
               {category.name}
             </a>
           </li>
