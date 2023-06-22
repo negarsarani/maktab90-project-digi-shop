@@ -43,6 +43,8 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
   const [description, setDescription] = useState();
   const [value, dispatch] = useRedux((state) => state.formProductState);
   const [defaultValue, setDefaultValue] = useState<ProductModal>();
+  const [selectedCategory, SetSelecetesCategory] = useState();
+
   const createProduct = async (formData) => {
     return postData('/products', formData).then((res) => refetch());
   };
@@ -112,6 +114,7 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
       setValue('category', value.category._id);
       setDescription(value.description);
       console.log(value.category.name);
+      SetSelecetesCategory(value.category._id)
     }
   }, [value]);
 
@@ -329,6 +332,8 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
               </div>
 
               <SelectBox
+              selectedCategory={selectedCategory}
+              SetSelecetesCategory={SetSelecetesCategory}
                 control={control}
                 register={register}
                 errors={errors}
@@ -358,10 +363,10 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
 
         <div className="mt-6 flex items-center justify-end gap-x-6">
           <Button
-            onClick={() =>
-              editFlag
-                ? setOpenModal({ filter: false, buttonOrange: false })
-                : setOpenModal({ Edit: false, Delete: false })
+            onClick={() => {}
+              // editFlag
+              //   ? setOpenModal({ filter: false, buttonOrange: false })
+              //   : setOpenModal({ Edit: false, Delete: false })
             }
             type="button"
             className="text-sm font-semibold leading-6 text-gray-900"

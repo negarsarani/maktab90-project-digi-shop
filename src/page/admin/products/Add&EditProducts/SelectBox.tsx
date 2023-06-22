@@ -13,14 +13,23 @@ interface props {
   value: { category: string; subcategory: { _id: string } };
   editFlag: boolean;
   control: any;
+  selectedCategory: string | undefined;
+  SetSelecetesCategory: any;
 }
-const SelectBox = ({ register, errors, value, editFlag, control }: props) => {
+const SelectBox = ({
+  register,
+  errors,
+  value,
+  editFlag,
+  control,
+  selectedCategory,
+  SetSelecetesCategory,
+}: props) => {
   const [categories, subCategories] = useCategory();
-  const [selectedCategory, SetSelecetesCategory] = useState();
 
-  useEffect(() => {
-    HandleSubCategory();
-  }, []);
+  // useEffect(() => {
+  //   HandleSubCategory()
+  // }, []);
   const HandleSubCategory = (itemDefualt?: string) => {
     const filterData = subCategories?.filter((item: { category: string }) => {
       return itemDefualt
@@ -49,10 +58,12 @@ const SelectBox = ({ register, errors, value, editFlag, control }: props) => {
                   // {...field}
                   value={value}
                   name={name}
-                  onChange={onChange}
+                  onChange={(e) => {
+                    onChange(e);
+                    SetSelecetesCategory(e.target.value);
+                  }}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:max-w-xs sm:text-sm sm:leading-6"
                 >
-                  {/* <option value=""> انتخاب دسته بندی </option> */}
                   {categories?.map((item: { _id: string; name: string }) => {
                     return (
                       <option key={item._id} id={item._id} value={item._id}>
@@ -133,18 +144,15 @@ const SelectBox = ({ register, errors, value, editFlag, control }: props) => {
                   onChange={onChange}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-orangeAdmin sm:max-w-xs sm:text-sm sm:leading-6"
                 >
-                  
-                  
-                  
-                  {subCategories?.map((item: { _id: string; name: string }) => {
-                    return (
-                      <option key={item._id} id={item._id} value={item._id}>
-                        {item.name}
-                      </option>
-                    );
-                  })
-                  
-                  }
+                  {HandleSubCategory()?.map(
+                    (item: { _id: string; name: string }) => {
+                      return (
+                        <option key={item._id} id={item._id} value={item._id}>
+                          {item.name}
+                        </option>
+                      );
+                    }
+                  )}
                 </select>
               );
             }}

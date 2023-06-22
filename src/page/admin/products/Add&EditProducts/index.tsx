@@ -11,7 +11,7 @@ interface ModalProps {
 }
 const ModalAddProduct = ({ name, openModal, setOpenModal , refetch }: ModalProps) => {
   return (
-    <Modal name={name} openModal={openModal} setOpenModal={setOpenModal}>
+    <Modal setOpenModal={setOpenModal} name={name} openModal={openModal} >
       <Form setOpenModal={setOpenModal} refetch={refetch}/>
     </Modal>
   );

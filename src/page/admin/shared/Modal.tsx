@@ -24,7 +24,7 @@ const Modal = ({ openModal, setOpenModal, name, children }: ModalProps) => {
 
     <Dialog
       open={openModal}
-      onClose={handleClose}
+      onClose={()=>{}}
       className="fixed inset-0 z-50 flex items-center justify-center"
     >
       <Dialog.Panel className="bg-white px-3 py-3 w-11/12 shadow-gray-300 sm:max-w-xl mx-auto rounded-md shadow-lg ">
