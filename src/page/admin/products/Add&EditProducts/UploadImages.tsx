@@ -50,18 +50,23 @@ const UploadImages = ({
       const generateId = setTimeout(() => Date.now(), 400);
       reader.readAsDataURL(file[1]);
       reader.onload = () => {
-        return setCurrentImages((imgs: { id: string; img: string }) => {
-          return [...imgs, { id: generateId, img: reader.result }];
+        setCurrentImages((imgs: { id: string; img: string }) => {
+          return [
+            ...imgs,
+            { id: generateId, img: reader.result, file: file[1] },
+          ];
         });
+        setImgsSrc((imgs) => [
+          ...imgs,
+          { id: generateId, file: file[1] },
+        ]);
       };
     });
 
-    const imageName2 = e.currentTarget.files;
+    // const entries = Object.entries(e.currentTarget.files);
 
-    const entries = Object.entries(imageName2);
-
-    const Array = entries.map((item) => item[1]);
-    return setImgsSrc(Array);
+    // const Array = entries.map((item) => item[1]);
+    // return setImgsSrc(Array);
   };
   const HandleThumbnails = (e: any) => {
     const file = e.target.files[0];
@@ -88,6 +93,7 @@ const UploadImages = ({
       const filterImg = currentImages.filter((item) => +item.id !== +id);
       console.log(currentImages, id);
       setCurrentImages(filterImg);
+      setImgsSrc(filterImg)
       // console.log(filterImg , id);
     } else {
       setCurrentThumbnail('');

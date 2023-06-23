@@ -38,7 +38,13 @@ const formProduct = yup.object().shape({
   //       isValidFileType(value !== '' && value?.name?.toLowerCase(), 'image')
   //   )
   //   .required('مبلغ کالا الزامی می باشد'),
-  images: yup.string().required('عکس کالا الزامی می باشد'),
+  // images: yup.array().required('عکس کالا الزامی می باشد'),
+  images: yup.mixed().test("file", "حداقل یک عکس الزامی می باشد", (value) => {
+    if (value.length > 0) {  
+      return true;
+    }
+    return false;
+    }),
   thumbnail: yup.string().required('تامبنیل الزامی می باشد')
 });
 

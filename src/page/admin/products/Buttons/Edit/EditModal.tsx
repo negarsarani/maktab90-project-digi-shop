@@ -5,6 +5,7 @@ import getData from '@/api/getData';
 import useRedux from '@/hooks/useRedux';
 import { ACTIVE } from '@/redux/slice';
 import useQueries from '@/hooks/useQueries';
+import { useQuery } from '@tanstack/react-query';
 
 interface props {
   isOpen: boolean;
@@ -18,9 +19,12 @@ interface props {
   id: string;
 }
 const EditModal = ({ isOpen, setIsOpen, refetch, id }: props) => {
-  const [isLoading, data, isError, refetchs] = useQueries(
-    () => getData(`products/${id}`),
-    ['product', id]
+  const { isLoading, error, data } = useQuery(
+    ['product'],
+    () => getData(`products/${id}`) ,
+     {
+      cacheTime:100
+     }
   );
   const [value, dispatch] = useRedux((state) => state.formProductState);
   if (data) {

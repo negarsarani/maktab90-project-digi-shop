@@ -1,4 +1,3 @@
-import TextEditor from './TextEditor';
 import { Button, Input } from '@/components';
 import SelectBox from './SelectBox';
 import UploadImages from './UploadImages';
@@ -20,7 +19,6 @@ import formProduct from '@/schemas/admin/formProduct';
 import postData from '@/api/postData';
 import { ProductModal } from '@/types/type';
 import useRedux from '@/hooks/useRedux';
-import useMutationCustom from '@/hooks/mutationQuery';
 import { useMutation } from '@tanstack/react-query';
 import patchData from '@/api/patchData';
 
@@ -42,36 +40,14 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
   const [thumbnailSrc, setThumbnailSrc] = useState<unknown | string>('');
   const [description, setDescription] = useState();
   const [value, dispatch] = useRedux((state) => state.formProductState);
-  const [defaultValue, setDefaultValue] = useState<ProductModal>();
   const [selectedCategory, SetSelecetesCategory] = useState();
 
   const createProduct = async (formData) => {
     return postData('/products', formData).then((res) => refetch());
   };
-  const updateProduct = async (id, formData) => patchData('http://localhost:8000/api/products/' + id, formData);
-  const mutation = useMutation({
-    mutationFn: createProduct,
-    onSuccess: () => {
-      reset();
-      return setOpenModal({ filter: false, buttonOrange: false });
-    },
-  });
+  const updateProduct = async (id, formData) =>
+    patchData('http://localhost:8000/api/products/' + id, formData);
 
-  // const mutationEdit = useMutation({
-  //   mutationFn: ({ id, formData }) => updateProduct(id, formData),
-  //   onSuccess: () => {
-  //     reset();
-  //     return setOpenModal({ filter: false, buttonOrange: false });
-  //   },
-  // });
-  const mutationEdit = useMutation({
-    mutationFn: ({ id, formData }) => updateProduct(id, formData),
-    onSuccess: () => {
-      refetch();
-      setOpenModal({ filter: false, buttonOrange: false });
-      
-    },
-  });
 
   useEffect(() => {
     if (value.name !== '') {
@@ -108,6 +84,22 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
       images: [],
       thumbnail: '',
     },
+  }); 
+  
+  const mutation = useMutation({
+    mutationFn: createProduct,
+    onSuccess: () => {
+      return setOpenModal({ filter: false, buttonOrange: false });
+    },
+  });
+
+  const mutationEdit = useMutation({
+    mutationFn: ({ id, formData }) => updateProduct(id, formData),
+    onSuccess: () => {
+      refetch();
+      reset();
+      setOpenModal({ filter: false, buttonOrange: false });
+    },
   });
   let formData = new FormData();
   const Editor = dynamic(() => import('./TextEditor'), { ssr: false });
@@ -122,15 +114,9 @@ const Form = ({ setOpenModal, refetch, editFlag }: props) => {
     formData.append('description', description);
 
     imgsSrc.map((item: any) => {
-      formData.append('images', item);
+      formData.append('images', item.file);
     });
     formData.append('thumbnail', thumbnailSrc);
-    // try {
-    //   postData('/products', formData).then((res) => refetch());
-    // } catch (error) {
-    //   console.error(error);
-    // }
-    // return setOpenModal({ filter: false, buttonOrange: false });
 
     editFlag
       ? mutationEdit.mutate({
