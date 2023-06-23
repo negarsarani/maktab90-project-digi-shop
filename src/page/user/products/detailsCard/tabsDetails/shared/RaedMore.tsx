@@ -10,7 +10,7 @@ const ReadMore = ({ children }: { children: ReactNode }) => {
     <div className="w-full">
       <div className="w-full break-words">
         <div
-          className={`w-full truncate ${isReadMore ?" h-12" : "h-full"}  `}
+          className={`w-full break-words ${isReadMore ?" h-12 truncate" : "h-full"}  `}
           dangerouslySetInnerHTML={{ __html: text }}
         ></div>
         {/* {isReadMore ? text?.slice(0, 150) : text} */}

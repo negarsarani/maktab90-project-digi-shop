@@ -12,11 +12,11 @@ export default function Home() {
     <div>
       <Slider />
       <div className=" 2xl:container 2xl:mx-auto lg:px-10 px-5 pb-5">
-        <WatchCategory />
-        <AccessoriesCategory />
-        <TabletCategory />
         <MobileCategory />
         <LaptopCategory />
+        <TabletCategory />
+        <WatchCategory />
+        <AccessoriesCategory />
       </div>
     </div>
   );

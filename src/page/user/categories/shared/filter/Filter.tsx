@@ -13,7 +13,7 @@ interface props {}
 const FilterProduct = ({}: props) => {
   return (
     <>
-      <ul
+      {/* <ul
         role="list"
         className="space-y-4 border-b px-2 py-3 font-medium text-gray-900 border-gray-200 pb-6 text-sm "
       >
@@ -24,12 +24,14 @@ const FilterProduct = ({}: props) => {
             </a>
           </li>
         ))}
-      </ul>
-      {filters.map((section) => (
+      </ul> */}
+      <div className='mb-10 '>فیلتر</div>
+      <div className='px-2'>
+         {filters.map((section) => (
         <Disclosure
           as="div"
           key={section.id}
-          className="border-b border-gray-200 py-6 border-t  px-4 "
+          className="border-b border-gray-200 py-6  "
         >
           {({ open }) => (
             <>
@@ -73,6 +75,8 @@ const FilterProduct = ({}: props) => {
           )}
         </Disclosure>
       ))}
+      </div>
+     
     </>
   );
 };

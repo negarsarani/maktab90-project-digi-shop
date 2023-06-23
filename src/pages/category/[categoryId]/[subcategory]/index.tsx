@@ -13,7 +13,7 @@ interface props {
     total_pages: string | number;
   };
 }
-const Index = ({ nameSubCategory , data}: props) => {
+const Index = ({ nameSubCategory , data , slug}: props) => {
   
 
   return (
@@ -43,9 +43,9 @@ export const getServerSideProps = async ( req ) => {
   if (DataSubCategory.status === 'success') {
     return {
       props: {
-        nameCategory: findId.name,
+        nameSubCategory: findId.name,
         data: DataSubCategory,
-        slug: slug,
+        slug: findId.name,
       },
     };
   } else {

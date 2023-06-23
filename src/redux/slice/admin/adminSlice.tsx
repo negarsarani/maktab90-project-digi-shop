@@ -20,7 +20,7 @@ const initialState: AdminStore = {
     filter: '',
     sort: '',
     options: { limit: 4, page: 1, totalPages: '' },
-    url: { keyApi: 'products', path: 'products?page=1&limit=4' },
+    url: { keyApi: 'products', path: 'products?page=1&limit=4&sort=-createdAt' },
     data: [],
   },
   inventory: {
@@ -70,7 +70,7 @@ export const adminSlice = createSlice({
       }
       state[
         name
-      ].url.path = `${state[name].url.keyApi}?page=${state[name].options.page}&limit=${state[name].options.limit}`;
+      ].url.path = `${state[name].url.keyApi}?page=${state[name].options.page}&limit=${state[name].options.limit}&sort=-createdAt`;
     },
     SORTDATA: (state, action) => {
       const { name, sortItem } = action.payload;

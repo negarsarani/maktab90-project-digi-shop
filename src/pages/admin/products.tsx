@@ -13,7 +13,7 @@ const Products = () => {
   const [value, dispatch] = useRedux((state: any) => state.adminState);
 
   const [isLoading, data, isError, refetch] = useQueries(
-    () => getData(value.products.url.path),
+    () => getData(value.products.url.path ),
     querykeys.products
   );
   isLoading === false &&

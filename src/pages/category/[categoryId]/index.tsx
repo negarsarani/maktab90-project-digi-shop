@@ -47,7 +47,7 @@ export const getServerSideProps = async (req, res) => {
   const DataCategory = await getData(
     `/products?category=${findId?._id}&sort=${
       req.query.sort || '-createdAt'
-    }&page=${ req.query.page || 1}&limit=${ req.query.limit || 3}`
+    }&page=${ req.query.page || 1}&limit=${ req.query.limit || 4}`
   );
 
 

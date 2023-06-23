@@ -117,12 +117,12 @@ const Filter = ({ children, name }: props) => {
               Products
             </h2>
 
-            <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-              <form className="hidden lg:block">
+            <div className="grid grid-cols-12 ">
+              <form className="hidden lg:block lg:col-span-2 ">
                 <FilterProduct />
               </form>
               {/* Filters */}
-              <div className="lg:col-span-3">{children}</div>
+              <div className="col-span-full w-full lg:col-span-10 ">{children}</div>
             </div>
           </section>
         </main>
