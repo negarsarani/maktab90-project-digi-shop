@@ -83,7 +83,7 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
         {value.products?.data?.map((item: any) => {
           return (
             <tr key={item._id} className="border-b">
-              <Td key={item.name} className="py-4  w-[10rem]">
+              <Td  className="py-4  w-[10rem]">
                 <div className="  lg:w-full w-[10rem]  flex items-center justify-center">
                   <div className="">
                     <Image
@@ -96,21 +96,21 @@ const ProductTable = ({ isLoading, value, isError, refetch }: TableProps) => {
                   </div>
                 </div>
               </Td>
-              <Td key={item.name} className="py-4 px-6   w-[20rem]">
+              <Td  className="py-4 px-6   w-[20rem]">
                 <div className="text-sm text-center px-4 h-20 lg:w-full w-[20rem] text-gray-900 flex items-center justify-center ">
                   <span className="  overflow-hidden  w-full  text-ellipsis">
                     {item.name}
                   </span>
                 </div>
               </Td>
-              <Td key={item.name} className="py-4 px-6  w-[20rem]">
+              <Td  className="py-4 px-6  w-[20rem]">
                 <div className="text-sm text-center px-4 text-gray-900  lg:w-full w-[20rem] flex items-center justify-center ">
                   <div className=" w-full">
                     {`${item.category?.name} / ${item.subcategory?.name}`}
                   </div>
                 </div>
               </Td>
-              <Td key={item.name} className="py-4 px-6  w-[10rem]">
+              <Td  className="py-4 px-6  w-[10rem]">
                 <div className="flex items-center justify-center gap-2 lg:w-full w-[5rem]">
                 <ButtonsAction id={item._id} nameProduct={item.name} refetch={refetch}/>
                 </div>
