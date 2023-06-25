@@ -1,17 +1,20 @@
 import { Linkouter, Input, Button } from '@/components';
 import Image from 'next/image';
-import { CookieValueTypes, getCookie } from 'cookies-next';
+import { CookieValueTypes, deleteCookie, getCookie } from 'cookies-next';
 import { useEffect, useState } from 'react';
+import Linkrouter from '@/components/Linkrouter';
 
 const Index = () => {
-  const [role, setRole] = useState<CookieValueTypes>();
-  useEffect(() => {
-    setRole(getCookie('role'));
-  }, []);
+  
+  const handleExit = () => {
+    deleteCookie('refreshtoken');
+    deleteCookie('accesstoken');
+    deleteCookie('role');
+  };
   return (
     <div className="w-6/12  flex items-center justify-end gap-5">
-      {role === 'USER' ? (
-        <div className='flex items-center justify-center gap-2 cursor-pointer hover:bg-zinc-100 rounded-md '>
+      {getCookie('role') === 'USER' ? (
+         <Linkrouter href='/' className='flex items-center justify-center gap-2 cursor-pointer hover:bg-zinc-100 rounded-md ' onClick={handleExit}>
           <span className="hidden sm:flex">خروج</span>
           <Image
             src="/icons/user/Logout.svg"
@@ -19,7 +22,7 @@ const Index = () => {
             height={20}
             alt="خروج"
           />
-        </div>
+        </Linkrouter>
       ) : (
         <>
           {' '}
