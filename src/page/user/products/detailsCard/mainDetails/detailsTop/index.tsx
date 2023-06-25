@@ -2,6 +2,7 @@ import { Button, Linkouter } from '@/components';
 import Image from 'next/image';
 import React from 'react';
 import ButtonCart from './ButtonCart';
+import { filtersItem } from '@/page/user/categories/data';
 interface props {
   data: {
     rating: [Object];
@@ -24,8 +25,7 @@ const Index = ({ data }: props) => {
     <div className="lg:col-span-6 md:col-span-8 ">
       {' '}
       <h3 className="mb-3">
-        تبلت سامسونگ مدل Galaxy Tab A7 Lite (2021, 8.7") 4G SM-T225 ظرفیت 32/3
-        گیگابایت
+     {data.name}
       </h3>
       <div className="w-full bg-white  rounded-lg shadow-sm   px-4 pb-5 pt-3">
         <div className=" w-full  h-full ">
