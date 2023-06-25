@@ -1,16 +1,22 @@
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { LayoutChildrenAdminType } from '@/types/type';
 import Image from 'next/image';
-import {SidebarLink} from '@/page/admin';
+import { SidebarLink } from '@/page/admin';
 import { sideBarData } from '@/data/admin';
 import { Linkouter } from '@/components';
-// const a =
+import { deleteCookie } from 'cookies-next';
+
 const SidebarAdmin = ({
   mobileMenuOpen,
   setMobileMenuOpen,
 }: LayoutChildrenAdminType) => {
   const handleMenueOpen = () => {
     return setMobileMenuOpen(false);
+  };
+  const handleExit = () => {
+    deleteCookie('refreshtoken');
+    deleteCookie('accesstoken');
+    deleteCookie('role');
   };
   return (
     <div
@@ -20,7 +26,7 @@ const SidebarAdmin = ({
     >
       <div className=" h-full md:w-[20rem] sm:w-[15rem] w-full sm:static sm:none fixed sm:inset-0 inset-y-0 right-0 z-10  overflow-y-auto px-6 bg-orangeSidebar py-6 sm:max-w-sm  sm:ring-gray-900/10 ">
         <div className="flex items-center justify-between">
-           <Linkouter href="/admin" className="-m-1.5 p-1.5">
+          <Linkouter href="/admin" className="-m-1.5 p-1.5">
             <Image
               className={'h-8 w-auto  flex sm:hidden lg:flex'}
               src={'/logo light.svg'}
@@ -65,6 +71,7 @@ const SidebarAdmin = ({
                 href="/"
                 width={20}
                 height={20}
+                onClick={handleExit}
               />
             </div>
           </div>
