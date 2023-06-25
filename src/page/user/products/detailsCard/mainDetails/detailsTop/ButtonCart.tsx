@@ -12,6 +12,7 @@ const ButtonCart = ({ quantity }: props) => {
   };
   return (
     <div>
+      
       {addToCart ? (
         <div className="flex">
           <Button
@@ -56,8 +57,8 @@ const ButtonCart = ({ quantity }: props) => {
           }
           
         </div>
-      ) : (
-        <Button
+      ) : 
+      quantity  !== 0 ?  <Button
           type="button"
           className="bg-btnCard   p-2 rounded-lg flex items-center justify-center gap-5 px-3"
         >
@@ -70,8 +71,21 @@ const ButtonCart = ({ quantity }: props) => {
           <span className="text-white " onClick={() => setAddToCart(true)}>
             افزودن به سبد خرید
           </span>
+        </Button> :<Button
+          type="button"
+          className="bg-grayLight   p-2 rounded-lg flex items-center justify-center gap-5 px-3"
+        >
+          <Image
+            src={'/icons/user/BuyCard.svg'}
+            alt={'name'}
+            width={20}
+            height={20}
+          />
+          <span className="text-white " >
+            فاقد موجودی   
+          </span>
         </Button>
-      )}
+      }
     </div>
   );
 };

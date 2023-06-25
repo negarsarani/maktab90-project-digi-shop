@@ -54,7 +54,7 @@ export default function Index({ data }: props) {
 
                   selected
                     ? 'text-btnCard border-b border-btnCard '
-                    : 'text-[#999999]   hover:text-black border-b hover:border-black'
+                    : 'text-[#999999]   hover:text-black border-b '
                 )
               }
             >
