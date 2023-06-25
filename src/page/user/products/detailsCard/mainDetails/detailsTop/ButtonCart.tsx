@@ -6,7 +6,7 @@ interface props {
 }
 const ButtonCart = ({ quantity }: props) => {
   const [addToCart, setAddToCart] = useState(false);
-  const [numberOrder, setnumberOrder] = useState(0);
+  const [numberOrder, setnumberOrder] = useState(1);
   const handleCart = (number: number) => {
     setnumberOrder(number);
   };
@@ -29,7 +29,19 @@ const ButtonCart = ({ quantity }: props) => {
           <div className="border flex items-center justify-center p-2  ">
             <span> {numberOrder} </span>
           </div>
-          <Button
+          {
+            numberOrder === 1 ? <Button
+            type="button"
+            className="p-2 bg-btnCard rounded-l-lg"
+            onClick={() => setAddToCart(false)}
+          >
+            <Image
+              src={'/icons/user/Trash.svg'}
+              alt="minus"
+              width={20}
+              height={10}
+            />
+          </Button> :<Button
             type="button"
             className="p-2 bg-btnCard rounded-l-lg"
             onClick={() => handleCart(numberOrder > 0 ? numberOrder - 1 : numberOrder)}
@@ -40,7 +52,9 @@ const ButtonCart = ({ quantity }: props) => {
               width={20}
               height={10}
             />
-          </Button>
+          </Button> 
+          }
+          
         </div>
       ) : (
         <Button
