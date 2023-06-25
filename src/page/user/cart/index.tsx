@@ -1,0 +1,1 @@
+export {default as mainCart} from './mainCart'
