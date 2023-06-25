@@ -20,7 +20,10 @@ const initialState: AdminStore = {
     filter: '',
     sort: '',
     options: { limit: 4, page: 1, totalPages: '' },
-    url: { keyApi: 'products', path: 'products?page=1&limit=4&sort=-createdAt' },
+    url: {
+      keyApi: 'products',
+      path: 'products?page=1&limit=4&sort=-createdAt',
+    },
     data: [],
   },
   inventory: {
@@ -57,20 +60,25 @@ export const adminSlice = createSlice({
       state,
       action: PayloadAction<{ name: keyof AdminStore; item: string }>
     ) => {
-      state.inventory.updateItems = [];
+      // state.inventory.updateItems = [];
       const { name, item } = action.payload;
-      if (item === 'Next') {
-        state[name].options.page = ++state[name].options.page;
+      if (name === 'inventory' && state.inventory.updateItems.length > 0) {
+        alert(` لطفا تغییرات ایجاد شده را ذخیره کنید ، در غیر این صورت صفحه را ریفرش کنید`)
+        
       } else {
-        if (item === 'Prev') {
-          state[name].options.page > 1
-            ? (state[name].options.page = --state[name].options.page)
-            : null;
+        if (item === 'Next') {
+          state[name].options.page = ++state[name].options.page;
+        } else {
+          if (item === 'Prev') {
+            state[name].options.page > 1
+              ? (state[name].options.page = --state[name].options.page)
+              : null;
+          }
         }
+        state[
+          name
+        ].url.path = `${state[name].url.keyApi}?page=${state[name].options.page}&limit=${state[name].options.limit}&sort=-createdAt`;
       }
-      state[
-        name
-      ].url.path = `${state[name].url.keyApi}?page=${state[name].options.page}&limit=${state[name].options.limit}&sort=-createdAt`;
     },
     SORTDATA: (state, action) => {
       const { name, sortItem } = action.payload;
@@ -121,7 +129,6 @@ export const adminSlice = createSlice({
       const { item, type } = action?.payload;
       const newItem: any = { id: item?.id };
       newItem[item?.name] = item?.value;
-      console.log(newItem);
 
       if (type === 'newAdd') {
         state.inventory.updateItems = [...state.inventory.updateItems, newItem];

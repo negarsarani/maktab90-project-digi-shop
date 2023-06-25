@@ -14,7 +14,6 @@ interface props {
   refetch: () => void;
 }
 const SaveData = ({ openModal, setOpenModal, name, refetch }: props) => {
-  const [DataId, setDataID] = useState<string>();
   const { mutate, isLoading, isError, isSuccess, data } = useMutationQuery(
     (data) => patchData(`/products/${data.id}`, data.dataEdit)
   );
@@ -24,7 +23,6 @@ const SaveData = ({ openModal, setOpenModal, name, refetch }: props) => {
       const responses = await Promise.all(
         valueAdmin.inventory.updateItems.map(
           (item: { id: string; price?: string; quantity?: string }) => {
-            console.log(item);
 
             const formData = new FormData();
             Object.keys(item).map((key: any) => {
