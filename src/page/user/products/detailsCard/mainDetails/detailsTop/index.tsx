@@ -65,7 +65,7 @@ const Index = ({ data }: props) => {
                 </div>
               </div>
               <div className="flex ">
-                <ButtonCart quantity={data.quantity} />
+                <ButtonCart quantity={data.quantity} id={data._id} />
               </div>
             </div>
           </div>
