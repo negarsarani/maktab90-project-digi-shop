@@ -11,15 +11,15 @@ const Index = () => {
   return (
     <div className="w-6/12  flex items-center justify-end gap-5">
       {role === 'USER' ? (
-        <>
+        <div className='flex items-center justify-center gap-2 cursor-pointer hover:bg-zinc-100 rounded-md '>
           <span className="hidden sm:flex">خروج</span>
           <Image
-            src="/icons/user/user.svg"
-            width={15}
+            src="/icons/user/Logout.svg"
+            width={20}
             height={20}
-            alt="ورود/ ثبت نام"
+            alt="خروج"
           />
-        </>
+        </div>
       ) : (
         <>
           {' '}
