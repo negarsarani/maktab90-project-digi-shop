@@ -27,7 +27,7 @@ const ButtonCart = ({ quantity, data }: props) => {
 
   return (
     <div>
-      {openModal ? <DeleteCart openModal /> : ''}
+      {openModal ? <DeleteCart openModal={openModal} setOpenModal={setOpenModal} name={data.name} id={data._id}/> : ''}
       <div className="flex">
         <Button
           type="button"
@@ -53,7 +53,7 @@ const ButtonCart = ({ quantity, data }: props) => {
             type="button"
             className="p-2 bg-btnCard rounded-l-lg"
             onClick={() => {
-              return handleDeleteCart();
+              return setOpenModal(true)
             }}
           >
             <Image
