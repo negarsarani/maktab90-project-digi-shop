@@ -1,25 +1,12 @@
 import { Button } from '@/components';
 import useRedux from '@/hooks/useRedux';
 import { CART, DELETEITEM } from '@/redux/slice/user/userSlice';
+import { productType } from '@/types/type';
 import Image from 'next/image';
 import { useState } from 'react';
 interface props {
   quantity: number;
-  data: {
-    rating: [Object];
-    _id: string;
-    category: [Object];
-    subcategory: [Object];
-    name: string;
-    price: 526777;
-    quantity: 444;
-    brand: string;
-    description: string;
-    thumbnail: string;
-    images: [];
-    createdAt: string;
-    slugname: string;
-  };
+  data: productType
 }
 const ButtonCart = ({ quantity, data }: props) => {
   const [value, dispatch] = useRedux((state) => state.userState);
@@ -29,8 +16,7 @@ const ButtonCart = ({ quantity, data }: props) => {
   const handleLocalCart = (number: number) => {
     setnumberOrder(number);
 
-    return dispatch(CART({ quantity: number, data: data }))
-    console.log(value.cart);
+    dispatch(CART({ quantity: number, data: data }));
   };
   const handleDeleteCart = () => {
     return dispatch(DELETEITEM({ id: data._id }));

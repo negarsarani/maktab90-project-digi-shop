@@ -40,7 +40,7 @@ export interface OrderedCategory {
   subCategories: {
     _id: string;
     name: string;
-    slugname?:string
+    slugname?: string;
     category: string;
   }[];
 }
@@ -70,5 +70,23 @@ export type productType = {
   quantity: string;
   price: string;
   images: string[];
-  description?:string;
+  description?: string;
+};
+
+export type dataProduct = {
+
+    rating: [Object];
+    _id: string;
+    category: [Object];
+    subcategory: [Object];
+    name: string;
+    price: 526777;
+    quantity: 444;
+    brand: string;
+    description: string;
+    thumbnail: string;
+    images: [];
+    createdAt: string;
+    slugname: string;
+
 };

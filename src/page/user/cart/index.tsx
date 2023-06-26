@@ -1,1 +1,2 @@
-export {default as mainCart} from './mainCart'
+export {default as MainCart} from './mainCart'
+export * from './shared'

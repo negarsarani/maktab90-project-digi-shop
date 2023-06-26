@@ -1,38 +1,18 @@
-import getData from "@/api/getData";
+import getData from '@/api/getData';
+import useRedux from '@/hooks/useRedux';
+import {MainCart} from '@/page/user'
 
-interface props {
-  data: [];
-}
-const mainCart = ({ data }: props) => {
-  return <div></div>;
-};
-
-export default mainCart;
-
-export const getServerSideProps = async () => {
-  const DataLocalStorge = localStorage.getItem('cart');
-  if (DataLocalStorge) {
-    const ParseData = JSON.parse(DataLocalStorge);
-    try {
-        ParseData.map(item => {
-            // getData()
-        })
-    } catch (error) {
-      console.log(error);
-    }
-    return {
-      props: {
-        data: ParseData,
-      },
-    };
-  } else {
-    return {
-      props: {
-        data: [],
-      },
-    };
+const Main = () => {
+  const [value, dispatch] = useRedux((state) => state.userState);
+  if (value.cart.length <= 0) {
+    return <div>سبد خرید شما خالی می باشد</div>;
   }
+
+  return <div className='xl:container xl:mx-auto px-4 '><MainCart data={value.cart}/> </div>;
 };
-mainCart.getLayout = function PageLayout(page: any) {
+
+export default Main;
+
+Main.getLayout = function PageLayout(page: any) {
   return <>{page}</>;
 };
