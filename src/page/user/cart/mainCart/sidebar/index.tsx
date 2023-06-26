@@ -1,4 +1,5 @@
 import { Button, Input } from '@/components';
+import Linkrouter from '@/components/Linkrouter';
 import { dataProduct } from '@/types/type';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -130,13 +131,15 @@ const Index = ({ data }: props) => {
           </form>
         </div>
         <div className="flex-1 flex items-center justify-center text-sm">
+        <Linkrouter href='/cart/final' className='w-full' >
           <Button
             type="button"
             className="bg-btnCard w-full text-white rounded-xl py-2"
             onClick={() => {}}
-          >
+            >
             ادامه
           </Button>
+            </Linkrouter>
         </div>
       </div>
     </div>

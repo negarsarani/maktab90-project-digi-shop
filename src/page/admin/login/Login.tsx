@@ -30,6 +30,7 @@ const LoginAdmin = () => {
     setCookie('accesstoken', data.token.accessToken);
     setCookie('refreshtoken', data.token.refreshToken);
     setCookie('role', data.data.user.role);
+    setCookie('id', data.data.user._id)
     data.data.user.role === 'ADMIN' ? router.push('/admin') : router.push('/')
   
   };
