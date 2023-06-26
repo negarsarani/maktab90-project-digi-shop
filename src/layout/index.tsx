@@ -56,6 +56,19 @@ const Layout = ({ Component, children }: LayoutType) => {
             <QueryClientProvider client={queryClient}>
               <Mainlayout>{children}</Mainlayout>
               {/* <ReactQueryDevtoolsPanel /> */}
+              <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={true}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+              
+            />
             </QueryClientProvider>
           </PersistGate>
         </Provider>

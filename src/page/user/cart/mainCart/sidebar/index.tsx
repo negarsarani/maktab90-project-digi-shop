@@ -3,8 +3,8 @@ import React from 'react';
 
 const index = () => {
   return (
-    <div className="bg-white lg:w-4/12 rounded-md p-3 w-full  ">
-      <div className="border-btnCard border w-full h-full border-opacity-20 rounded-md flex flex-col gap-2 p-3">
+    <div className=" lg:w-4/12 rounded-md p-3 w-full bg-white h-fit  ">
+      <div className="border-btnCard border w-full  border-opacity-20 rounded-md flex flex-col gap-2  p-3">
         <p>اطلاعات پرداخت</p>
         <div className="flex items-center justify-between">
           <div>

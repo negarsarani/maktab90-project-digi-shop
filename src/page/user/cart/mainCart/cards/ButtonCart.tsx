@@ -4,33 +4,37 @@ import { CART, DELETEITEM } from '@/redux/slice/user/userSlice';
 import { dataProduct } from '@/types/type';
 import Image from 'next/image';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 interface props {
   quantity: number;
   data: dataProduct;
 }
 const ButtonCart = ({ quantity, data }: props) => {
   const [value, dispatch] = useRedux((state) => state.userState);
-  const [addToCart, setAddToCart] = useState(false);
   const [numberOrder, setnumberOrder] = useState(quantity);
+  // console.log(value.cart);
 
   const handleLocalCart = (number: number) => {
-    setnumberOrder(number);
+    if (number === data.quantity) {
+      toast.warn(`حداکثر موجودی این کالا ${data.quantity} عدد می باشد.`);
+    } 
+      setnumberOrder(number);
 
-    dispatch(CART({ quantity: number, data: data }));
+      dispatch(CART({ quantity: number, data: data }));
+   
   };
   const handleDeleteCart = () => {
     return dispatch(DELETEITEM({ id: data._id }));
   };
   return (
     <div>
-     
       <div className="flex">
         <Button
           type="button"
           className=" p-2 bg-btnCard rounded-r-lg"
           onClick={() => {
-            return handleLocalCart(
-              numberOrder < quantity ? numberOrder + 1 : numberOrder
+            handleLocalCart(
+              numberOrder < data.quantity ? numberOrder + 1 : numberOrder
             );
           }}
         >
@@ -49,7 +53,6 @@ const ButtonCart = ({ quantity, data }: props) => {
             type="button"
             className="p-2 bg-btnCard rounded-l-lg"
             onClick={() => {
-              setAddToCart(false);
               return handleDeleteCart();
             }}
           >
