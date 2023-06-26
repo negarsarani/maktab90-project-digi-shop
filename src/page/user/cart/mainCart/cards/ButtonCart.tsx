@@ -5,11 +5,13 @@ import { dataProduct } from '@/types/type';
 import Image from 'next/image';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import DeleteCart from './DeleteCart';
 interface props {
   quantity: number;
   data: dataProduct;
 }
 const ButtonCart = ({ quantity, data }: props) => {
+  const [openModal, setOpenModal] = useState(false);
   const [value, dispatch] = useRedux((state) => state.userState);
   const [numberOrder, setnumberOrder] = useState(quantity);
   // console.log(value.cart);
@@ -17,17 +19,15 @@ const ButtonCart = ({ quantity, data }: props) => {
   const handleLocalCart = (number: number) => {
     if (number === data.quantity) {
       toast.warn(`حداکثر موجودی این کالا ${data.quantity} عدد می باشد.`);
-    } 
-      setnumberOrder(number);
+    }
+    setnumberOrder(number);
 
-      dispatch(CART({ quantity: number, data: data }));
-   
+    dispatch(CART({ quantity: number, data: data }));
   };
-  const handleDeleteCart = () => {
-    return dispatch(DELETEITEM({ id: data._id }));
-  };
+
   return (
     <div>
+      {openModal ? <DeleteCart openModal /> : ''}
       <div className="flex">
         <Button
           type="button"

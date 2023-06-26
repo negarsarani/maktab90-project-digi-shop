@@ -4,16 +4,12 @@ import { Button } from '@/components';
 interface ModalProps {
   openModal: boolean;
   setOpenModal: Dispatch<SetStateAction<any>>;
-  name: string;
   children: ReactNode;
 }
 
-const MainModal = ({ openModal, setOpenModal, name, children }: ModalProps) => {
+const MainModal = ({ openModal, setOpenModal, children }: ModalProps) => {
   const handleClose = () => {
-    setOpenModal((prevState: any) => ({
-      ...prevState,
-      [name]: false,
-    }));
+    setOpenModal(false);
   };
   return (
     <Transition appear show={openModal} as={Fragment}>
