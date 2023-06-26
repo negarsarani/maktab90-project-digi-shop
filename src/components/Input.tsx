@@ -9,6 +9,7 @@ interface Inputtype {
   placeholder: string;
   autoComplete?: string;
   value?: string
+  onChange?:(e: any) => void
 }
 const Input = ({
   className,
@@ -19,6 +20,7 @@ const Input = ({
   placeholder,
   autoComplete,
   register,
+  onChange
 }: Inputtype) => {
   return (
     <input
@@ -30,6 +32,7 @@ const Input = ({
       autoComplete={autoComplete}
       placeholder={placeholder}
       className={className}
+      onChange={onChange}
     />
   );
 };

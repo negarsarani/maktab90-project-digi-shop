@@ -10,7 +10,7 @@ const index = ({ data }: props) => {
   return (
     <div className="flex lg:flex-row flex-col gap-3 py-10 ">
       <Cards data={data} />
-      <Sidebar />
+      <Sidebar  data={data}/>
     </div>
   );
 };
