@@ -47,8 +47,10 @@ export const userSlice = createSlice({
       const filteredCart = state.cart.filter((item) => item.data._id !== id);
       state.cart = filteredCart;
     },
-    
+    TOTAL:(state, action)=>{
+
+    }
   },
 });
-export const { CART, DELETEITEM } = userSlice.actions;
+export const { CART, DELETEITEM , TOTAL } = userSlice.actions;
 export default userSlice.reducer;

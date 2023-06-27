@@ -5,7 +5,7 @@ interface Inputtype {
   className: string;
   name: string;
   id?: string;
-  type: 'email' | 'text' | 'password' | 'number' | 'search'| "file"
+  type: 'email' | 'text' | 'password' | 'number' | 'search'| "file"|"date"
   placeholder: string;
   autoComplete?: string;
   value?: string

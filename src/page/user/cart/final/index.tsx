@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import Form from './form';
 import { userType } from '@/types/type';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import finalForm from '@/schemas/user/finalForm';
 
 interface props {
   userData: userType;
@@ -25,24 +27,27 @@ const Index = ({ userData }: props) => {
     setValue,
     control,
     formState: { errors },
-  } = useForm<IFormInput>();
+  } = useForm({
+    resolver: yupResolver(finalForm),
+    mode: 'all',
+  });
   const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
   useEffect(() => {
     setValue('city', '');
-    setValue('postalCode', '');
+    setValue('address', userData.address);
+    setValue('postalCode', 0);
     setValue('email', '');
     setValue('date', '');
     setValue('firstName', userData.firstname);
     setValue('lastName', userData.lastname);
-    setValue('address', userData.address);
-    setValue('phoneNumber', userData.phoneNumber);
+    setValue('phoneNumber', +userData.phoneNumber);
   }, []);
   return (
     <div className="py-10">
       <h2>نهایی کردن خرید</h2>
       <div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Form userData={userData} control={control} />
+          <Form userData={userData} control={control} errors={errors} />
         </form>
       </div>
     </div>

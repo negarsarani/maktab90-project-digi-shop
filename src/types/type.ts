@@ -101,3 +101,13 @@ export type userType ={
       createdAt: string;
       updatedAt: string;
 }
+export type finalFormType={
+  firstName: string;
+  lastName: string;
+  postalCode: number;
+  email: string | undefined;
+  phoneNumber: number;
+  city: string;
+  address: string;
+  date: string;
+}

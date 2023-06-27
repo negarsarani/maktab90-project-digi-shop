@@ -1,69 +1,79 @@
 import { Input } from '@/components';
-import { userType } from '@/types/type';
+import { finalFormType, userType } from '@/types/type';
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import InputFinal from './InputFinal';
+import Datepickers from './DataPicker';
+import { FieldErrors } from 'react-hook-form';
 interface props {
   userData: userType;
   control: any;
+  errors: FieldErrors<finalFormType>;
 }
-const Form = ({ userData, control }: props) => {
+const Form = ({ userData, control, errors }: props) => {
   return (
     <>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <InputFinal
+              errors={errors.firstName?.message}
               control={control}
               name="firstName"
               placeholder="نام"
               type="text"
             />
             <InputFinal
+              errors={errors.lastName?.message}
               control={control}
               name="lastName"
               placeholder="نام خانوادگی"
               type="text"
             />
-          
-            <InputFinal
+
+            {/* <InputFinal
               control={control}
               name="date"
               placeholder="تاریخ تحویل"
-              type="text"
-            />
-           
+              type="date"
+            /> */}
+
             <InputFinal
+              errors={errors.address?.message}
               control={control}
               name="address"
               placeholder="آدرس"
               type="text"
             />
             <InputFinal
+              errors={errors.city?.message}
               control={control}
               name="city"
               placeholder="شهر"
               type="text"
-            />  
-             <InputFinal
+            />
+            <InputFinal
+              errors={errors.postalCode?.message}
               control={control}
               name="postalCode"
               placeholder="کدپستی"
               type="text"
             />
             <InputFinal
+              errors={errors.phoneNumber?.message}
               control={control}
               name="phoneNumber"
               placeholder="شماره تلفن"
               type="number"
             />
-           <InputFinal
+            <InputFinal
+              errors={errors.email?.message}
               control={control}
               name="email"
               placeholder="ایمیل"
               type="email"
             />
 
-            {/* <div className="sm:col-span-3">
+            <div className="sm:col-span-3">
               <label
                 htmlFor="date"
                 className="block text-sm font-medium leading-6 text-gray-900"
@@ -71,18 +81,9 @@ const Form = ({ userData, control }: props) => {
                 تاریخ تحویل
               </label>
               <div className="mt-2">
-                <select
-                  id="country"
-                  name="country"
-                  autoComplete="country-name"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-1 focus:ring-inset focus:ring-btnCard sm:max-w-xs sm:text-sm sm:leading-6"
-                >
-                  <option>United States</option>
-                  <option>Canada</option>
-                  <option>Mexico</option>
-                </select>
+                <Datepickers />
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

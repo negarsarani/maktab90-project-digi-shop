@@ -18,6 +18,7 @@
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.18",
     "@hookform/resolvers": "^3.1.0",
+    "@ijavad805/react-datepicker": "^2.0.4",
     "@reduxjs/toolkit": "^1.9.5",
     "@tanstack/react-query": "^4.29.7",
     "@tanstack/react-query-devtools": "^4.29.7",
