@@ -26,10 +26,11 @@ const EachCard = ({ data, quantity }: props) => {
             </div>
             <div className=" flex w-full gap-5 justify-start flex-col items-center  sm:flex-row">
               <div className="flex items-center justify-start  text-sm text-grayDarkLight gap-1">
-                <span>ارسال توسط دیجی شاپ</span> <span> {data.quantity}</span>
+                <span>موجود در انبار :</span> <span> {data.quantity}</span>
               </div>
               <div className="flex items-center justify-start  text-sm text-grayDarkLight gap-1">
-                <span>ضمانت اصلالت کالا</span> <span> {data.quantity}</span>
+                <span>قیمت کالا :</span>{' '}
+                <span> {Intl.NumberFormat('fa-IR').format(data.price)}</span>
               </div>
             </div>
           </div>

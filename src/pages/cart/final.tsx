@@ -1,13 +1,14 @@
 import getData from '@/api/getData';
 import { FinalForm } from '@/page/user';
-import { setCookie, getCookie, removeCookies } from 'cookies-next';
+import { userType } from '@/types/type';
 import { parseCookies } from 'nookies';
-
+interface props {
+  user: userType;
+}
 const final = ({ user }: props) => {
-
   return (
-    <div className='lg:container lg:mx-auto px-4'>
-      <FinalForm />
+    <div className="lg:container lg:mx-auto px-4">
+      <FinalForm userData={user} />
     </div>
   );
 };

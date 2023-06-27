@@ -90,3 +90,14 @@ export type dataProduct = {
     slugname: string;
 
 };
+export type userType ={
+  id: string;
+      firstname: string;
+      lastname: string;
+      username: string;
+      phoneNumber: string;
+      address: string;
+      role: 'USER' | 'ADMIN';
+      createdAt: string;
+      updatedAt: string;
+}

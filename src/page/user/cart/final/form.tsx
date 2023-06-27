@@ -1,9 +1,12 @@
 import { Input } from '@/components';
+import { userType } from '@/types/type';
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
-
-const Form = () => {
+interface props {
+  userData: userType;
+}
+const Form = ({ userData }: props) => {
   return (
-    <form>
+    <>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -11,7 +14,9 @@ const Form = () => {
               <label
                 htmlFor="first-name"
                 className="block text-sm font-medium leading-6 text-gray-900"
-              >* نام </label>
+              >
+                * نام{' '}
+              </label>
               <div className="mt-2">
                 <Input
                   placeholder="نام "
@@ -126,7 +131,7 @@ const Form = () => {
                 htmlFor="region"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-               * منطقه
+                * منطقه
               </label>
               <div className="mt-2">
                 <Input
@@ -145,7 +150,7 @@ const Form = () => {
                 htmlFor="postal-code"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-               * کد پستی
+                * کد پستی
               </label>
               <div className="mt-2">
                 <Input
@@ -176,7 +181,7 @@ const Form = () => {
           ذخیره
         </button>
       </div>
-    </form>
+    </>
   );
 };
 
