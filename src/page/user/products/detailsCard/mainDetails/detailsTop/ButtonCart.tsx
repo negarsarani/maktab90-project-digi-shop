@@ -16,7 +16,7 @@ const ButtonCart = ({ quantity, data }: props) => {
   const handleLocalCart = (number: number) => {
     setnumberOrder(number);
 
-    dispatch(CART({ quantity: number, data: data }));
+    dispatch(CART({ quantity: number, data: data}));
   };
   const handleDeleteCart = () => {
     return dispatch(DELETEITEM({ id: data._id }));

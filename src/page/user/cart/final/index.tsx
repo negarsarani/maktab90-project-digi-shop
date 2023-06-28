@@ -61,7 +61,7 @@ const Index = ({ userData }: props) => {
       };
       console.log(DATA);
 
-      dispatch(FINALORDER({type:"add" , data:DATA}))
+      dispatch(FINALORDER({ data:DATA}))
       router.push('/cart/payment');
 
     }

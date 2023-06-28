@@ -5,8 +5,8 @@ const fail = () => {
     <div className='w-full h-full items-center justify-center flex flex-col'>
       <div>متاسفانه پرداخت شما به اتمام نرسید</div>
       <div>با تشکر از صبوری شما 🤍</div>
-      <Linkrouter className="text-btnCard" href="/">
-        برگشت به صفحه اول سایت
+      <Linkrouter className="text-btnCard" href="/cart">
+        برگشت به سبد خرید 
       </Linkrouter>
     </div>
   );

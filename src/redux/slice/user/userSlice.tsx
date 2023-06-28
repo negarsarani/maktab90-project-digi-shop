@@ -52,17 +52,19 @@ export const userSlice = createSlice({
       state.cart = filteredCart;
     },
     FINALORDER: (state, action) => {
-      const { type, data } = action.payload;
-      if (type == 'clear') {
-        state.FinalOrders = {};
-      } else {
-        state.FinalOrders = action.payload;
-      }
+      const { data } = action.payload;
+      state.FinalOrders = data;
     },
-    TOTAL:(state , action)=>{
-      state.Total = action.payload
-    }
+    TOTAL: (state, action) => {
+      state.Total = action.payload;
+    },
+    CLEARALL: (state, action) => {
+      state.Total = 0;
+      state.FinalOrders = {};
+      state.cart = [];
+    },
   },
 });
-export const { CART, DELETEITEM, FINALORDER , TOTAL} = userSlice.actions;
+export const { CART, DELETEITEM, FINALORDER, TOTAL, CLEARALL } =
+  userSlice.actions;
 export default userSlice.reducer;
