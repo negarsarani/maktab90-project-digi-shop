@@ -1,5 +1,7 @@
 import { Button, Input } from '@/components';
 import Linkrouter from '@/components/Linkrouter';
+import useRedux from '@/hooks/useRedux';
+import { TOTAL } from '@/redux/slice/user/userSlice';
 import { dataProduct } from '@/types/type';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -8,6 +10,7 @@ interface props {
   data: { data: dataProduct; quantity: number }[];
 }
 const Index = ({ data }: props) => {
+ const [value , dispatch]= useRedux(state=>state.userState)
   const [sumPrice, setSumPrice] = useState(0);
   const [discount, setDiscount] = useState({
     usediscount: false,
@@ -23,6 +26,7 @@ const Index = ({ data }: props) => {
     }, 0);
     setSumPrice(TotalData);
     setTotal(TotalData + cost);
+    dispatch(TOTAL(TotalData + cost))
   }, [data]);
   const handleDiscount = (event) => {
     event.preventDefault();
@@ -46,6 +50,7 @@ const Index = ({ data }: props) => {
       const discountAmount = (total * discountPercentage) / 100;
       const discountedTotal = total - discountAmount;
       setTotal(discountedTotal);
+      dispatch(TOTAL(discountedTotal))
       discount.usediscount = true
       discount.value =""
       setDiscount(discount)

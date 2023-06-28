@@ -3,7 +3,7 @@ import moment from 'moment';
 // simple
 
 // full options
-function Datepickers() {
+function Datepickers({setDate}) {
   return (
     <div className='w-full bg-red-300'>
       <Datepicker
@@ -44,6 +44,7 @@ function Datepickers() {
         adjustPosition={'auto'} // auto, right-top, left-top, right-bottom, left-bottom, modal
         onChange={(val: any) => {
           console.log(val.format());
+          setDate(val.format())
         }}
       />
     </div>

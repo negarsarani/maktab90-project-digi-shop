@@ -18,9 +18,13 @@ type initialStateType = {
       slugname: string;
     };
   }[];
+  FinalOrders: {};
+  Total: string | number;
 };
 const initialState: initialStateType = {
   cart: [],
+  FinalOrders: {},
+  Total: 0,
 };
 export const userSlice = createSlice({
   name: 'user',
@@ -47,10 +51,18 @@ export const userSlice = createSlice({
       const filteredCart = state.cart.filter((item) => item.data._id !== id);
       state.cart = filteredCart;
     },
-    TOTAL:(state, action)=>{
-
+    FINALORDER: (state, action) => {
+      const { type, data } = action.payload;
+      if (type == 'clear') {
+        state.FinalOrders = {};
+      } else {
+        state.FinalOrders = action.payload;
+      }
+    },
+    TOTAL:(state , action)=>{
+      state.Total = action.payload
     }
   },
 });
-export const { CART, DELETEITEM , TOTAL } = userSlice.actions;
+export const { CART, DELETEITEM, FINALORDER , TOTAL} = userSlice.actions;
 export default userSlice.reducer;

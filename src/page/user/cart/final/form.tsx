@@ -9,7 +9,7 @@ interface props {
   control: any;
   errors: FieldErrors<finalFormType>;
 }
-const Form = ({ userData, control, errors }: props) => {
+const Form = ({ userData, control, errors , setDate }: props) => {
   return (
     <>
       <div className="space-y-12">
@@ -81,7 +81,7 @@ const Form = ({ userData, control, errors }: props) => {
                 تاریخ تحویل
               </label>
               <div className="mt-2">
-                <Datepickers />
+                <Datepickers setDate={setDate}/>
               </div>
             </div>
           </div>
