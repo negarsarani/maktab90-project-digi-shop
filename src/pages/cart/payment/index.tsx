@@ -11,7 +11,7 @@ const Index = () => {
   const [value, dispatch] = useRedux((state) => state.userState);
   const router = useRouter();
   const HandleAddOrder = async () => {
-    return await postData('/orders', value.FinalOrders.data);
+    return await postData('/orders', value.FinalOrders);
   };
   const mutation = useMutation(HandleAddOrder, {
     onSuccess(data, variables, context) {
@@ -41,7 +41,7 @@ const Index = () => {
         </Button>
         {/* </Linkrouter> */}
 
-        <Linkrouter href="/cart/payment/fail">
+        <Linkrouter href="/cart">
           <Button type="button" className="bg-zinc-300 p-2 rounded-md ">
             انصراف
           </Button>
