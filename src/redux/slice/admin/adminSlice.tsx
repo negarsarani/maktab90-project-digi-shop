@@ -30,7 +30,7 @@ const initialState: AdminStore = {
     filter: '',
     sort: '',
     options: { limit: 4, page: 1, totalPages: '' },
-    url: { keyApi: 'products', path: 'products?page=1&limit=4' },
+    url: { keyApi: 'products', path: 'products?page=1&limit=4&sort=-createdAt' },
     data: [],
     updateItems: [],
   },
@@ -38,7 +38,7 @@ const initialState: AdminStore = {
     filter: '',
     sort: '',
     options: { limit: 4, page: 1, totalPages: '' },
-    url: { keyApi: 'orders', path: `orders?page=1&limit=4` },
+    url: { keyApi: 'orders', path: `orders?page=1&limit=4&sort=-createdAt` },
     data: [],
   },
 };

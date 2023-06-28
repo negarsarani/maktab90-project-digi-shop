@@ -5,6 +5,7 @@ import { useState } from 'react';
 import getData from '@/api/getData';
 import Image from 'next/image';
 import { useUsers } from '@/data/shared';
+import persianDate from './persianDate';
 
 const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
   return (
@@ -27,13 +28,13 @@ const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
             <tr key={item._id} className="border-b">
               <Td key={item._id} className="py-4  px-6 ">
                 <div className="text-sm text-center    text-gray-900 md:w-full w-[5rem] ">
-
                   {`${item.user.firstname} ${item.user.lastname}`}
                 </div>
               </Td>
               <Td key={item._id} className="py-4  px-6  ">
-                <div className="text-sm flex  items-center justify-center text-center  text-gray-900 ">
-                  {item.totalPrice} <span>ریال</span>
+                <div className="text-sm flex  items-center justify-center text-center gap-2 text-gray-900 ">
+                  {Intl.NumberFormat('fa-IR').format(item.totalPrice)}{' '}
+                  <span>تومان</span>
                 </div>
               </Td>
               {item.deliveryStatus ? (
@@ -69,7 +70,7 @@ const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
               <Td key={item._id} className="py-4 px-6">
                 <div className="flex items-center justify-center md:w-full text-sm ">
                   {/* 1402/3/17 */}
-                  {item.deliveryDate}
+                  {persianDate(item.deliveryDate)}
                 </div>
               </Td>
               <Td key={item._id} className="py-4  px-6  ">
