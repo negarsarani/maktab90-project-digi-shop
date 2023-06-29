@@ -14,6 +14,6 @@ const finalForm = yup.object().shape({
     .string()
     .max(40, 'حداکثر کارکتر مجاز 40 کارکتر است')
     .required('نام شهر الزامی می باشد'),
-  // date: yup.string().required('تاریخ تحویل الزامی می باشد'),
+  date: yup.string().required('تاریخ تحویل الزامی می باشد'),
 });
 export default finalForm;

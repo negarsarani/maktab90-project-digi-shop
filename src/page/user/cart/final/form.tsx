@@ -2,14 +2,20 @@ import { Input } from '@/components';
 import { finalFormType, userType } from '@/types/type';
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import InputFinal from './InputFinal';
-import Datepickers from './DataPicker';
-import { FieldErrors } from 'react-hook-form';
+// import Datepickers from './DataPicker';
+import { Controller, FieldErrors } from 'react-hook-form';
+import DatePicker from 'react-multi-date-picker';
+import { Calendar } from 'react-multi-date-picker';
+import persian from 'react-date-object/calendars/persian';
+import persian_fa from 'react-date-object/locales/persian_fa';
+import { useState } from 'react';
+import weekends from 'react-multi-date-picker/plugins/highlight_weekends';
 interface props {
   userData: userType;
   control: any;
   errors: FieldErrors<finalFormType>;
 }
-const Form = ({ userData, control, errors , setDate }: props) => {
+const Form = ({ userData, control, errors , setValue }: props) => {
   return (
     <>
       <div className="space-y-12">
@@ -81,7 +87,34 @@ const Form = ({ userData, control, errors , setDate }: props) => {
                 تاریخ تحویل
               </label>
               <div className="mt-2">
-                <Datepickers setDate={setDate}/>
+                <Controller
+                  control={control}
+                  name="date"
+                  rules={{ required: true }} //optional
+                  render={({ field: { onChange, name, value } }) => (
+                    <div className="w-full">
+                      <DatePicker
+                        name={name}
+                        className="w-full "
+                        calendar={persian}
+                        locale={persian_fa}
+                        // value={value || ''}
+                        minDate={new Date().setDate(32)}
+                        plugins={[weekends()]}
+                        // weekDays={weekDays}
+
+                        // maxDate={new Date().setDate(0)}
+                        onChange={(date)=> setValue("date" , date.unix.toString())}
+                        // format={language === 'en' ? 'MM/DD/YYYY' : 'YYYY/MM/DD'}
+                      />
+                      <div className="text-btnCard  h-2 pt-2 pb-2">
+                        {errors.date?.message}
+                      </div>
+                    </div>
+                  )}
+                />
+
+                {/* <Datepickers setDate={setDate}/> */}
               </div>
             </div>
           </div>

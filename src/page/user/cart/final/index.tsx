@@ -4,7 +4,6 @@ import { userType } from '@/types/type';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import finalForm from '@/schemas/user/finalForm';
-import { DevTool } from '@hookform/devtools';
 import useRedux from '@/hooks/useRedux';
 import { FINALORDER } from '@/redux/slice/user/userSlice';
 import { setCookie, getCookie, removeCookies } from 'cookies-next';
@@ -42,9 +41,7 @@ const Index = ({ userData }: props) => {
     const userId = getCookie('id');
 
     console.log(data);
-    if (datePicker === '') {
-      alert('لطفا تاریخ تحویل را مشخص کنید');
-    } else {
+    
       const productsHandle = value.cart.map((item) => {
         const obj = {
           product: item.data._id,
@@ -55,7 +52,7 @@ const Index = ({ userData }: props) => {
 
       const DATA = {
         user: userId,
-        deliveryDate: datePicker,
+        deliveryDate: data.date * 1000,
         products: productsHandle,
         deliveryStatus: false,
       };
@@ -64,7 +61,7 @@ const Index = ({ userData }: props) => {
       dispatch(FINALORDER({ data:DATA}))
       router.push('/cart/payment');
 
-    }
+   
     
   };
   useEffect(() => {
@@ -85,6 +82,7 @@ const Index = ({ userData }: props) => {
             control={control}
             errors={errors}
             setDate={setDate}
+            setValue={setValue}
           />
         </form>
       </div>

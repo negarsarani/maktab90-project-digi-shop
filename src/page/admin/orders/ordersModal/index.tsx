@@ -18,14 +18,13 @@ const Index = ({ setIsOpenModal, isOpenModal, activeIdModal }: props) => {
       enabled: !!activeIdModal,
     }
   );
-
   return (
     <div>
       <ModalOrder setIsOpen={setIsOpenModal} openModal={isOpenModal}>
         {isLoading ? (
           <div>loading...</div>
         ) : (
-          <div className="py-10   w-full flex flex-col gap-4 items-center ">
+          <div className="py-10 h-[30rem] overflow-hidden overflow-y-auto overflow-x-auto   w-full flex flex-col gap-4 items-center ">
             <h1 className="font-semibold">نمایش سفارش</h1>
             <Information data={data.data.order} />
             <div className=" w-full  pb-10 flex flex-col  items-center justify-center ">
