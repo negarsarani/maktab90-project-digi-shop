@@ -105,7 +105,7 @@ export const adminSlice = createSlice({
     },
     FILTERREMOVE: (state, action) => {
       const { name } = action.payload;
-      state[name].url.path = `${state[name].url.keyApi}?page=1&limit=4&sort=-createdAt`;
+      state[name].url.path = `${state[name].url.keyApi}?page=${state[name].options.page}&limit=4&sort=-createdAt`;
     },
     ACTIVEITEM: () => {},
     // DELETEITEM: (state) => {

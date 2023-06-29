@@ -2,9 +2,11 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import TableModal from './TableModal';
 import ModalOrder from './ModalOrder';
 import getData from '@/api/getData';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import Information from './Information';
 import { Button } from '@/components';
+import patchData from '@/api/patchData';
+import { toast } from 'react-toastify';
 interface props {
   setIsOpenModal: Dispatch<SetStateAction<any>>;
   isOpenModal: boolean;
@@ -18,6 +20,25 @@ const Index = ({ setIsOpenModal, isOpenModal, activeIdModal }: props) => {
       enabled: !!activeIdModal,
     }
   );
+  const HandleAddOrder = async (value: boolean) => {
+    const obj = {
+      deliveryStatus: value,
+    };
+    return await patchData(`/orders/${data.data.order._id}`, obj);
+  };
+
+  const mutation = useMutation({
+    mutationFn: (value: boolean) => HandleAddOrder(value),
+    onSuccess(data, variables, context) {
+      toast.success('تغییر وضعیت تحویل با موفقیت اعمال شد');
+    },
+    onError(error, variables, context) {
+      toast.error('تغییر وضعیت تحویل با خطا اعمال شد');
+    },
+  });
+  const HandleOrder = (value: boolean) => {
+    return mutation.mutate(value);
+  };
   return (
     <div>
       <ModalOrder setIsOpen={setIsOpenModal} openModal={isOpenModal}>
@@ -34,8 +55,9 @@ const Index = ({ setIsOpenModal, isOpenModal, activeIdModal }: props) => {
             </div>
             {!data.data.order.deliveryStatus ? (
               <Button
+                onClick={() => HandleOrder(true)}
                 type="button"
-                className=" bg-green-400 shadow-md text-white rounded-md px-3 py-2"
+                className=" bg-green-400 hover:bg-green-500 shadow-md text-white rounded-md px-3 py-2"
               >
                 تحویل داده شد
               </Button>
@@ -45,6 +67,7 @@ const Index = ({ setIsOpenModal, isOpenModal, activeIdModal }: props) => {
                   تحویل داده شده است
                 </div>
                 <Button
+                  onClick={() => HandleOrder(false)}
                   type="button"
                   className="bg-orangeAdmin shadow-md text-white rounded-md px-3 py-2"
                 >

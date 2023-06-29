@@ -1,5 +1,6 @@
 import { OrderDataType } from '@/types/type';
 import React from 'react';
+import persianDate from '../persianDate';
 interface props {
   data: OrderDataType;
 }
@@ -21,11 +22,12 @@ const Information = ({ data }: props) => {
         </li>
         <li className="flex gap-2">
           <span>زمان تحویل :</span>
-          <span>{data.deliveryDate}</span>
+          
+          <span>{persianDate(data.deliveryDate)}</span>
         </li>
         <li className="flex gap-2">
           <span>زمان سفارش :</span>
-          <span>{data.createdAt}</span>
+          <span>{persianDate(data.createdAt)}</span>
         </li>
       </ul>
     </div>
