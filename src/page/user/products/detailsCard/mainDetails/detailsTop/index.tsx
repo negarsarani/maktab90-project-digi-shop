@@ -23,7 +23,6 @@ interface props {
 const Index = ({ data }: props) => {
   return (
     <div className="lg:col-span-6 md:col-span-8 ">
-      {' '}
       <h3 className="mb-3">
      {data.name}
       </h3>

@@ -32,7 +32,6 @@ const OrdersFilter = ({ openModal, setOpenModal, refetch }: ModalProps) => {
   });
 
   const onSubmit = (formData: any) => {
-  console.log(formData);
 
   let StatusData: string;
   let TotalPriceData: string;

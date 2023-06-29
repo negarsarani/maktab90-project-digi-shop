@@ -25,7 +25,7 @@ const Index = () => {
   return (
     <div className="w-full h-full flex items-center justify-center flex-col gap-3">
       <div className="">
-        <span>مبغ نهایی :</span>
+        <span>مبلغ نهایی :</span>
         <span>{Intl.NumberFormat('fa-IR').format(value.Total)} تومان</span>
       </div>
       <div className="flex items-center justify-center gap-2">
