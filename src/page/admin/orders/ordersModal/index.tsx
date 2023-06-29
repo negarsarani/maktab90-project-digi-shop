@@ -11,13 +11,19 @@ interface props {
   setIsOpenModal: Dispatch<SetStateAction<any>>;
   isOpenModal: boolean;
   activeIdModal: number | string;
+  refetch:()=>{}
 }
-const Index = ({ setIsOpenModal, isOpenModal, activeIdModal }: props) => {
+const Index = ({ setIsOpenModal, isOpenModal, activeIdModal , refetch }: props) => {
   const { isLoading, data } = useQuery(
     ['order', activeIdModal],
     () => getData(`/orders/${activeIdModal}`),
     {
       enabled: !!activeIdModal,
+      staleTime: 600000,
+      cacheTime: 90,
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
     }
   );
   const HandleAddOrder = async (value: boolean) => {
@@ -31,9 +37,12 @@ const Index = ({ setIsOpenModal, isOpenModal, activeIdModal }: props) => {
     mutationFn: (value: boolean) => HandleAddOrder(value),
     onSuccess(data, variables, context) {
       toast.success('تغییر وضعیت تحویل با موفقیت اعمال شد');
+      setIsOpenModal(false)
+     return refetch()
     },
     onError(error, variables, context) {
       toast.error('تغییر وضعیت تحویل با خطا اعمال شد');
+     return refetch()
     },
   });
   const HandleOrder = (value: boolean) => {

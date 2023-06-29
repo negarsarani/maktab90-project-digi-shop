@@ -5,7 +5,7 @@ import Image from 'next/image';
 import persianDate from './persianDate';
 import { Dispatch, SetStateAction, useState } from 'react';
 
-const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
+const OrdersTable = ({ isLoading, value, isError , refetch }: TableProps) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [activeIdModal, setActiveIdModal] = useState('');
   return (
@@ -15,6 +15,7 @@ const OrdersTable = ({ isLoading, value, isError }: TableProps) => {
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
           activeIdModal={activeIdModal}
+          refetch={refetch}
         />
       ) : (
         ''
