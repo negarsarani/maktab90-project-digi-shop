@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { dataProduct } from '@/types/type';
 import ButtonCart from '../mainCart/cards/ButtonCart';
+import Linkrouter from '@/components/Linkrouter';
 interface props {
   quantity: number;
   data: dataProduct;
@@ -9,20 +10,24 @@ const EachCard = ({ data, quantity }: props) => {
   return (
     <div className=" w-full flex md:justify-between  md:flex-row flex-col gap-2 rounded-xl p-3 bg-white">
       <div className="flex flex-col items-center justify-center sm:justify-start gap-2 md:w-10/12 sm:flex-row ">
-        <Image
-          src={`http://localhost:8000/images/products/images/${data.images[0]}`}
-          alt=""
-          className="rounded-xl"
-          width={100}
-          height={100}
-        />
+        <Linkrouter href={`/products/${data._id}`}>
+          <Image
+            src={`http://localhost:8000/images/products/images/${data.images[0]}`}
+            alt=""
+            className="rounded-xl"
+            width={100}
+            height={100}
+          />
+        </Linkrouter>
 
         <div className="">
           <div className="flex gap-3 flex-col items-start  w-full">
             <div className="">
-              <p className="break-words text-center sm:text-right">
-                {data.name}
-              </p>
+              <Linkrouter href={`/products/${data._id}`}>
+                <p className="break-words text-center sm:text-right hover:text-zinc-500">
+                  {data.name}
+                </p>
+              </Linkrouter>
             </div>
             <div className=" flex w-full gap-5 justify-start flex-col items-center  sm:flex-row">
               <div className="flex items-center justify-start  text-sm text-grayDarkLight gap-1">
