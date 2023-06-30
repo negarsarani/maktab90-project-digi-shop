@@ -3,26 +3,41 @@ import useRedux from '@/hooks/useRedux';
 import { CART, DELETEITEM } from '@/redux/slice/user/userSlice';
 import { productType } from '@/types/type';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 interface props {
   quantity: number;
-  data: productType
+  data: productType;
 }
 const ButtonCart = ({ quantity, data }: props) => {
   const [value, dispatch] = useRedux((state) => state.userState);
   const [addToCart, setAddToCart] = useState(false);
   const [numberOrder, setnumberOrder] = useState(1);
+  useEffect(() => {
+    console.log(value.cart);
 
+    if (value.cart.length > 0) {
+      const dataLocalFind = value.cart.find((item: any) => item.data._id === data._id);
+
+      console.log(dataLocalFind);
+      if (dataLocalFind ) {
+        setAddToCart(true)
+        
+        setnumberOrder(dataLocalFind.quantity)
+      }
+       
+    }
+  }, []);
   const handleLocalCart = (number: number) => {
     setnumberOrder(number);
 
-    dispatch(CART({ quantity: number, data: data}));
+    dispatch(CART({ quantity: number, data: data }));
   };
   const handleDeleteCart = () => {
     return dispatch(DELETEITEM({ id: data._id }));
   };
   return (
     <div>
+      {}
       {addToCart ? (
         <div className="flex">
           <Button
