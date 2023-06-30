@@ -3,9 +3,10 @@ import Image from 'next/image';
 import { CookieValueTypes, deleteCookie, getCookie } from 'cookies-next';
 import { useEffect, useState } from 'react';
 import Linkrouter from '@/components/Linkrouter';
+import useRedux from '@/hooks/useRedux';
 
 const Index = () => {
-  
+ const [value , dispatch]= useRedux(state=>state.userState)
   const handleExit = () => {
     deleteCookie('refreshtoken');
     deleteCookie('accesstoken');
@@ -50,8 +51,11 @@ const Index = () => {
 
       <Linkouter
         href="/cart"
-        className="flex gap-2  items-center justify-center"
+        className="flex gap-2  items-center justify-center relative"
       >
+       {value.cart.length > 0 && <div className='absolute -top-2 -left-3 bg-btnCard rounded-full w-4 h-4 text-[0.60rem] flex text-white items-center justify-center '>
+        <span className=''>{value.cart.length}</span>
+        </div>}
         <span className="hidden sm:flex">سبد خرید</span>
         <Image
           src="/icons/user/Buy.svg"

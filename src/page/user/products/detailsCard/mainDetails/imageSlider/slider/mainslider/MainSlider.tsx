@@ -20,7 +20,7 @@ const MainSlider = ({ thumbsSwiper, images }: props) => {
     <div className="relative  ">
       <div className="relative">
         <button
-          className="bg-zinc-400 bg-opacity-50 z-20 p-2 rounded-full absolute top-1/2 transform -translate-y-1/2 right-5"
+          className="bg-zinc-400 bg-opacity-50 z-10 p-2 rounded-full absolute top-1/2 transform -translate-y-1/2 right-5"
           ref={navigationPrevRef}
         >
           <Image
@@ -31,7 +31,7 @@ const MainSlider = ({ thumbsSwiper, images }: props) => {
           />
         </button>
         <button
-          className="bg-zinc-400 bg-opacity-50 z-20 p-2 rounded-full absolute top-1/2 transform -translate-y-1/2 left-5"
+          className="bg-zinc-400 bg-opacity-50 z-10 p-2 rounded-full absolute top-1/2 transform -translate-y-1/2 left-5"
           ref={navigationNextRef}
         >
           <Image

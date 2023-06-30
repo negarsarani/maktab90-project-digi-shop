@@ -99,7 +99,7 @@ const Form = ({ userData, control, errors , setValue }: props) => {
                         calendar={persian}
                         locale={persian_fa}
                         // value={value || ''}
-                        minDate={new Date().setDate(32)}
+                        minDate={new Date().setDate(31)}
                         plugins={[weekends()]}
                         // weekDays={weekDays}
 

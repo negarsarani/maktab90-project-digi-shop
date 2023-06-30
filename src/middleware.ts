@@ -15,7 +15,7 @@ export function middleware(request: NextRequest) {
 
   if (request.nextUrl.pathname.startsWith('/admin')) {
     if (!token || role !== 'ADMIN') {
-      return NextResponse.redirect(new URL('/', request.url));
+      return NextResponse.redirect(new URL('/login', request.url));
     }
   }
   if (request.nextUrl.pathname.startsWith('/cart/final')) {
