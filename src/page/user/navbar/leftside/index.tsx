@@ -10,6 +10,7 @@ const Index = () => {
     deleteCookie('refreshtoken');
     deleteCookie('accesstoken');
     deleteCookie('role');
+    deleteCookie('id');
   };
   return (
     <div className="w-6/12  flex items-center justify-end gap-5">

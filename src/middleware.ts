@@ -18,9 +18,20 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL('/', request.url));
     }
   }
+  if (request.nextUrl.pathname.startsWith('/cart/final')) {
+    if (!token || role === 'ADMIN') {
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
+  }
+  if (request.nextUrl.pathname.startsWith('/cart/payment')) {
+    if (!token || role === 'ADMIN') {
+      return NextResponse.redirect(new URL('/cart', request.url));
+    }
+  }
+  
   NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/login', '/admin/:path*'],
+  matcher: ['/login', '/admin/:path*' , '/cart/final'  , '/cart/payment/:path*'],
 };
