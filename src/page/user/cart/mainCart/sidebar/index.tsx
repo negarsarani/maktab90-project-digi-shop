@@ -136,7 +136,7 @@ const Index = ({ data }: props) => {
           </form>
         </div>
         <div className="flex-1 flex items-center justify-center text-sm">
-        {/* <Linkrouter href='/cart/final' className='w-full' > */}
+        <Linkrouter href='/cart/final' className='w-full' >
           <Button
             type="button"
             className="bg-btnCard w-full text-white rounded-xl py-2"
@@ -144,7 +144,7 @@ const Index = ({ data }: props) => {
             >
             ادامه
           </Button>
-            {/* </Linkrouter> */}
+            </Linkrouter>
         </div>
       </div>
     </div>
