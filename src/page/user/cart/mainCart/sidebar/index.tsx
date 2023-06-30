@@ -34,16 +34,16 @@ const Index = ({ data }: props) => {
     let discountPercentage = 0; // Default discount percentage is 0 (no discount applied)
     if (discount.usediscount === false) {
       if (discount.value === 'Golden') {
-        discountPercentage = 10;
-        discount.percent = 10;
+        discountPercentage = 30;
+        discount.percent = (sumPrice * discountPercentage) / 100;
         setDiscount(discount);
       } else if (discount.value === 'Silver') {
         discountPercentage = 20;
-        discount.percent = 20;
+        discount.percent = (sumPrice * discountPercentage) / 100;
         setDiscount(discount);
       } else if (discount.value === 'Bronze') {
-        discountPercentage = 30;
-        discount.percent = 30;
+        discountPercentage = 10;
+        discount.percent = (sumPrice * discountPercentage) / 100;
         setDiscount(discount);
       }
 
