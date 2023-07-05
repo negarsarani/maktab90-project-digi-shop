@@ -11,7 +11,8 @@ yarn dev
 # or
 pnpm dev
 ```
-<img align="right" alt="coding" width="350" src="https://github.com/negarsarani/maktab90-project-digi-shop/assets/105533887/8d27ab7d-8256-43b1-ac5c-1fdb99c12f23
+<img align="right" alt="coding" width="350" src="![1](https://github.com/negarsarani/maktab90-project-digi-shop/assets/105533887/8d27ab7d-8256-43b1-ac5c-1fdb99c12f23)
+
 ">
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
