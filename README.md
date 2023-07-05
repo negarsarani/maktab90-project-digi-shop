@@ -1,19 +1,12 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1>دیجی شاپ</h1>
+![1](https://github.com/negarsarani/maktab90-project-digi-shop/assets/105533887/8d27ab7d-8256-43b1-ac5c-1fdb99c12f23)
+![2](https://github.com/negarsarani/maktab90-project-digi-shop/assets/105533887/f7ef5ae7-f7fd-4f2e-84fc-1dd273830239)
+![3](https://github.com/negarsarani/maktab90-project-digi-shop/assets/105533887/416f51e5-d480-460e-ac5f-7d7ec3d81d84)
+![4](https://github.com/negarsarani/maktab90-project-digi-shop/assets/105533887/913a5b5d-6797-4e9e-97fc-eb295b5d38db)
+![login](https://github.com/negarsarani/maktab90-project-digi-shop/assets/105533887/fa96a795-2808-47e8-aefb-4d4631ee99ae)
+![5](https://github.com/negarsarani/maktab90-project-digi-shop/assets/105533887/4dfdea2c-617b-49d5-b5ef-1cc497c4ce3f)
+![panel admin 1](https://github.com/negarsarani/maktab90-project-digi-shop/assets/105533887/b2d20fff-2139-42a6-9cd1-60bf20376d57)
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-<img align="right" alt="coding" width="350" src="![1](https://github.com/negarsarani/maktab90-project-digi-shop/assets/105533887/8d27ab7d-8256-43b1-ac5c-1fdb99c12f23)
-
-">
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
