@@ -15,7 +15,7 @@
 ![5](https://github.com/negarsarani/maktab90-project-digi-shop/assets/105533887/4dfdea2c-617b-49d5-b5ef-1cc497c4ce3f)
 ![login](https://github.com/negarsarani/maktab90-project-digi-shop/assets/105533887/fa96a795-2808-47e8-aefb-4d4631ee99ae)
 
-<h1>پنل ادمین دیچی شاپ</h1>
+<h1>پنل ادمین دیجی شاپ</h1>
 
 ![panel admin 1](https://github.com/negarsarani/maktab90-project-digi-shop/assets/105533887/b2d20fff-2139-42a6-9cd1-60bf20376d57)
 ![paneladmin2](https://github.com/negarsarani/maktab90-project-digi-shop/assets/105533887/c17d828c-8e93-4d42-a8c6-3b9cf2e49a6b)
